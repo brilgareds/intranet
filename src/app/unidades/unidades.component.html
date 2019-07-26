@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Unidad de Medida</div>
+        <div class="panel-body">
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Abreviatura</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of unidades">
+                            <th>{{item.unidades_id}}</th>
+                            <td>{{item.nombre}}</td>
+                            <td>{{item.abreviatura}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

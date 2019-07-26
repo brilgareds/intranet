@@ -1,0 +1,91 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Crear Productos</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input [(ngModel)]="producto.nombre_producto" type="text" class="form-control" id="nombre">
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripcion</label>
+                    <textarea [(ngModel)]="producto.descripcion" class="form-control" id="descripcion"
+                        rows="3"></textarea>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                    <label for="unidad">Unidad de Medida</label>
+                    <select [(ngModel)]="unidad" class="form-control" id="unidad">
+                        <option *ngFor="let item of unidades" [ngValue]="item">
+                            {{item.nombre}} - {{item.abreviatura}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fabricante">Fabricante</label>
+                    <select [(ngModel)]="fabricante" class="form-control" id="fabricante">
+                        <option *ngFor="let item of fabricantes" [ngValue]="item">
+                            {{item.nombre}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12  col-sm-12  col-md-12  ">
+                <div class="row">
+                    <div class="col-xs-12  col-sm-12  col-md-12  ">
+                        <div *ngIf="!verBotonGuardar" class="col-xs-12  col-sm-12  col-md-12  ">
+                            <button (click)="saveProducto()"
+                                class="btn btn-primary btn-responsive center-block">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div *ngIf="verBotonGuardar" class="col-xs-6  col-sm-6  col-md-6 ">
+                        <button (click)="updateProducto()"
+                            class="btn btn-success btn-responsive center-block">Modificar</button>
+                    </div>
+                    <div *ngIf="verBotonGuardar" class="col-xs-6  col-sm-6  col-md-6 ">
+                        <button (click)="cancelar()" class="btn btn-success btn-danger center-block">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="10%" scope="col">#</th>
+                <th width="15%" scope="col">Nombre</th>
+                <th width="25%" scope="col">Descripcion</th>
+                <th width="15%" scope="col">Unidad</th>
+                <th width="15%" scope="col">Fabricante</th>
+                <th width="20%" scope="col">op</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of productosModel">
+                <th>{{item.productos_id}}</th>
+                <td>{{item.nombre_producto}}</td>
+                <td>{{item.descripcion}}</td>
+                <td>{{item.nombre_unidad}}</td>
+                <td>{{item.nombre}}</td>
+                <td>
+                    <div class="col-xs-6 col-sm-6 col-md-6 ">
+                        <button (click)="seleccionarProducto(item)"
+                            class="btn btn-success btn-responsive btn-xs">Seleccionar</button>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <button (click)="deleteProducto(item.productos_id)"
+                            class="btn btn-danger btn-responsive btn-xs">Eliminar</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
