@@ -43,6 +43,8 @@ export class ProductosComponent implements OnInit {
     fabricantes_id: null,
   };
 
+  
+
 
   constructor(private productoService: ProductosService, private unidadesService: UnidadesService, private fabricantesService: FabricantesService, private httpClient: HttpClient) {
 
