@@ -22,18 +22,8 @@ export class ProductosComponent implements OnInit {
   verBotonGuardar: Boolean;
 
 //declaracion de modelos
-  fabricante: Fabricantes = {
-    fabricantes_id: null,
-    nombre: null,
-    identificacion: null,
-    direccion: null
-  };
-
-  unidad: Unidades = {
-    unidades_id: null,
-    nombre: null,
-    abreviatura: null
-  };
+  fabricante: number;
+  unidad: number;
 
   producto: Productos = {
     productos_id: null,
@@ -43,50 +33,51 @@ export class ProductosComponent implements OnInit {
     fabricantes_id: null,
   };
 
-  
-
-
   constructor(private productoService: ProductosService, private unidadesService: UnidadesService, private fabricantesService: FabricantesService, private httpClient: HttpClient) {
 
   }
 
   //funcion que invoca el servicio de consulta productos
   searchAllProductos() {
-    this.productoService.searchAll().subscribe((data: Productos[]) => {
-      this.productosModel = data;
-    },
-      (error) => {
-        alert('Ocurrio un Error');
-        console.log("imprimir", error);
-      });
+     this.productosModel = this.productoService.searchAll();
+//    this.productoService.searchAll().subscribe((data: Productos[]) => {
+//      this.productosModel = data;
+//    },
+//      (error) => {
+//        alert('Ocurrio un Error');
+//        console.log("imprimir", error);
+//      });
   }
 
  //funcion que invoca el servicio de consulta unidades
   searchAllUnidades() {
-    this.unidadesService.searchAll().subscribe((data: Unidades[]) => {
-      this.unidades = data;
-    },
-      (error) => {
-        alert('Ocurrio un Error');
-        console.log("imprimir", error);
-      });
+      
+     this.unidades = this.unidadesService.searchAll();
+//    this.unidadesService.searchAll().subscribe((data: Unidades[]) => {
+//      this.unidades = data;
+//    },
+//      (error) => {
+//        alert('Ocurrio un Error');
+//        console.log("imprimir", error);
+//      });
   }
  //funcion que invoca el servicio de consulta fabricantes
   searchAllFabricantes() {
-    this.fabricantesService.searchAll().subscribe((data: Fabricantes[]) => {
-      this.fabricantes = data;
-    },
-      (error) => {
-        alert('Ocurrio un Error');
-        console.log("imprimir", error);
-      });
+       this.fabricantes = this.fabricantesService.searchAll();
+//    this.fabricantesService.searchAll().subscribe((data: Fabricantes[]) => {
+//      this.fabricantes = data;
+//    },
+//      (error) => {
+//        alert('Ocurrio un Error');
+//        console.log("imprimir", error);
+//      });
   }
 
  //funcion que invoca el servicio para guardar productos
   saveProducto() {
 
-    this.producto.unidades_id = this.unidad.unidades_id;
-    this.producto.fabricantes_id = this.fabricante.fabricantes_id;
+    this.producto.unidades_id = this.unidad;
+    this.producto.fabricantes_id = this.fabricante;
 
     console.log("guardar", this.producto);
     this.productoService.save(this.producto).subscribe((data) => {
@@ -134,6 +125,9 @@ export class ProductosComponent implements OnInit {
 
   //se asigna el producto seleccionado al modelo
   seleccionarProducto(productoModel: Productos) {
+    this.unidad = productoModel.unidades_id;
+    this.fabricante = productoModel.fabricantes_id;
+      console.log("unidad ",productoModel);
     this.verBotonGuardar = true;
     this.producto = productoModel;
   }

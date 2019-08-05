@@ -23,13 +23,14 @@ export class UnidadesComponent implements OnInit {
   }
 
   searchAllUnidades() {
-    this.unidadesService.searchAll().subscribe((data: Unidades[]) => {
-        this.unidades = data;
-      },
-      (error)=>{
-        alert('Ocurrio un Error');
-        console.log("imprimir",error);
-      });
+      this.unidades = this.unidadesService.searchAll();
+//    this.unidadesService.searchAll().subscribe((data: Unidades[]) => {
+//        this.unidades = data;
+//      },
+//      (error)=>{
+//        alert('Ocurrio un Error');
+//        console.log("imprimir",error);
+//      });
     }
 
   ngOnInit() {

@@ -48,7 +48,14 @@ export class ProductosService {
 
    //consultar producto
    searchAll(){
-      return this.httpClient.get(this.API_ENDPOINT+'/productos');
+        var producto = [
+       {productos_id:1,nombre_producto:'aceta1',descripcion:'aceta1',fabricantes_id:1,unidades_id:1,nombre_unidad:'1',nombre:'1'},
+       {productos_id:2,nombre_producto:'aceta2',descripcion:'aceta2',fabricantes_id:2,unidades_id:2,nombre_unidad:'2',nombre:'2'},
+       {productos_id:3,nombre_producto:'aceta3',descripcion:'aceta3',fabricantes_id:3,unidades_id:3,nombre_unidad:'3',nombre:'3'},
+       {productos_id:4,nombre_producto:'aceta4',descripcion:'aceta4',fabricantes_id:4,unidades_id:2,nombre_unidad:'2',nombre:'4'},
+       {productos_id:5,nombre_producto:'aceta5',descripcion:'aceta5',fabricantes_id:4,unidades_id:1,nombre_unidad:'1',nombre:'14'}
+   ];
+      return producto;//this.httpClient.get(this.API_ENDPOINT+'/productos');
 
   }
 

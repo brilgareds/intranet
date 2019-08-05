@@ -5,27 +5,27 @@
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input [(ngModel)]="producto.nombre_producto" type="text" class="form-control" id="nombre">
+                    <input [(ngModel)] = "producto.nombre_producto" type="text" class="form-control" id="nombre">
                 </div>
                 <div class="form-group">
                     <label for="descripcion">Descripcion</label>
-                    <textarea [(ngModel)]="producto.descripcion" class="form-control" id="descripcion"
+                    <textarea [(ngModel)] = "producto.descripcion" class="form-control" id="descripcion"
                         rows="3"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="form-group">
                     <label for="unidad">Unidad de Medida</label>
-                    <select [(ngModel)]="unidad" class="form-control" id="unidad">
-                        <option *ngFor="let item of unidades" [ngValue]="item">
+                    <select [(ngModel)] = "unidad" class="form-control" name="unidad" id="unidad">
+                        <option *ngFor = "let item of unidades" [ngValue]="item.unidades_id" >
                             {{item.nombre}} - {{item.abreviatura}}
                         </option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="fabricante">Fabricante</label>
-                    <select [(ngModel)]="fabricante" class="form-control" id="fabricante">
-                        <option *ngFor="let item of fabricantes" [ngValue]="item">
+                    <select [(ngModel)] = "fabricante" class="form-control" id="fabricante" name="fabricante">
+                        <option *ngFor = "let item of fabricantes" [ngValue]="item.fabricantes_id">
                             {{item.nombre}}
                         </option>
                     </select>
@@ -36,19 +36,19 @@
             <div class="col-xs-12  col-sm-12  col-md-12  ">
                 <div class="row">
                     <div class="col-xs-12  col-sm-12  col-md-12  ">
-                        <div *ngIf="!verBotonGuardar" class="col-xs-12  col-sm-12  col-md-12  ">
-                            <button (click)="saveProducto()"
+                        <div *ngIf = "!verBotonGuardar" class="col-xs-12  col-sm-12  col-md-12  ">
+                            <button (click) = "saveProducto()"
                                 class="btn btn-primary btn-responsive center-block">Guardar</button>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div *ngIf="verBotonGuardar" class="col-xs-6  col-sm-6  col-md-6 ">
-                        <button (click)="updateProducto()"
+                    <div *ngIf = "verBotonGuardar" class="col-xs-6  col-sm-6  col-md-6 ">
+                        <button (click) = "updateProducto()"
                             class="btn btn-success btn-responsive center-block">Modificar</button>
                     </div>
-                    <div *ngIf="verBotonGuardar" class="col-xs-6  col-sm-6  col-md-6 ">
-                        <button (click)="cancelar()" class="btn btn-success btn-danger center-block">Cancelar</button>
+                    <div *ngIf = "verBotonGuardar" class="col-xs-6  col-sm-6  col-md-6 ">
+                        <button (click) = "cancelar()" class="btn btn-success btn-danger center-block">Cancelar</button>
                     </div>
                 </div>
             </div>
