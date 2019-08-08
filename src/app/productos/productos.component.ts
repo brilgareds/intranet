@@ -94,8 +94,8 @@ export class ProductosComponent implements OnInit {
  //funcion que invoca el servicio para modificar productos
   updateProducto() {
 
-    this.producto.unidades_id = this.unidad.unidades_id;
-    this.producto.fabricantes_id = this.fabricante.fabricantes_id;
+    this.producto.unidades_id = this.unidad;
+    this.producto.fabricantes_id = this.fabricante;
 
     console.log("update", this.producto);
     this.productoService.update(this.producto).subscribe((data) => {

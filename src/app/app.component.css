@@ -1,0 +1,26 @@
+
+
+.menu-colors { 
+    background-color : #337ab7;
+    font-size: 14px;
+    color : white;
+   
+}
+.nav-link{
+    color : white !important; 
+    padding-left: 100px;
+    margin-left: 20px;
+}
+.navbar-brand{
+    color : white !important; 
+}
+
+ footer {
+        background-color: #337ab7;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        padding: 25px;
+        color: white;
+    }
