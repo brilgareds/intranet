@@ -1,48 +1,72 @@
-<!--<div class="container">
-    <div *ngFor="let item of extensiones.area" >
-        <a  class="list-group-item list-group-item-action active href-panel" >{{item.nombre}}</a>  
-        <div class="row" *ngFor="let item2 of item.propietarios" >
-             <div class="col-md-12">
-                <div class="card">
-                    <img src="assets/images/hombre.jpg" alt="Avatar" style="width:100%">
-                    <div class="container">
-                        <h4><b>{{item2.nombre}}</b></h4> 
-                        <p>EXT. {{item2.extension}}</p> 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-
 <div class="container-fluid text-center">    
     <div class="row content">
 
-        <div class="col-sm-1 sidenav1">
+        <div class="col-sm-2 sidenav1">
             <div  class="delgado">
-                <div class="card" style="width: 13rem;">
-                    <img src="assets/images/nube.svg" alt="Avatar" style="width:50%; margin:0 auto" class="card-img-top">
+                <div class="card">
+                    <img src="assets/images/nube.svg" alt="Avatar" style="width:30%; margin:0 auto" class="card-img-top">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <strong> 28°C</strong>
+                            <b class="max-temp">{{name}}</b>
+                            <br>
+                            <strong> {{temp}}°C</strong>
                             <br>
                             <span>
                                 <b class="max-temp">
-                                    85  / 89
+                                    H: {{humidity}}%
                                 </b>
                             </span>
                         </li>
                     </ul>
                     <div class="card-body" >
                         <div>
-                            <img src="assets/images/eeuu.png" alt="Avatar" style="width:50%; margin:0 auto" class="card-img-top"><b>Dólar</b>
+                            <img src="assets/images/eeuu.png" alt="Avatar" style="width:30%; margin:0 auto" class="card-img-top"><b>Dólar</b>
                         </div>
-                        <strong>$ 3.300</strong>
+                        <strong>$ {{precioDolar}}</strong>
+                    </div>
+                    <div class="card-body" >
+                        <div class="col-md-12">               
+                            <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="1000">                                
+                                <br>
+                                <br>
+                                <br>
+                                <div class="carousel-inner vertical"  *ngFor="let item of publicidad">
+                                     <div class="{{item.active}} item" data-target="#carousel-main">
+                                        <div class="{{item.id}}">
+                                            <p><b class="max-temp">{{item.titulo}}</b></p>
+                                            <p><b class="max-temp">{{item.asunto}}</b></p>
+                                            <p><u><b class="max-temp">{{item.propietario}}</b></u></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                                <a class="left carousel-control" href="#carousel-pager" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-pager" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="widget">{{date | date:'dd-MM-yyyy'}}</div>
+                        <div class="widget">{{date | date:'HH:mm:ss'}}</div>
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
         </div>
-        <div class="col-sm-9 text-left"> 
+        <div class="col-sm-8 text-left"> 
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
@@ -76,48 +100,74 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-            <h1>¿QUIENES SOMOS?</h1>
-            <p>DUANA Y CIA LTDA tiene como actividad principal la comercialización y
-                distribución de medicamentos y dispositivos médicos, abasteciendo las necesidades de nuestros
-                clientes institucionales, mayoristas y minoristas dentro de los cuales se encuentran los
-                usuarios de entidades hospitalarias, empresas promotoras de salud e instituciones prestadoras
-                de Servicio de Salud en diferentes regiones del país, entre las cuales se destacan los departamentos
-                Del Valle del Cauca,Bolívar, Risaralda, Antioquia, Cauca, Huila, Córdoba, Nariño,
-                Quindío, Caldas, Cundinamarca, Sucre, Magdalena y Atlántico.</p>
-            <hr>
+            <div  class='row'>
+                <div  class="container col-md-5 letters">
+                    <div class="container-fluid ">
+                        <p class="titulo">¿QUIENES SOMOS?</p>
+                    </div>
+                    <p class="contenido">DUANA Y CIA LTDA tiene como actividad principal la comercialización y
+                        distribución de medicamentos y dispositivos médicos, abasteciendo las necesidades de nuestros
+                        clientes institucionales, mayoristas y minoristas dentro de los cuales se encuentran los
+                        usuarios de entidades hospitalarias, empresas promotoras de salud e instituciones prestadoras
+                        de Servicio de Salud en diferentes regiones del país, entre las cuales se destacan los departamentos
+                        Del Valle del Cauca,Bolívar, Risaralda, Antioquia, Cauca, Huila, Córdoba, Nariño,
+                        Quindío, Caldas, Cundinamarca, Sucre, Magdalena y Atlántico.</p>
 
-            <h1>POLÍTICA DE CALIDAD</h1>
-            <p>La política de calidad de Duana y Cía Ltda, es contribuir al mejoramiento de la calidad de vida
-                de nuestros clientes a través del suministro oportuno de productos y servicios con excelentes
-                estándares de calidad; apoyados en el recurso humano comprometido y el mejoramiento continuo en los
-                procesos mediante el análisis de los riesgos y la generación de oportunidades. Consolidando nuestra
-                organización para mantener un alto nivel competitivo ante nuestras partes interesadas y el Mercado Nacional.</p>
-            <h1>MISI&Oacute;N</h1>
-            <p>Somos una organización conformada por un equipo humano competente y comprometido
-                a mejorar la calidad de vida de las personas proporcionando a nuestros clientes institucionales
-                y comerciales medicamentos, dispositivos médicos y servicios de dispensación con oportunidad,
-                costo racional y altos estándares de calidad.</p>
-            <h1>VISI&Oacute;N</h1>
-            <p>Nos proyectamos como la organización líder en el país en la prestación de
-                servicios de dispensación y comercialización de medicamentos y
-                dispositivos médicos reconocida por suministrar a nuestros clientes soluciones eficientes,
-                rentables y adaptada a sus necesidades.</p>
+                </div>
+
+                <div  class="container col-md-5 letters" >
+                    <div class="container-fluid">
+                        <p class="titulo">POLÍTICA DE CALIDAD</p>
+                    </div>
+                    <p class="contenido">La política de calidad de Duana y Cía Ltda, es contribuir al mejoramiento de la calidad de vida
+                        de nuestros clientes a través del suministro oportuno de productos y servicios con excelentes
+                        estándares de calidad; apoyados en el recurso humano comprometido y el mejoramiento continuo en los
+                        procesos mediante el análisis de los riesgos y la generación de oportunidades. Consolidando nuestra
+                        organización para mantener un alto nivel competitivo ante nuestras partes interesadas y el Mercado Nacional.</p>
+
+                </div>
+            </div>
+            <div  class='row'>
+                <div  class="container col-md-5 letters">
+                    <div class="container-fluid">
+                        <p class="titulo">MISI&Oacute;N</p>
+                    </div>
+                    <p class="contenido">Somos una organización conformada por un equipo humano competente y comprometido
+                        a mejorar la calidad de vida de las personas proporcionando a nuestros clientes institucionales
+                        y comerciales medicamentos, dispositivos médicos y servicios de dispensación con oportunidad,
+                        costo racional y altos estándares de calidad.</p>
+
+                </div>
+
+                <div  class="container col-md-5 letters" >
+                    <div class="container-fluid">
+                        <p class="titulo">VISI&Oacute;N</p>
+                    </div>
+                    <p class="contenido">Nos proyectamos como la organización líder en el país en la prestación de
+                        servicios de dispensación y comercialización de medicamentos y
+                        dispositivos médicos reconocida por suministrar a nuestros clientes soluciones eficientes,
+                        rentables y adaptada a sus necesidades.</p>
+
+                </div>
+            </div>
+
+
+
         </div>
         <div class="col-sm-2 sidenav">
             <div class="row" style="heigth: 100%; padding:0;">
-                <div *ngFor="let item of extensiones.area" class="col-sm-12">
-                    <a class="list-group-item list-group-item-action active href-panel" >{{item.nombre}}</a>  
-                    <div class="col-sm-12" style="padding: 0px;">
-                        <div class="col-xs-6 col-sm-6 col-md-6" style="padding:0px;" *ngFor="let item2 of item.propietarios">
-                             <div class="card">
-                                <img src="assets/images/hombre.jpg" alt="Avatar" style="width:50%; margin:0 auto">
-                                <div class="container">
-                                    <h6><b>{{item2.nombre}}</b></h6> 
-                                    <h6>EXT. {{item2.extension}}</h6>
+                <div *ngFor="let item of extensiones.area" class="col-xs-12 col-sm-12 col-md-12">
+                    <a class="list-group-item list-group-item-action active href-panel {{item.color}}" style="border-radius:10px 10px 0px 0px; ">{{item.nombre}}</a>  
+                    <div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;" >
+                        <div class="card">
+                            <div class="card-body" >
+                                <div>
+                                    <img src="assets/images/fc.png" alt="Avatar" style="width:10%;"><b *ngFor="let item2 of item.propietarios" >{{item2.nombre}} EXT. {{item2.extension}}<br></b>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--</div>-->
                 </div>
             </div>
         </div>

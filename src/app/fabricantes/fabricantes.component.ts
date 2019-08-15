@@ -26,14 +26,15 @@ export class FabricantesComponent implements OnInit {
 
   //consulto data del servicio de fabricantes
   searchAllFabricantes() {
-     this.fabricantes =  this.fabricantesService.searchAll();
-//    this.fabricantesService.searchAll().subscribe((data: Fabricantes[]) => {
-//      this.fabricantes = data;
-//    },
-//      (error) => {
-//        alert('Ocurrio un Error');
-//        console.log("imprimir", error);
-//      });
+   
+    this.fabricantesService.searchAll().subscribe((data : Fabricantes[]) => {
+        console.log("######",data);
+      this.fabricantes = data;
+    },
+      (error) => {
+        alert('Ocurrio un Error');
+        console.log("imprimir", error);
+      });
   }
 
 

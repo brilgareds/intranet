@@ -13,7 +13,7 @@
 }
 
 .href-panel {
-    background-color: #337ab7  !important; 
+    /*background-color: #337ab7  !important;*/ 
     color : white !important; 
     cursor: pointer;
 }
@@ -43,12 +43,28 @@
     p{
         font-size: 16px;
     }
-    
+    .card{
+        /*border-radius: 15px;*/
+        border-radius: 0px 0px 10px 10px ;
+    }
+    .letters{
+        background: #DCE0E5;
+        border-radius: 10px; 
+        margin-top: 25px;
+    }
+    .titulo{
+     font-size: 35px;
+     text-align:center;
+    }
+    .contenido{
+        text-align: justify;
+    }
     .sidenav1 {
       padding-top: 15px;
       background-color: #f1f1f1;
       height: 80%;
-      border-radius: 2%;    
+      border-radius: 0px 0px 10px 10px;   
+      /*border-radius: 15px 15px 0px 0px ;*/
     }
     
     strong{
@@ -61,7 +77,17 @@
     #masterDiv{
         overflow:hidden
     }
-    
+    .widget{
+        font: bold 1.9em undotum, "lucida sans", arial; text-align: center !important;
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 5px;
+        background: #0A3B85;
+        border-radius: 5px;
+        padding: 20px;
+        color: white;
+        width: 100%;
+    }
     
     
     /* Set black background color, white text and some padding */
@@ -86,3 +112,88 @@
         height: 600px;
         width: 100%;
     }
+    
+    
+    .carousel-inner.vertical {
+  height: 100%; /*Note: set specific height here if not, there will be some issues with IE browser*/
+}
+.carousel-inner.vertical > .item {
+  -webkit-transition: .6s ease-in-out top;
+  -o-transition: .6s ease-in-out top;
+  transition: .6s ease-in-out top;
+}
+
+@media all and (transform-3d),
+(-webkit-transform-3d) {
+  .carousel-inner.vertical > .item {
+    -webkit-transition: -webkit-transform .6s ease-in-out;
+    -o-transition: -o-transform .6s ease-in-out;
+    transition: transform .6s ease-in-out;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+  .carousel-inner.vertical > .item.next,
+  .carousel-inner.vertical > .item.active.right {
+    -webkit-transform: translate3d(0, 33.33%, 0);
+    transform: translate3d(0, 33.33%, 0);
+    top: 0;
+  }
+  .carousel-inner.vertical > .item.prev,
+  .carousel-inner.vertical > .item.active.left {
+    -webkit-transform: translate3d(0, -33.33%, 0);
+    transform: translate3d(0, -33.33%, 0);
+    top: 0;
+  }
+  .carousel-inner.vertical > .item.next.left,
+  .carousel-inner.vertical > .item.prev.right,
+  .carousel-inner.vertical > .item.active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    top: 0;
+  }
+}
+
+.carousel-inner.vertical > .active {
+  top: 0;
+}
+.carousel-inner.vertical > .next,
+.carousel-inner.vertical > .prev {
+  top: 0;
+  height: 100%;
+  width: auto;
+}
+.carousel-inner.vertical > .next {
+  left: 0;
+  top: 33.33%;
+  right:0;
+}
+.carousel-inner.vertical > .prev {
+  left: 0;
+  top: -33.33%;
+  right:0;
+}
+.carousel-inner.vertical > .next.left,
+.carousel-inner.vertical > .prev.right {
+  top: 0;
+}
+.carousel-inner.vertical > .active.left {
+  left: 0;
+  top: -33.33%;
+  right:0;
+}
+.carousel-inner.vertical > .active.right {
+  left: 0;
+  top: 33.33%;
+  right:0;
+}
+
+#carousel-pager .carousel-control.left {
+    bottom: initial;
+    width: 100%;
+}
+#carousel-pager .carousel-control.right {
+    top: initial;
+    width: 100%;
+}

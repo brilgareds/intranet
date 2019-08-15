@@ -28,6 +28,8 @@ export class ProductosComponent implements OnInit {
   producto: Productos = {
     productos_id: null,
     nombre_producto: null,
+    nombre_unidad :  null,
+    nombre :  null,
     descripcion: null,
     unidades_id: null,
     fabricantes_id: null,
@@ -63,14 +65,15 @@ export class ProductosComponent implements OnInit {
   }
  //funcion que invoca el servicio de consulta fabricantes
   searchAllFabricantes() {
-       this.fabricantes = this.fabricantesService.searchAll();
-//    this.fabricantesService.searchAll().subscribe((data: Fabricantes[]) => {
-//      this.fabricantes = data;
-//    },
-//      (error) => {
-//        alert('Ocurrio un Error');
-//        console.log("imprimir", error);
-//      });
+
+    this.fabricantesService.searchAll().subscribe((data: any) => {
+        console.log('fata',data);
+      this.fabricantes = data.obj;
+    },
+      (error) => {
+        alert('Ocurrio un Error');
+        console.log("imprimir", error);
+      });
   }
 
  //funcion que invoca el servicio para guardar productos

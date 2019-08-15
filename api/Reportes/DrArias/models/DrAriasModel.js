@@ -2,22 +2,32 @@ var DrAriasModel = function() {
 
 };
 
-DrAriasModel.prototype.eliminarRotacionMedipol= function (obj, callback) {
+DrAriasModel.prototype.listarUsuarios= function (callback) {
 
-    var query = G.knex('rotacion_diaria_medipol')
-            .where('empresa_id', obj.empresa)
-            .andWhere('centro_utilidad', obj.centroUtilidad)
-            .andWhere('bodega', obj.bodega)
-            .andWhere('fecha', obj.fechaToday)
-            .del();
+ var query = G.knex.column('*')
+            .select().from("usuarios as x")
+            .where("x.usuarios_id", '1')
+            .as("b");
 
     query.then(function (resultado) {
-
         callback(false, resultado);
-
     }).catch(function (err) {
-        console.log("err (/catch) [eliminarRotacionMedipol]: ", err);
-        callback({err: err, msj: "Error al eliminar Rotacion Medipol"});
+        console.log("err [listarUsuarios]:", err);
+        callback({err: err, msj: "Error al consultar la lista de usuarios"});
+    });
+};
+
+DrAriasModel.prototype.listarProductos= function (callback) {
+
+ var query = G.knex.column('*')
+            .select().from("fabricantes as x")
+            .as("b");
+
+    query.then(function (resultado) {
+        callback(false, resultado);
+    }).catch(function (err) {
+        console.log("err [listarProductos]:", err);
+        callback({err: err, msj: "Error al listar Productos"});
     });
 };
 
