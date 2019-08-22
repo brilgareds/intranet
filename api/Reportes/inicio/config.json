@@ -1,0 +1,21 @@
+{
+    "module": "inicio",
+    "dependency": {
+        "controllers": [{
+                "inicio_controller": {
+                    "module": "Reportes/inicio",
+                    "controller": "inicioController",
+                    "alias": "c_inicio"
+                }
+            }],
+        "models": [{
+                "inicio_model": {
+                    "module": "Reportes/inicio",
+                    "model": "inicioModel",
+                    "alias": "m_inicio"
+                }
+            }],
+        "events": [],
+        "cronJobs": []
+    }
+}

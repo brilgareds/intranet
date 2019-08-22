@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InicioService } from '../services/inicio.service';
+import { InicioFaces } from '../interfaces/inicioFaces';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -16,7 +17,8 @@ export class InicioComponent implements OnInit {
   name = "";
   public now: Date = new Date();
   date;
-  
+  inicioModel: InicioFaces[];
+
   constructor(private inicioService: InicioService, private httpClient: HttpClient) {
   
        setInterval(() => {
@@ -24,7 +26,17 @@ export class InicioComponent implements OnInit {
         }, 1);
    
      }
-  
+
+ listarExtenciones() {
+      this.InicioService.listarExtenciones().subscribe((data: InicioFaces[]) => {
+      this.inicioModel = data;
+   },
+     (error) => {
+       alert('Ocurrio un Error');
+       console.log("imprimir", error);
+     });
+  }
+
  extensiones = 
       {area:[
           {nombre:'FINACIERA CONTABLE', color : 'bg-primary' ,propietarios:[
@@ -54,11 +66,11 @@ export class InicioComponent implements OnInit {
               {nombre:'JEFE CARTERA', extension : 133 },
               {nombre:'AUX FACTURACION', extension : 134 },
           ]},
-          {nombre:'TALENTO HUMANO',  color : 'bg-primary' ,propietarios:[
+          {nombre:'TALENTO HUMANO',  color : 'bg-dark' ,propietarios:[
               {nombre:'JEFE TALENTO HUMANO', extension : 103 },
               {nombre:'AUX TALENTO HUMANO', extension : 123 },
           ]},
-          {nombre:'CALIDAD',  color : 'bg-dark' ,propietarios:[
+          {nombre:'CALIDAD',  color : 'bg-primary' ,propietarios:[
               {nombre:'JEFE CALIDAD', extension : 110 },
               {nombre:'CALIDAD', extension : 124 },
           ]}
@@ -106,10 +118,11 @@ export class InicioComponent implements OnInit {
       });
   }
     
- 
+
   
   ngOnInit() {
       this.tmrColombia();
+      this.listarExtenciones();
   }
 
 }

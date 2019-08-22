@@ -11,7 +11,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class ProductosService {
 
   //url
-  API_ENDPOINT = "http://localhost:8000/api";
+  API_ENDPOINT = "http://localhost:3001/api";
 
   constructor(private httpClient: HttpClient) { }
 

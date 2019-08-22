@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import { InicioFaces } from '../interfaces/inicioFaces';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,10 @@ export class InicioService {
 
   //consultar tmr Colombia
   tmrColombiaService() {
-   // const headers  = new HttpHeaders({'content-type':'application/json'});
-    return this.httpClient.get(this.API_ENDPOINT + '/tmrColombia', this.httpOptions);//,{headers:headers}
-  }
-}
+    return this.httpClient.get(this.API_ENDPOINT + '/tmrColombia', this.httpOptions);
+      }
+
+      listarExtensiones(){
+      return this.httpClient.get(this.API_ENDPOINT+'/listarExtensiones');
+     }
+} 
