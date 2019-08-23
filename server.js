@@ -59,10 +59,12 @@ const http = require('http');
 const path = require('path');
 const modulos = require('./api/');
 const intravenous = require('intravenous');
-
+const cors = require ('cors');
 
 const app = express();
 
+// Configurar cabeceras y cors
+app.use(cors());
 
 var cacheKey = "dusoft";
 
@@ -157,18 +159,9 @@ modulos.cargarRoutes(app, container, io);
 //   }
 //});
 
-// Configurar cabeceras y cors
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
-});
-
 app.post('/api/', function (req, res, next) {
     res.set('Cache-Control', 'public, max-age=31557600, s-maxage=31557600');
   res.sendfile(path.join(__dirname+'/api')); 
 });
 
-server.listen(port,() => console.log('Running ...'));
+server.listen(port,() => console.log('Running in port: ', port));

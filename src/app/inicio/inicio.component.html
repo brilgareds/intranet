@@ -232,19 +232,17 @@
             </div><!---side cierra--->
 
 
-
         </div>  <!--CIERRA col-8-->
-
 
         <div class="col-sm-2 sidenav">
             <div class="row" style="heigth: 100%; padding:0;">
-                <div *ngFor="let item of extensiones.area" class="col-xs-12 col-sm-12 col-md-12">
-                    <a class="list-group-item list-group-item-action active href-panel {{item.color}}" style="border-radius:10px 10px 0px 0px; ">{{item.nombre}}</a>  
+                <div *ngFor="let area of inicioModel" class="col-xs-12 col-sm-12 col-md-12">
+                    <a class="list-group-item list-group-item-action active href-panel {{area.color}}" style="border-radius:10px 10px 0px 0px; ">{{area.nombreAreas}}</a>
                     <div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;" >
                         <div class="card">
                             <div class="card-body" >
                                 <div>
-                                    <img src="assets/images/fc.png" alt="Avatar" style="width:10%;"><b *ngFor="let item2 of item.propietarios" >{{item2.nombre}} EXT. {{item2.extension}}<br></b>
+                                    <img src="assets/images/fc.png" alt="Avatar" style="width:10%;"><b *ngFor="let item of area" >{{item.nombre}} EXT. {{item.extension}}<br></b>
                                 </div>
                             </div>
                         </div>

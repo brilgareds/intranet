@@ -15,8 +15,8 @@ export class ComponentService {
   })
 };
 
-  API_ENDPOINT = "/api";
- 
+  // API_ENDPOINT = "/api";
+  API_ENDPOINT = "http://localhost:3001/api";
    constructor(private httpClient: HttpClient) { }
 
   //consultar ip Local
