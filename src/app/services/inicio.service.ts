@@ -27,6 +27,7 @@ export class InicioService {
       }
 
       listarExtensiones(){
+      console.log("hioaso");
       return this.httpClient.get(this.API_ENDPOINT+'/listarExtensiones');
      }
 } 

@@ -50,7 +50,20 @@ inicioModel.prototype.listarExtensiones= function (callback) {
     });
 };
 
-
+inicioModel.prototype.mostrarPortada= function (callback) {
+ console.log("mostrarPortada123");
+ var query = G.knex.column("id", "url", "fecha_inicio", "fecha_final", "active", "descripcion", "interval")
+            .select()
+            .from("intranet.portada");
+          
+                 console.log("mostrarPortadamodelo",query);
+    query.then(function (resultado) {
+        callback(false, resultado);
+    }).catch(function (err) {
+        console.log("err [mostrarPortada]:", err);
+        callback({err: err, msj: "Error al consultar mostrar Portada"});
+    });
+};
 module.exports = inicioModel;
 
 

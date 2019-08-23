@@ -17,7 +17,7 @@ export class InicioComponent implements OnInit {
   name = "";
   public now: Date = new Date();
   date;
-  inicioModel: InicioFaces[];
+  inicioModel: any;
 
   constructor(private inicioService: InicioService, private httpClient: HttpClient) {
   
@@ -27,15 +27,17 @@ export class InicioComponent implements OnInit {
    
      }
 
- listarExtenciones() {
-      this.InicioService.listarExtenciones().subscribe((data: InicioFaces[]) => {
+ listarExtensiones1() {
+ console.log("entraaaa o nooooo");
+      this.inicioService.listarExtensiones().subscribe((data: any) => {
       this.inicioModel = data;
-   },
+
+        },
      (error) => {
        alert('Ocurrio un Error');
        console.log("imprimir", error);
      });
-  }
+  } 
 
  extensiones = 
       {area:[
@@ -122,7 +124,8 @@ export class InicioComponent implements OnInit {
   
   ngOnInit() {
       this.tmrColombia();
-      this.listarExtenciones();
+      this.listarExtensiones1();
+
   }
 
 }
