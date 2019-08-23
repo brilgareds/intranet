@@ -22,9 +22,8 @@ module.exports = function(app, di_container) {
         c_Inicio.ipLocal(req, res);
     });
 
-        app.get('/api/listarExtensiones', function(req, res) {
+    app.get('/api/listarExtensiones', function(req, res) {
         console.log('listarExtensiones');
         c_Inicio.listarExtensiones(req, res);
     });
-    
 };

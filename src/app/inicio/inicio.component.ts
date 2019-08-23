@@ -19,63 +19,6 @@ export class InicioComponent implements OnInit {
     date;
     inicioModel: InicioFaces[];
 
-    extensiones =
-        {
-            area: [
-                {
-                    nombre: 'FINACIERA CONTABLE', color: 'bg-primary', propietarios: [
-                    {nombre: 'AUX CONTABLE', extension: '137'},
-                    {nombre: 'AUX CONTABLE', extension: '102'},
-                    {nombre: 'AUX CONTABLE', extension: '130'},
-
-                ]
-                },
-                {
-                    nombre: 'CARTERA', color: 'bg-secondary', propietarios: [
-                    {nombre: 'JEFE CARTERA', extension: 133},
-                    {nombre: 'AUX FACTURACION', extension: 134},
-                ]
-                },
-                {
-                    nombre: 'TALENTO HUMANO', color: 'bg-success', propietarios: [
-                    {nombre: 'JEFE TALENTO HUMANO', extension: 103},
-                    {nombre: 'AUX TALENTO HUMANO', extension: 123},
-                ]
-                },
-                {
-                    nombre: 'CALIDAD', color: 'bg-danger', propietarios: [
-                    {nombre: 'JEFE CALIDAD', extension: 110},
-                    {nombre: 'CALIDAD', extension: 124},
-                ]
-                },
-                {
-                    nombre: 'FINACIERA CONTABLE', color: 'bg-warning', propietarios: [
-                    {nombre: 'AUX CONTABLE', extension: 130},
-                    {nombre: 'AUX CONTABLE', extension: 102},
-                    {nombre: 'AUX CONTABLE', extension: 137},
-                ]
-                },
-                {
-                    nombre: 'CARTERA', color: 'bg-info', propietarios: [
-                    {nombre: 'JEFE CARTERA', extension: 133},
-                    {nombre: 'AUX FACTURACION', extension: 134},
-                ]
-                },
-                {
-                    nombre: 'TALENTO HUMANO', color: 'bg-dark', propietarios: [
-                    {nombre: 'JEFE TALENTO HUMANO', extension: 103},
-                    {nombre: 'AUX TALENTO HUMANO', extension: 123},
-                ]
-                },
-                {
-                    nombre: 'CALIDAD', color: 'bg-primary', propietarios: [
-                    {nombre: 'JEFE CALIDAD', extension: 110},
-                    {nombre: 'CALIDAD', extension: 124},
-                ]
-                }
-            ]
-        };
-
     publicidad =
         [
             {
@@ -109,8 +52,10 @@ export class InicioComponent implements OnInit {
     }
 
     listarExtenciones2() {
-        this.inicioService.listarExtenciones().subscribe((data: InicioFaces[]) => {
-                this.inicioModel = data;
+        this.inicioService.listarExtenciones().subscribe((data: any) => {
+            console.log('dataaaaaa: ', data);
+                this.inicioModel = data.obj.listarExtensiones;
+                return;
             },
             (error) => {
                 alert('Ocurrio un Error');
@@ -136,6 +81,9 @@ export class InicioComponent implements OnInit {
     ngOnInit() {
         this.tmrColombia();
         this.listarExtenciones2();
+        console.log('Eyyy');
+        console.log('this.inicioModel: ', this.inicioModel);
+
     }
 
 }

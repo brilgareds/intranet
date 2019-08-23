@@ -15,8 +15,9 @@ export class InicioService {
         })
     };
 
-// API_ENDPOINT = G.settings.API_ENDPOINT;
-    API_ENDPOINT = "/api";
+    // API_ENDPOINT = G.settings.API_ENDPOINT;
+    API_ENDPOINT = "http://localhost:3001/api";
+    url_extenciones = this.API_ENDPOINT + '/listarExtensiones';
 
     constructor(private httpClient: HttpClient) {
     }
@@ -27,6 +28,7 @@ export class InicioService {
     }
 
     public listarExtenciones() {
-        return this.httpClient.get(this.API_ENDPOINT + '/listarExtensiones');
+        console.log('url_Extenciones: ', this.url_extenciones);
+        return this.httpClient.get(this.url_extenciones);
     }
 } 
