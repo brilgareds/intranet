@@ -31,25 +31,47 @@ inicioModel.prototype.listarProductos = function (callback) {
     });
 };
 
-var formatearExtensiones = function (array, index, extensiones, callback) {
+
+var formatearExtensiones = function (array, index, Extensiones, Propietarios, j, i, nombre, callback) {
+    
     var fila = array[index];
-    if (!fila) { callback(false, extensiones); return; }
-
-    var areaActual = fila.nombreAreas.replace(/ /g, "_").toLowerCase();
-
-    if (!extensiones[areaActual]) {
-        extensiones.tiposAreas[areaActual] = [];
+    if (!fila) { 
+        Extensiones[i-1].Propietarios =  Propietarios;
+        callback(false, Extensiones); 
+        return; 
     }
 
-    extensiones.tiposAreas[areaActual].push(fila);
+    if(fila.nombreAreas !== nombre){
+       
+       if(nombre !== "") {   
+      Extensiones[i-1].Propietarios =  Propietarios;
+        }
 
-    formatearExtensiones(array, index+1, extensiones, callback);
+
+      Extensiones[i] = {
+        nombre: fila.nombreAreas,
+        color: fila.color,
+        url: fila.url,
+        Propietarios : []
+       }
+       nombre = fila.nombreAreas; 
+       Propietarios = [];
+       i++;
+       j=0;
+    }
+
+    Propietarios[j] = {
+        nombre: fila.nombre, 
+        extension : fila.extension
+    }
+    j++;
+
+    formatearExtensiones(array, index+1, Extensiones, Propietarios, j, i, nombre, callback);
 };
 
-inicioModel.prototype.listarExtensiones = function (callback) {
-    console.log("listarExtensionesMODELO");
 
-    var query = G.knex.column('p.nombre', 'p.extension', 'a.nombre as nombreAreas', 'a.color')
+inicioModel.prototype.listarExtensiones = function (callback) {
+    var query = G.knex.column('p.nombre', 'p.extension', 'a.nombre as nombreAreas', 'a.color','a.id','p.id', 'a.url')
         .select().from("intranet.propietarios as p")
         .innerJoin('intranet.extensiones as e',
             function () {
@@ -58,16 +80,15 @@ inicioModel.prototype.listarExtensiones = function (callback) {
             this.on("a.id", "e.area_id")
         });
 
-    console.log("listarExtensionesMODELO1", query);
+  
 
     query.then(function (resultado) {
         if (resultado.length > 0) {
             var obj = {};
-
-            G.Q.nfcall(formatearExtensiones, resultado, 0, obj)
+                                          
+            G.Q.nfcall(formatearExtensiones, resultado, 0, [], [], 0,0, "")
                 .then(response => {
-                    console.log('Salidaaaa: ', response);
-                    resultado = response;
+                   resultado = response;
                     callback(false, resultado);
                 }).catch(err => {
                     throw err;
@@ -76,25 +97,46 @@ inicioModel.prototype.listarExtensiones = function (callback) {
             throw err;
         }
     }).catch(function (err) {
-        console.log("err [listarExtensiones]:", err);
         callback({err: err, msj: "Error al consultar la lista de extensiones"});
     });
 };
 
 inicioModel.prototype.mostrarPortada= function (callback) {
- console.log("mostrarPortada123");
  var query = G.knex.column("id", "url", "fecha_inicio", "fecha_final", "active", "descripcion", "interval")
             .select()
             .from("intranet.portada");
-          
-                 console.log("mostrarPortadamodelo",query);
     query.then(function (resultado) {
         callback(false, resultado);
     }).catch(function (err) {
-        console.log("err [mostrarPortada]:", err);
         callback({err: err, msj: "Error al consultar mostrar Portada"});
     });
 };
-module.exports = inicioModel;
 
+inicioModel.prototype.mostrarAreas= function (callback) {
+    
+ var query = G.knex.column("id","nombre")
+            .select()
+            .from("intranet.areas")
+            .whereNotIn('id', [14, 17]);    
+        console.log('mpstrar areass ', (query.toString()));
+    query.then(function (resultado) {
+        callback(false, resultado);
+    }).catch(function (err) {
+        callback({err: err, msj: "Error al consultar mostrar areas"});
+    });
+};
+
+
+inicioModel.prototype.mostrarAdmin= function (callback) {
+ var query = G.knex.column("id","herramienta")
+            .select()
+            .from("intranet.administrador");    
+    query.then(function (resultado) {
+        callback(false, resultado);
+    }).catch(function (err) {
+        callback({err: err, msj: "Error al consultar mostrar ADMIN"});
+    });
+};
+
+module.exports = inicioModel;
 

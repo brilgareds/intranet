@@ -1,0 +1,21 @@
+{
+    "module": "administrador",
+    "dependency": {
+        "controllers": [{
+                "administrador_controller": {
+                    "module": "Reportes/administrador",
+                    "controller": "admincontroller",
+                    "alias": "c_admin"
+                }
+            }],
+        "models": [{
+                "administrador_model": {
+                    "module": "Reportes/administrador",
+                    "model": "adminmodel",
+                    "alias": "m_admin"
+                }
+            }],
+        "events": [],
+        "cronJobs": []
+    }
+}

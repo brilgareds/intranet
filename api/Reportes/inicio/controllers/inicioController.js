@@ -2,12 +2,7 @@ var inicial = function (inicio) {
     this.m_inicio = inicio;
 };
 
-/**
- * @author Andres M Gonzalez
- * +Descripcion controlador que lista todos los datos del Dr Arias
- * @params detalle:
- * @fecha 2016-06-03
- */
+
 inicial.prototype.listarUsuarios = function (req, res) {
     var that = this;
 
@@ -22,18 +17,26 @@ inicial.prototype.listarUsuarios = function (req, res) {
     }).done();
 
 };
-
-inicial.prototype.listarExtensiones = function (req, res) {
+inicial.prototype.mostrarPortada = function (req, res) {
     var that = this;
-    console.log("listarExtensiones");
-    G.Q.ninvoke(that.m_inicio, 'listarExtensiones').then(function (data) {
-        console.log("listarExtensiones", data);
-        res.send(G.utils.r(req.url, 'Listado de Extensiones!!!!', 200, {listarExtensiones: data}));
+
+    G.Q.ninvoke(that.m_inicio, 'mostrarPortada').then(function (data) {
+
+        res.send(G.utils.r(req.url, 'Listado de Usuarios!!!!', 200, {mostrarPortada: data}));
 
     }).fail(function (err) {
 
-        res.send(G.utils.r(req.url, 'Error Listado de Extensiones', 500, {listarExtensiones: err}));
+        res.send(G.utils.r(req.url, 'Error Listado de Usuarios', 500, {mostrarPortada: err}));
 
+    }).done();
+
+};
+inicial.prototype.listarExtensiones = function (req, res) {
+    var that = this;
+    G.Q.ninvoke(that.m_inicio, 'listarExtensiones').then(function (data) {
+      res.send(G.utils.r(req.url, 'Listado de Extensiones!!!!', 200, {areas: data}));
+    }).fail(function (err) {
+        res.send(G.utils.r(req.url, 'Error Listado de Extensiones', 500, {listarExtensiones: err}));
     }).done();
 
 };
@@ -64,6 +67,35 @@ inicial.prototype.listarProductos = function (req, res) {
     }).fail(function (err) {
 
         res.send(G.utils.r(req.url, 'Error listar Productos', 500, err));
+
+    }).done();
+
+};
+inicial.prototype.mostrarAreas = function (req, res) {
+    var that = this;
+    console.log('hi');
+    G.Q.ninvoke(that.m_inicio, 'mostrarAreas').then(function (data) {
+
+        res.send(G.utils.r(req.url, 'Listado areas!!!!', 200, data));
+
+    }).fail(function (err) {
+
+        res.send(G.utils.r(req.url, 'Error listar areas', 500, err));
+
+    }).done();
+
+};
+
+inicial.prototype.mostrarAdmin = function (req, res) {
+    var that = this;
+
+    G.Q.ninvoke(that.m_inicio, 'mostrarAdmin').then(function (data) {
+
+        res.send(G.utils.r(req.url, 'Listado administrador!!!!', 200, data));
+
+    }).fail(function (err) {
+
+        res.send(G.utils.r(req.url, 'Error listar administrador', 500, err));
 
     }).done();
 
@@ -104,6 +136,8 @@ const getClima = async (lat, lng) => {
     let coors = respuesta.data;
     return coors;
 }
+
+
 
 
 inicial.$inject = [

@@ -1,0 +1,37 @@
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+
+body {
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+
+.input-group{
+  border-radius: 15px;
+}
+.card{
+  padding: 25px;
+  border-radius: 10px;
+
+}
+img{
+display:block;
+margin:auto;
+}
+.btn{
+display:block;
+margin:auto;
+border-radius: 10px;
+width: 180px;
+font-size: 15px;
+}
+input , i {
+  font-size: 20px;
+}
+
+label{
+  font-size: 15px;
+}
+

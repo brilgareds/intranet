@@ -1,0 +1,36 @@
+ <h1><b>   MANUALES DE USUARIOS</b></h1>
+ <br>
+<div class="col-sm-6 col-md-6 col-lg-6 ">
+  <div class="row" *ngFor="let manual of manualUModel">
+      <div class="panel-group col-sm-12 col-md-12 col-lg-12" >    
+      <br>
+        <h3 style="text-align: center"> {{manual.titulo}}</h3> 
+      </div>
+        <div class="col-sm-12 col-md-12 col-lg-12">   
+    <div class="panel panel-info " >  
+      <div class="panel-heading " style="height: 30px">
+        <div class="col-md-7">
+          <h5><b> NOMBRE</b></h5>
+        </div >
+      </div>
+      <div class="panel-body" >
+        <div *ngFor="let item2 of manual.documentos" >
+          <div class="col-md-7" ><a style="color:black ; font-size: 12px; cursor: pointer;" (click)="abrirPdf(item2.url)">    {{item2.ndocumento}}</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div> 
+<div class="col-sm-6 col-md-6 col-lg-6 ">
+    <pdf-viewer [src]='pdfSrc'
+       [render-text] = 'true'
+       [page] = 'page'
+       [show-all] = 'true'
+       style='display:block;'
+    >
+    </pdf-viewer>
+</div>
+
+
+  

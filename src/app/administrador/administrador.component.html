@@ -1,0 +1,133 @@
+<div class="container">
+<div>
+    <center>
+        <font face="verdana" size="6px"><b>GESTI&Oacute;N CALIDAD</b></font><br>
+        <img src="assets/images/CO.png" style="border-image: 5px; width: 220px; ">
+    </center><br><br><br><br>
+</div>   
+	<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="panel-group">
+    <div class="panel panel-default">
+    <div class="panel-heading"><font face="verdana" size="4px"><b>SUBIR DOCUMENTOS</b></font></div>
+    <div class="panel-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="form-group">
+                <font face="verdana" size="2px"><b>DOCUMENTO NOMBRE</b></font>
+                <input formControlName="nombreDoc" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.nombreDoc.errors }" [(ngModel)] = "registro.nombreDoc" type="text"  name="nombreDoc" class="form-control" id="nombreDoc"required>
+                <error-message [control]="registerForm.controls.nombreDoc" *ngIf="submitted"></error-message>
+            </div>
+            <div class="form-group">
+                <font face="verdana" size="2px"><b>C&Oacute;DIGO</b></font>
+                <input formControlName="codigo" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.codigo.errors }" [(ngModel)] = "registro.codigo" type="text"  name="codigo" class="form-control" id="codigo"required>
+                <error-message [control]="registerForm.controls.codigo" *ngIf="submitted"></error-message>
+            </div>
+            <div class="form-group">
+                <font face="verdana" size="2px"><b>SUBIR ARCHIVO</b></font>
+                <input formControlName="url" class="form-control"  (change)="fileProgress($event)" [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.url.errors }" [(ngModel)] = "registro.url" accept=".pdf" type="file" name="url"  
+                class="form-control-file" id="url" required >
+                <error-message [control]="registerForm.controls.url" *ngIf="submitted"></error-message>
+                    <div *ngIf="fileUploadProgress">
+                PROGRESO CARGA {{ fileUploadProgress }}
+            </div>
+            <div class="mb-3" *ngIf="uploadedFilePath">
+                {{uploadedFilePath}}
+            </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="form-group">
+               <font face="verdana" size="2px"><b>TIPO DE DOCUMENTO</b></font>
+                <select   [(ngModel)] = "registro.tipodoc" class="form-control" name="tipodoc" id="tipodoc" required formControlName="tipodoc" >
+                <option  [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.tipodoc.errors }" *ngFor = "let item of adminTipo" [ngValue]="item.id" >
+                {{item.titulo}}
+                </option>
+                </select>
+                <error-message [control]="registerForm.controls.tipodoc" *ngIf="submitted"></error-message>
+            </div>
+            <div class="form-group">
+               <font face="verdana" size="2px"><b>&Aacute;REA</b></font>
+                <select [(ngModel)] = "registro.area" class="form-control" id="area" name="area" required formControlName="area">
+                <option [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.area.errors }" *ngFor = "let item of inicioAreas" [ngValue]="item.id">
+                {{item.nombre}}
+                </option>
+                </select>
+                <error-message [control]="registerForm.controls.area" *ngIf="submitted"></error-message>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">SUBIR DOCUMENTO</button>
+            </div>
+        </div>
+        </form>
+   
+    </div> <!---PANEL body---->
+    </div> <!---PANEL default---->
+    </div><!---PANEL GROUP---->
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <font face="verdana"  size="4px"><b>LISTAR DOCUMENTOS</b></font><br>
+        <div class="row">
+        <div class="col-md-4">
+            <div class="form-group" >
+                <font face="verdana" size="2px"><b>&Aacute;REA</b></font>
+                <select [(ngModel)] = "registro.busquedadarea" class="form-control" id="busquedadarea" name="busquedadarea">
+                <option *ngFor = "let item of inicioAreas" [ngValue]="item.id" (click)="mostrarTipoDoc(item.id)" >
+                {{item.nombre}}
+                </option>
+                </select>
+            </div>
+            
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <font face="verdana" size="2px"><b>TIPO DE DOCUMENTO</b></font>
+                <select [(ngModel)] = "registro.busquedadtipodi" class="form-control" name="busquedadtipodi" id="busquedadtipodi">
+                <option *ngFor = "let item of adminTipo" [ngValue]="item.id" >
+                {{item.titulo}}
+                </option>
+                </select>
+            </div>
+        
+        </div>
+        <div class="col-md-4"><br>
+                <div  class="form-group">
+            <button class="btn btn-primary" (ngSubmit)="onBusquedad()">LISTAR</button>
+            </div>
+        </div>
+        </div>
+
+        <table class="table" >
+            <thead>
+                <tr>
+                  <th scope="col"><font face="verdana" size="2px;"><b>NOMBRE</b></font></th>
+                  <th scope="col"><font face="verdana" size="2px;"><b>C&Oacute;DIGO</b></font></th>
+                  <th scope="col"><font face="verdana" size="2px;"><b>ESTADO</b></font></th>
+                  <th scope="col"><font face="verdana" size="2px;"><b>ACCIONES</b></font></th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor="let buscar of buscarTipo">
+                <tr>
+                  <td>{{buscar.ndocumento}}</td>
+                </tr>
+                <tr>
+                  <td>{{buscar.codigo}}</td>
+                </tr>
+                <tr>
+                  <td>{{buscar.state}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+   
+
+    </div><!---col-12---->
+    </div><!---row--->
+
+</div><!---CONTAINER--->
+
+
+
+    
+    

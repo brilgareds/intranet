@@ -31,14 +31,15 @@
     .row.content {height: 900px;}
     
     /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 15px;
-      background-color: #f1f1f1;
-      height: 95%;
-      border-radius: 2%;
-      padding-right: 20px;
-      /*overflow:hidden;*/
-    }
+ .sidenav {
+     padding-top: 15px;
+     background-color: #f1f1f1;
+     height: 80%;
+     border-radius: 2%;
+     overflow-y: scroll;
+     padding-right: 20px;
+     /*overflow:hidden;*/
+   }
     h1 {
         font-size: 30px;
     }
@@ -95,6 +96,10 @@ color: black;
     
     #masterDiv{
         overflow:hidden
+    }
+
+    video{
+      width: 1200px;
     }
     .widget{
         font: bold 1.9em undotum, "lucida sans", arial; text-align: center !important;

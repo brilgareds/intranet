@@ -1,16 +1,39 @@
-<div *ngFor="let item of manuales">
-    <div class="list-group col-md-8">
-        <div *ngFor="let item2 of item.paneles" class="col-md-8">  
-            <a  class="list-group-item list-group-item-action active href-panel"><b>{{item2.nombre}}</b></a>
-                   <div *ngFor="let item3 of item2.contenidos"> 
-                <a href="{{item3.link}}" class="list-group-item list-group-item-actionhref-panel">{{item3.nombre}}<span>{{item3.descripcion}}</span></a>
-             </div>
-             
-            <br>
-        </div>
-    </div>
-    <br>
-   </div>
 
-
-   
+ <h1><b>DOCUMENTOS  {{area}}</b></h1>
+ <br>
+<div class="col-sm-6 col-md-6 col-lg-6 ">
+ <div class="row" *ngFor="let cabecera of documentosModel">
+  <div class="col-sm-12 col-md-12 col-lg-12 "> 
+   <br>
+   <h3 style="text-align: center"> {{cabecera.titulo}}</h3> 
+   </div>   
+   <div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="panel panel-info " >  
+      <div class="panel-heading " style="height: 30px">
+            <div class="col-md-7">
+               <h5><b> NOMBRE</b></h5>
+            </div >
+            <div class="col-md-5">
+                <h5><b> C&Oacute;DIGO</b></h5>
+            </div>
+      </div>
+      <div class="panel-body" >
+               <div *ngFor="let item2 of cabecera.documentos row" >
+                  <div class="col-md-7" ><a style="color:black ; font-size: 12px; cursor: pointer;" (click)="abrirPdf(item2.url)">{{item2.ndocumento}}</a></div>
+                  <div class="col-md-5"><a style="font-size: 12px;">{{item2.codigo}}</a></div> 
+               </div>
+      </div>
+      </div>
+      </div>
+  </div>
+</div> 
+<div class="col-sm-6 col-md-6 col-lg-6 ">
+    <pdf-viewer [src]='pdfSrc'
+       [render-text] = 'true'
+       [page] = 'page'
+       [show-all] = 'true'
+       style='display:block;'
+    >
+    </pdf-viewer>
+</div>
+  

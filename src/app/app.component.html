@@ -1,4 +1,6 @@
+
 <nav class="navbar navbar-expand-lg navbar-light menu-colors">
+    <b><app-alerts></app-alerts></b>
    <img src="assets/images/logotran.png" style="height: 50px; filter: brightness(7); ">
    <!---->
         <!--<a class="navbar-brand" routerLink="/inicio">Intranet</a>-->
@@ -14,34 +16,26 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Documentos Iso
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" routerLink="/manuales">FINANCIERA Y CONTABLE</a>
-                    <a class="dropdown-item" routerLink="/unidades">SISTEMAS</a>
-                    <a class="dropdown-item" routerLink="/fabricantes">TALENTO HUMANO</a>
-                    <a class="dropdown-item" routerLink="/fabricantes">VENTAS</a>
-                    <a class="dropdown-item" routerLink="/fabricantes">CALIDAD</a>
-                    <a class="dropdown-item" routerLink="/fabricantes">FARMACIAS</a>
-                    <a class="dropdown-item" routerLink="/fabricantes">COMPRAS</a>
-                    <a class="dropdown-item" routerLink="/fabricantes">CONTROL INTERNO</a>
-                    <a class="dropdown-item" routerLink="/fabricantes">GERENCIA</a>
-                    <a class="dropdown-item" routerLink="/fabricantes">SERVICIO AL CLIENTE</a>
-                    <a class="dropdown-item" routerLink="/fabricantes">LOGISTICA</a>
-                    <a class="dropdown-item" routerLink="/fabricantes">GESTIÓN TECNICA</a>
-                    <a class="dropdown-item" routerLink="/fabricantes">SEGURIDAD</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" >
+                    <a class="dropdown-item" *ngFor="let areas of inicioAreas" style="cursor:pointer;" (click)="listarManuales('/manuales',areas.id)">{{areas.nombre}}</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/manuales">Manuales de Usuarios</a>
+                <a class="nav-link" routerLink="/manualesU">Manuales de Usuarios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/fabricantes">Procesos Cosmitet</a>
+                <a class="nav-link" routerLink="/procesos">Procesos Cosmitet</a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/administrador">Administrador</a>
+            </li>
+         
         </ul>
     </div>
     <ul class="nav navbar-nav navbar-left">
-        <li><a class="nav-link" routerLink="#   ">TU IP {{ip}}</a></li>
-        <li><a class="nav-link" routerLink="/fabricantes"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a class="nav-link" routerLink="/fabricantes"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a>TU IP {{ip}}</a></li>
+        <li><a class="nav-link" routerLink="/login"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
     </ul>
 </nav>
 
@@ -50,11 +44,24 @@
         <div class="col-sm-12">
             <router-outlet></router-outlet>
         </div>
-
     </div>
 </div>
 <br>
+
 <!--<footer class="container-fluid text-center">
     <p>Copyright 2019 by Refsnes Data. All Rights Reserved.</p>
 </footer>-->
 <!----“El Trabajo en Equipo es el secreto que hace de la gente común conseguir resultados poco comunes.”--->
+
+
+
+
+
+<!--- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Administrador
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" >
+                    <a class="dropdown-item" *ngFor="let admin of inicioAdmin" (click)="listarFases('/administrador',admin.id)">{{admin.herramienta}}</a>
+                </div>
+            </li>--->

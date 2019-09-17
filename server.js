@@ -60,11 +60,12 @@ const path = require('path');
 const modulos = require('./api/');
 const intravenous = require('intravenous');
 const cors = require ('cors');
-
 const app = express();
 
 // Configurar cabeceras y cors
 app.use(cors());
+
+
 
 var cacheKey = "dusoft";
 
@@ -95,6 +96,26 @@ G.fs = require('fs-extra');
 G.path = require('path');
 G.ip = require('ip');
 
+G.multer = require('multer');
+
+
+let storage = G.multer.diskStorage({
+   
+     destination : (req,file,cb)=>{
+      console.log("file.originalname---");
+      cb(null,'./documentos');
+     },
+     filename:(req,file,cb)=>{
+         console.log("file.originalname",file.originalname);
+         var ext = G.path.extname(file.originalname);
+         cb(null,file.originalname);
+     }
+});
+
+G.upload = G.multer({storage});
+
+
+
 var cluster = require('cluster'),
         RedisStore = require("socket.io-redis"),
         redis = require("redis"),
@@ -114,6 +135,10 @@ G.knex = require('./lib/Knex').
 app.use(express.static(__dirname+'/dist/AngularClienteRout'));
 //app.use(express.static(__dirname+'/src/app/app.component.html'));
 app.use(express.static('./api/'));
+
+//app.use('/static', express.static('public'));
+app.use(express.static('public'));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 
 var redisOptions = {

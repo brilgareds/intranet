@@ -1,0 +1,21 @@
+{
+    "module": "documentos",
+    "dependency": {
+        "controllers": [{
+                "documentos_controller": {
+                    "module": "Reportes/documentos",
+                    "controller": "documentosController",
+                    "alias": "c_documentos"
+                }
+            }],
+        "models": [{
+                "documentos_model": {
+                    "module": "Reportes/documentos",
+                    "model": "documentosModel",
+                    "alias": "m_documentos"
+                }
+            }],
+        "events": [],
+        "cronJobs": []
+    }
+}
