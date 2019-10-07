@@ -18,7 +18,6 @@ ingreso: any = {};
 ingresoForm: FormGroup;
 submitted = false;
 
-
 constructor(private loginService: LoginService , private httpClient: HttpClient, private router: Router , private formBuilder: FormBuilder, private alerts: AlertsService) { }
 
 
@@ -28,7 +27,7 @@ this.submitted = true;
 if (this.ingresoForm.valid) {
 	this.loginService.login(this.ingreso).subscribe((data) => {
 	console.log("hpraaaaaaaaa", data.obj);
-		if(data.obj.ingreso){
+			if(data.obj.ingreso){
 			
 			localStorage.setItem('auth_token', data.obj.token);
 			localStorage.setItem('userId', data.obj.userId);
