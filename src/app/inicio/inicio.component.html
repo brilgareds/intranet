@@ -1,302 +1,264 @@
-<div class="container-fluid text-center ">    
-    <div class="row content">
+<div class="row content">
+  <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 sidenav1">
 
-        <div class="col-sm-2 sidenav1">
-            <div  class="delgado">
-                <div class="card">
-                  <div class="">
-                    <img src="assets/images/nube.svg" alt="Avatar" style="width:30%; margin: 3px auto; " class="card-img-top float-left">
-                            <div class="col-md-6">
-                            <b class="max-temp">{{name}}</b>
-                            <br>
-                            <strong> {{temp}}°C</strong>
-                            <br>
-                            <strong class="max-temp">H: {{humidity}}%</strong>
-                            </div>
-                    </div>
-                    <div class="card-body" >
-                        <div>
-                            <img src="assets/images/eeuu.png" alt="Avatar" style="width:30%; margin:0 auto" class="card-img-top"><b>Dólar</b>
-                        </div>
-                        <strong>$ {{precioDolar}}</strong>
-                    </div>
-                    <div class="card-body" >
-                        <div class="col-md-12">               
-                            <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="1000">                                
-                                <br>
-                                <br>
-                                <br>
-                                <div class="carousel-inner vertical"  *ngFor="let item of publicidad">
-                                     <div class="{{item.active}} item" data-target="#carousel-main">
-                                        <div class="{{item.id}}">
-                                            <p><b class="max-temp">{{item.titulo}}</b></p>
-                                            <p><b class="max-temp">{{item.asunto}}</b></p>
-                                            <p><u><b class="max-temp">{{item.propietario}}</b></u></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <br>
-                                <br>
-                                <a class="left carousel-control" href="#carousel-pager" role="button" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="right carousel-control" href="#carousel-pager" role="button" data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                   <!--- <div class="card-body">
-                        <div class="widget">{{date | date:'dd-MM-yyyy'}}</div>
-                        <div class="widget">{{date | date:'HH:mm:ss'}}</div>
-                    </div>--->
+    <div class="card tarjeta">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img src="assets/images/nube.svg" alt="Avatar" style="width:60%; margin: 2px auto; " class="card-img-top">
+          <b style="font-size: 15px;" class="max-temp">{{name}}</b>
+          <br>
+          <strong>{{temp}}°C</strong>
+        </div><!---col md 5 cierra---><br>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+         <!---col <div class="card-body" >--->
+          <img src="assets/images/eeuu.png" alt="Avatar" style="width:40%; margin:0 auto" class="card-img-top">
+          <b style="font-size: 15px;">Dólar</b><br>
+          <strong>${{precioDolar}}</strong>
+          <!--- </div>--->
+        </div><!---col md 7 cierra--->
+      </div><!-- col md 12 cierra--->
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">  
+        <br>
+        <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="6000">
+          <div class="carousel-inner vertical">
+            <div class="  {{item.active}} item"  *ngFor="let item of publicaModel">
+              <br><br>
+
+              <div class="card-columns">
+                <div class="card text-center" style="width: 255px; height: 300px;" >
+                  <div class="card-body " >
+                    <h4 class="card-title">{{item.titulo}}</h4>
+                    <p class="card-text">{{item.contenido}}</p>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        {{item.sede}} <br> 
+                        {{item.propietario}}
+                      </li>
+                    </ul>
+                  </div>
+                  
                 </div>
+              </div>
+              <br>
+            </div>
+          </div>
+          <a class="left carousel-control" href="#carousel-pager" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-pager" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div><!--cierra carousel-pager -->
+      </div><!---col-sm-12 col-md-12 cierra--->
+      <br><br>
+      <button type="button" class="btn-lg btn-outline-primary  col-lg-12 " style="background: #004E91; color:white; " data-toggle="button" aria-pressed="false" autocomplete="off" (click)="openModal('custom-modal-1')"><h4>PUBLICAR</h4>
+      </button>
+
+      <br>    <br>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">  
+        <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+          <div class="card border-primary" *ngFor="let enlace of enlacesModal">
+            <div class="card-header  color" role="tab" id="{{enlace.labelly}}" >
+              <a data-toggle="collapse" data-parent="#accordionEx" href="#{{enlace.controls}}" aria-expanded="true" attr.aria-controls="{{enlace.controls}}">
+                <h4 class="mb-0 " style="font-family: sans-serif bold; font-size: 16px; color: black">{{enlace.nombre}}</h4>
+              </a>
+            </div>
+            <div id="{{enlace.controls}}" class="collapsing show" role="tabpanel" attr.aria-labelledby="{{enlace.labelly}}" data-parent="#accordionEx" >
+              <div class="card-body enlaces">
+                <a *ngFor="let item of enlace.Enlaces" class="enlacesLetters " href="{{item.url}}" >{{item.nombre}}<br> </a>
+              </div>
+            </div>
+          </div>  
+        </div> 
+      </div><!--accordion cierra -->
+      <br>
+    </div><!--card cierra-->
+  </div> <!---sidenav1---->
+
+
+  <div class="col-xs-6 col-sm-12 col-md-8 col-lg-8"> 
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 ">
+      <video src="assets/images/farmacias/farmacias.mp4" type="video/mp4" autoplay loop controls></video>
+    </div>
+    <div  class='row '>
+      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12"> 
+        <br><br>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" style=" margin-bottom: 0px;" >
+         <a class="list-group-item list-group-item-action active href-panel color text-center" style="border-radius:10px 10px 0px 0px; font-size: 25px">
+           <h4><b>¿ QUIENES SOMOS?</b> </h4></a>
+           <div class="card">
+            <div class="card-body" >
+              <div style=" font-size: 12px;">
+                <p style="font-size: 16px; text-align : justify;">DUANA Y CIA LTDA tiene como actividad principal la comercialización y
+                  distribución de medicamentos y dispositivos médicos, abasteciendo las necesidades de nuestros
+                  clientes institucionales, mayoristas y minoristas dentro de los cuales se encuentran los
+                  usuarios de entidades hospitalarias, empresas promotoras de salud e instituciones prestadoras
+                  de Servicio de Salud en diferentes regiones del país, entre las cuales se destacan los departamentos
+                  Del Valle del Cauca,Bolívar, Risaralda, Antioquia, Cauca, Huila, Córdoba, Nariño,
+                Quindío, Caldas, Cundinamarca, Sucre, Magdalena y Atlántico.</p>
+              </div>
+
             </div>
 
-<br>
-            <!--ENLACES INICIA-->
-<div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-  <div class="card border-primary">
-    <div class="card-header  color" role="tab" id="headingOne1">
-      <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
-        aria-controls="collapseOne1">
-        <h5 class="mb-0 text-white" style="font-family: sans-serif bold; font-size: 16px;">ENLACES DUANA <i class="fas fa-angle-down rotate-icon"></i>
-        </h5>
-      </a>
+
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" style=" margin-bottom: 0px;" >
+         <a class="list-group-item list-group-item-action active href-panel color text-center" style="border-radius:10px 10px 0px 0px; font-size: 25px">
+           <h4><b> POLITICA DE CALIDAD</b> </h4></a>
+           <div class="card">
+            <div class="card-body"  style="height: 492px;">
+              <div style=" font-size: 12px;">
+               <p style="font-size: 16px; text-align : justify;">La política de calidad de DUANA Y CIA LTDA, es contribuir al mejoramiento de la calidad de vida de nuestros clientes a través del suministro oportuno de productos y servicios con excelentes
+                estándares de calidad; apoyados en el recurso humano comprometido y el mejoramiento continuo en los
+                procesos mediante el análisis de los riesgos y la generación de oportunidades. Consolidando nuestra
+              organización para mantener un alto nivel competitivo ante nuestras partes interesadas y el Mercado Nacional.</p>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" style=" margin-bottom: 0px;" >
+       <a class="list-group-item list-group-item-action active href-panel color text-center" style="border-radius:10px 10px 0px 0px; font-size: 25px">
+         <h4><b> MISI&Oacute;N</b> </h4></a>
+         <div class="card">
+          <div class="card-body" style="height: 492px;" >
+            <div style=" font-size: 12px;">
+             <p style="font-size: 16px; text-align : justify;">Somos una organización conformada por un equipo humano competente y comprometido
+              a mejorar la calidad de vida de las personas proporcionando a nuestros clientes institucionales
+              y comerciales medicamentos, dispositivos médicos y servicios de dispensación con oportunidad,
+            costo racional y altos estándares de calidad.</p> 
+          </div>
+        </div>
+      </div>
+
+
     </div>
-    <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
-      data-parent="#accordionEx">
-      <div class="card-body enlaces">
-       <a class="enlacesLetters" href="http://10.0.2.216:3002/dusoft_duana/home/#/Dashboard">DUSOFT DUANA -LOCAL</a><br>
-       <a class="enlacesLetters" href="">DUSOFT DUANA -EXTERNO</a><br>
-       <a class="enlacesLetters" href="http://10.0.2.237/APP/DUSOFT_DUANA/index.php">DUSOFT DUANA ANTERIOR -LOCAL</a><br>
-       <a class="enlacesLetters" href="">DUSOFT DUANA ANTERIOR -EXTERNO</a><br>
-       <a class="enlacesLetters" href="http://10.0.2.216:8080/jasperserver/login.html">JASPER DUANA -LOCAL</a><br>
-       <a class="enlacesLetters" href="http://201.219.242.2:8093/jasperserver/login.html">JASPER DUANA -EXTERNO</a><br>
-       <a class="enlacesLetters" href="">DUSOFT FINANCIERO DUANA -LOCAL</a><br>
-       <a class="enlacesLetters" href="">DUSOFT FINANCIERO DUANA -EXTERNO</a><br>
-       <a class="enlacesLetters" href="">JASPER FINANCIERO DUANA -LOCAL</a><br>
-       <a class="enlacesLetters" href="">JASPER FINANCIERO DUANA -EXTERNO</a><br>
-       <a class="enlacesLetters" href="">MESA DE AYUDA DUANA -LOCAL</a><br>
-       <a class="enlacesLetters" href="">MESA DE AYUDA DUANA -EXTERNA</a><br>
-       <a class="enlacesLetters" href="">DUSOFT TALENTO HUMANO CALIFICACIONES -LOCAL</a><br>
-       <a class="enlacesLetters" href="">DUSOFT TALENTO HUMANO CALIFICACIONES -EXTERNA</a><br>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" style=" margin-bottom: 0px;" >
+     <a class="list-group-item list-group-item-action active href-panel color text-center" style="border-radius:10px 10px 0px 0px; font-size: 25px">
+       <h4><b> VISI&Oacute;N</b> </h4></a>
+       <div class="card">
+        <div class="card-body" style="height: 492px;" >
+          <div style=" font-size: 12px; text-align : justify;">   <p style="font-size: 16px;">Nos proyectamos como la organización líder en el país en la prestación de
+            servicios de dispensación y comercialización de medicamentos y
+            dispositivos médicos reconocida por suministrar a nuestros clientes soluciones eficientes,
+          rentables y adaptada a sus necesidades.</p> 
+        </div>
       </div>
     </div>
 
-  </div>
- <br>
-  <div class="card border-primary">
-    <div class="card-header color" role="tab" id="headingTwo2">
-      <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
-        aria-expanded="false" aria-controls="collapseTwo2">
-        <h5 class="mb-0 text-white" style="font-family: sans-serif bold; font-size: 16px;">ENLACES COSMITET<i class="fas fa-angle-down rotate-icon"></i>
-        </h5>
-      </a>
-    </div>
-    <div id="collapseTwo2" class="collapse show" role="tabpanel" aria-labelledby="headingTwo2"
-      data-parent="#accordionEx">
-      <div class="card-body enlaces">
-       <a  class="enlacesLetters" href="http://estado.cosmitet.net/">DUSOFT AFILIACIONES</a><br>
-       <a  class="enlacesLetters" href="http://dusoft.cosmitet.net/dusoft/">DUSOFT COSMITET</a><br>
-       <a  class="enlacesLetters" href="http://helpdesk.cosmitet.net/glpi/">MESA DE AYUDA COSMITET</a><br>
-       <a  class="enlacesLetters" href="http://jasper.cosmitet.net:8080/jasperserver/login.html">JASPER COSMITET -LOCAL</a><br>
-       <a  class="enlacesLetters" href="http://200.29.238.236:8080/jasperserver/login.html">JASPER COSMITET -EXTERNO</a><br>
-       <a  class="enlacesLetters" href="http://intranet.cosmitet.net/">INTRANET  COSMITET</a><br>
-     </div>
-    </div>
 
   </div>
-  <br>
-  <div class="card border-primary">
-    <div class="card-header color" role="tab" id="headingThree3">
-      <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
-        aria-expanded="false" aria-controls="collapseThree3">
-        <h5 class="mb-0 text-white" style="font-family: sans-serif bold; font-size: 16px;">OTROS ENLACES<i class="fas fa-angle-down rotate-icon"></i>
-        </h5>
-      </a>
-    </div>
-    <div id="collapseThree3" class="collapse show toggle" role="tabpanel" aria-labelledby="headingThree3"
-      data-parent="#accordionEx">
-      <div class="card-body enlaces">
-       <a  class="enlacesLetters" href="http://10.60.1.11/dusoft/">DUSOFT PEÑITAS</a><br>
-       <a  class="enlacesLetters" href="">JASPER PEÑITAS PEÑITAS</a><br>
-       <a  class="enlacesLetters" href="">DUSOFT CARTAGENA</a><br>
-       <a  class="enlacesLetters" href="">JASPER CARTAGENA</a><br>
-       <a  class="enlacesLetters" href="http://dusoft.dumianmedical.net/DUMIAN/">DUSOFT DUMIAN</a><br>
-       <a  class="enlacesLetters" href="http://jasper.cosmitet.net:8090/jasperdumian/login.html">JASPER DUMIAN -LOCAL</a><br>
-       <a  class="enlacesLetters" href="http://200.29.237.211:8090/jasperdumian/login.html">JASPER DUMIAN -EXTERNO</a><br>
+
+</div><!---row col-sm-12--->
+</div><!--row--->
+</div>  <!--CIERRA col-8-->
+
+<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+  <div class="row">
+    <div class="sidenav">
+
+      <div *ngFor="let area of inicioModel" class="col-xs-12 col-sm-12 col-md-12" >
+        <a class="list-group-item list-group-item-action active href-panel color text-center" style="border-radius:10px 10px 0px 0px;font-family:sans-serif bold">
+         <h4><b> {{area.nombre}}</b> </h4></a>
+         <div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;" >
+          <div class="card">
+            <div class="card-body" >
+              <div class="col-md-12">
+                <div style="text-align : justify; font-size: 12px;">
+                  <a  style=" " *ngFor="let item of area.Propietarios" >{{item.nombre}} EXT.   {{item.extension}}<br></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!--inicioModel cierra -->
+
+    </div><!--cierra row-->
+
+  </div><!-- cierra sidenav -->
+
+  <br><br><br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">  
+      <h5 style="font-family: sans-serif bold; font-size: 20px; color: black; text-align: center;"><b>  EMPRESAS ASOCIADAS</b></h5>
+      <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="6000">
+        <div class="carousel-inner vertical">
+          <div class="{{item.active}} item"  *ngFor="let item of empresas">
+           <div class="img-responsive" data-target="#carousel-main"  >   <br> <br>  <br>                                                  
+            <div class=" text-center">
+              <br><br><br>
+              <img class="d-block img-fluid " style="width: 250px; height: 100px; " src="assets/images/asociadas/{{item.url}}">
+              <br><br><br>
+            </div><br>  <br>  <br>  
+          </div>
+        </div>
+        <a class="left carousel-control" href="#carousel-pager" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-pager" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
     </div>
-
   </div>
-</div><!--ENLACES FIN -->
-        </div> <!---sidenav1---->
-
-
-        <div class="col-sm-8 text-left"> 
-            
-                    <div class="item active">
-                        <video src="assets/images/farmacias/farmacias.mp4" type="video/mp4" autoplay controls class=""></video>
-                    </div>
-           
-
-            
-
-
-
-            <div  class='row col-sm-12'>
-                <br>
-                <br>
-                <div class="alert alert-default"  style="background: rgba(60, 178, 237, 0.2); margin-bottom:0px;border-radius: 10px 10px 0px 0px ;">
-                     <h4 class="alert-heading" style="font-size: 25px; font: oblique bold;"><b>¿QUIENES SOMOS?</b></h4>
-                        <hr>
-                        <p style="font-size: 16px;">DUANA Y CIA LTDA tiene como actividad principal la comercialización y
-                        distribución de medicamentos y dispositivos médicos, abasteciendo las necesidades de nuestros
-                        clientes institucionales, mayoristas y minoristas dentro de los cuales se encuentran los
-                        usuarios de entidades hospitalarias, empresas promotoras de salud e instituciones prestadoras
-                        de Servicio de Salud en diferentes regiones del país, entre las cuales se destacan los departamentos
-                        Del Valle del Cauca,Bolívar, Risaralda, Antioquia, Cauca, Huila, Córdoba, Nariño,
-                        Quindío, Caldas, Cundinamarca, Sucre, Magdalena y Atlántico.</p>
- 
-                </div>
-                <div class="alert alert-default" style="background: rgba(60, 178, 237, 0.2); margin-bottom: 0px;" >
-                     <h4 class="alert-heading" style="font-size: 25px; font: oblique bold;"><b>POLÍTICA DE CALIDAD</b></h4>
-                        <hr>
-                        <p style="font-size: 16px;">La política de calidad de DUANA Y CIA LTDA, es contribuir al mejoramiento de la calidad de vida
-                        de nuestros clientes a través del suministro oportuno de productos y servicios con excelentes
-                        estándares de calidad; apoyados en el recurso humano comprometido y el mejoramiento continuo en los
-                        procesos mediante el análisis de los riesgos y la generación de oportunidades. Consolidando nuestra
-                        organización para mantener un alto nivel competitivo ante nuestras partes interesadas y el Mercado Nacional.</p>
- 
-                </div>
-                    <div class="alert alert-default"  style="background: rgba(60, 178, 237, 0.2); margin-bottom: 0px;">
-                     <h4 class="alert-heading" style="font-size: 25px; font: oblique bold;"><b>MISI&Oacute;N</b></h4>
-                        <hr>
-                        <p style="font-size: 16px;">Somos una organización conformada por un equipo humano competente y comprometido
-                        a mejorar la calidad de vida de las personas proporcionando a nuestros clientes institucionales
-                        y comerciales medicamentos, dispositivos médicos y servicios de dispensación con oportunidad,
-                        costo racional y altos estándares de calidad.</p> 
-                </div>
-                    <div class="alert alert-default"  style="background: rgba(60, 178, 237, 0.2);  border-radius: 0px 0px 10px 10px ;">
-                     <h4 class="alert-heading" style="font-size: 25px; font: oblique bold;"><b>VISI&Oacute;N</b></h4>
-                        <hr>
-                        <p style="font-size: 16px;">Nos proyectamos como la organización líder en el país en la prestación de
-                        servicios de dispensación y comercialización de medicamentos y
-                        dispositivos médicos reconocida por suministrar a nuestros clientes soluciones eficientes,
-                        rentables y adaptada a sus necesidades.</p> 
-                </div>
-
-
-                
-            </div><!---side cierra--->
-
-
-        </div>  <!--CIERRA col-8-->
-
-        <div class="col-sm-2 sidenav">
-            <div class="row" style="heigth: 100%; padding:0;">
-                <div *ngFor="let area of inicioModel" class="col-xs-12 col-sm-12 col-md-12">
-                    <a class="list-group-item list-group-item-action active href-panel {{area.color}}" style="border-radius:10px 10px 0px 0px; ">{{area.nombre}}</a>
-                    <div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;" >
-                        <div class="card">
-                            <div class="card-body" >
-                                <div>
-                                    <img src="assets/images/extensiones/{{area.url}}" alt="Avatar" style="width:10%;"><b *ngFor="let item of area.Propietarios" >{{item.nombre}} EXT. {{item.extension}}<br></b>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    </div>
-                    <!--</div>-->
-
-                </div>
-
-            </div>
-            <br>
-            <br>
-            <br>
-       
-        </div><!---cierra col-2--->
-<div class="col-md-offset-10" style="position:absolute; bottom: -150px; left:0;">
- <h2><b>EMPRESAS ASOCIADAS</b></h2>
- <br>
-            <div  style="height:200px; display: table; vertical-align: middle;">
-                <div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="1000" style="width: 100%; height:280px;transform-origin:50%; transform: rotate(90deg);  ">
-                    <ol class="carousel-indicators" >
-                        <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel1" data-slide-to="1"></li>
-                        <li data-target="#myCarousel1" data-slide-to="2"></li>
-                    
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="item active" >
-                          <center>
-                            <img  style="width: 300px; height: 100px;  transform: rotate(270deg); align-content: center;" src="assets/images/asociadas/clicafe.png">
-                            </center>
-                        </div>
-                        <div class="item">
-                            <img  style="width: 300px; height: 100px; transform: rotate(270deg); text-align: center" src="assets/images/asociadas/cosmitet.png">
-                             </div>
-                        <div class="item">
-                            <img  style="width: 300px; height: 100px; transform: rotate(270deg); text-align: center" src="assets/images/asociadas/duarquint.png">
-                        </div>
-                         <div class="item">
-                            <img  style="width: 300px; height: 100px; transform: rotate(270deg); text-align: center" src="assets/images/asociadas/dumian.png">
-                        </div>
-                        <div class="item">
-                            <img  style="width: 300px; height: 100px; transform: rotate(270deg); text-align: center" src="assets/images/asociadas/santaana.png">
-                        </div>
-                        <div class="item">
-                            <img  style="width: 300px; height: 100px; transform: rotate(270deg); text-align: center" src="assets/images/asociadas/sofiapa.png">
-                        </div>
-                       
-                    </div>
-                         <a class="left carousel-control" href="#myCarousel1" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel1" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div> 
-            </div>
- </div>
-
-<div class="page-footer" style="background: #E1E1E1; ">
-   
-    <div class="row" >
-        <br>
-        <div class="col-lg-2" style=" right: : 150px;" >
-             <img src="assets/images/CO.png" style="height: 100px; width: 120px; ">
-        </div>
-           
-
-        <div class="col-lg-4  " style="font-size: 20px; font-family: bold; text-align: justify;" >
-           Contacto
-        <br>
-            <ul class="list-unstyled">   
-              
-                <li>
-                    <p>Tel: 4882020</p>
-                </li>
-                <li>
-                    <p>Calle 9B No. 42 - 115 </p>
-                </li>
-                <li>
-                    <p>Cambulos - Cali</p>
-                </li>
-            </ul>    
-
-        </div>
-      
-    
-    </div>
 </div>
-    </div>
-</div>
+</div><!-- cierra col-xs-2 -->
 
+
+
+
+
+<footer class=" col-sm-12 col-md-12 col-sm-12 bg-black small text-center text-white-50">
+  <div class="container">
+   <p style="font-size: 14px; color: black;" class="text-black"> Política de Privacidad | Política de Uso | Reglamento DUANA & CIA LTDA Todos los usuarios de nuestros servicios en línea sujeta a la Declaración de Privacidad y acepta quedar obligado por los Términos de Servicio. © 2019 DUANA & CIA LTDA Todos los derechos reservados. </p>
+  </div>
+</footer>
+
+
+</div><!--content cierra-->
+
+<div>
+
+  <jw-modal id="custom-modal-1">
+    <div class="modal-header">
+      <h1>PUBLICA TU ANUNCIO</h1>
+      <button type="button" class="close btn-lg" data-dismiss="modal" aria-label="Close" (click)="closeModal('custom-modal-1');">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form [formGroup]="publicafrom" (ngSubmit)="onPublicar()">
+      <div class="col-md-6 form-group">
+          <p><b>TITULO </b></p>
+          <input formControlName="titulo" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; publicafrom.controls.titulo.errors }" [(ngModel)] = "crear.titulo" type="text"  
+          name="titulo" class="form-control" id="titulo" required>
+          <error-message [control]="publicafrom.controls.titulo" *ngIf="submitted"></error-message>
+          <p><b>CONTENIDO </b></p>
+          <textarea formControlName="contenido" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; publicafrom.controls.contenido.errors }" [(ngModel)] = "crear.contenido"  
+          name="contenido" class="form-control" id="contenido" required></textarea>
+          <error-message [control]="publicafrom.controls.contenido" *ngIf="submitted"></error-message>
+      </div>
+      <div class="col-md-6 form-group">
+          <p><b>CUIDAD </b></p> 
+          <input formControlName="sede" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; publicafrom.controls.sede.errors }" [(ngModel)] = "crear.sede" type="text"  name="sede" 
+          class="form-control" id="sede" required>
+          <error-message [control]="publicafrom.controls.sede" *ngIf="submitted"></error-message>
+          <p><b>USUARIO</b></p> 
+          <input formControlName="publicador" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; publicafrom.controls.publicador.errors }" [(ngModel)] = "crear.publicador" type="text"  name="publicador" class="form-control" id="publicador" required>
+          <error-message [control]="publicafrom.controls.publicador" *ngIf="submitted"></error-message>
+      </div>
+      <div class="form-group">
+        <button  class="btn btn-primary" style="margin: 25px;" >PUBLICAR</button>
+      </div>
+    </form>
+  </jw-modal>

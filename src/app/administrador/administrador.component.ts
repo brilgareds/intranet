@@ -7,6 +7,8 @@ import{ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertsService } from 'angular-alert-module';
+
 
 @Component({
   selector: 'app-administrador',
@@ -23,15 +25,16 @@ adminTipo: AdministradorFaces[];
 buscarModel: AdministradorFaces[];
 inicioAreas: InicioFaces[];
 registro: any = {};
+search: any = {};
 registerForm: FormGroup;
   submitted = false;
 id = this._route.snapshot.paramMap.get('id');
 
-  constructor(private administradorService: AdministradorService,private httpClient: HttpClient, private _route: ActivatedRoute,private componentService: ComponentService, private formBuilder: FormBuilder) { 
+  constructor(private administradorService: AdministradorService,private httpClient: HttpClient, private _route: ActivatedRoute, private formBuilder: FormBuilder, private alerts: AlertsService) { 
    console.log("idADMINISTRADORR::",this._route.snapshot.paramMap.get('id'));}
 
        listarAreas() {    
-        this.componentService.mostrarAreas().subscribe((data: any) => {
+        this.administradorService.mostrarAreas1().subscribe((data: any) => {
                 this.inicioAreas = data.obj;
                 return;
             },
@@ -43,8 +46,8 @@ id = this._route.snapshot.paramMap.get('id');
 
    
 
-     mostrarTipoDoc(id) {
-        this.administradorService.listarTipoDoc(id).subscribe((data: any) => {
+     mostrarTipoDoc() {
+        this.administradorService.listarTipoDoc().subscribe((data: any) => {
                 this.adminTipo = data.obj;
                 return;
             },
@@ -53,6 +56,11 @@ id = this._route.snapshot.paramMap.get('id');
                 console.log("imprimir", error);
             });
     }
+
+
+
+
+
 
 
 
@@ -111,18 +119,20 @@ id = this._route.snapshot.paramMap.get('id');
                   
                 const formData = new FormData();
                 formData.append('file', this.fileData);
-                //formData.append('params', this.registro);
+                formData.append('area', this.registro.area);
+                formData.append('codigo', this.registro.codigo);
+                formData.append('nombreDoc', this.registro.nombreDoc);
+                formData.append('tipodoc', this.registro.tipodoc);
 
                 this.fileUploadProgress = '0%';
 
                 this.administradorService.almacenarRegistro(formData, this.registro).subscribe(events => {
                   if(events.type === HttpEventType.UploadProgress) {
                     this.fileUploadProgress = Math.round(events.loaded / events.total * 100) + '%';
-                    console.log(this.fileUploadProgress);
                   } else if(events.type === HttpEventType.Response) {
                     this.fileUploadProgress = '';
-                    console.log(events.body);          
-                    alert('SUCCESS !!');
+                    this.alerts.setMessage('DOCUMENTO AGREGADO CORRECTAMENTE','success');
+                    this.clear();
                   }
 
                 })
@@ -134,11 +144,10 @@ id = this._route.snapshot.paramMap.get('id');
 
 
 
+
      onBusquedad() {
-     console.log("boton listar");
-        this.administradorService.buscar().subscribe((data: any) => {
+        this.administradorService.buscar(this.search).subscribe((data: any) => {
                 this.buscarModel = data.obj;
-                console.log("buscarrrr",this.buscarModel);
                 return;
             },
             (error) => {
@@ -147,12 +156,28 @@ id = this._route.snapshot.paramMap.get('id');
             });
     }
 
+    onEliminar(data){
+      if(confirm('¿ESTA SEGURO DE ELIMINAR EL DOCUMENTO?')){
+        this.administradorService.eliminar(data).subscribe((data: any) => {
+              this.alerts.setMessage('ELIMINADO CORRECTAMENTE','warn');
+              this.onBusquedad();
+                return;
+            },
+            (error) => {
+                alert('Ocurrio un Error onBusquedad');
+                console.log("imprimir", error);
+            });    
+      };
+    }
+    clear(){
+      this.registro = {};
+    }
+
   ngOnInit() {
    this.listarAreas();
    this.mostrarTipoDoc();
    this.registerForm = this.formBuilder.group({
       nombreDoc: ['', Validators.required],
-      codigo: ['', Validators.required],
       tipodoc: ['', Validators.required],
       area: ['', Validators.required],
       url: ['', Validators.required],

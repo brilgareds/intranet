@@ -1,6 +1,6 @@
- <h1><b>   MANUALES DE USUARIOS</b></h1>
+<h1 ><b>MANUALES DE USUARIOS</b></h1>
  <br>
-<div class="col-sm-6 col-md-6 col-lg-6 ">
+<div class="col-sm-6 col-md-6 col-lg-4 ">
   <div class="row" *ngFor="let manual of manualUModel">
       <div class="panel-group col-sm-12 col-md-12 col-lg-12" >    
       <br>
@@ -8,25 +8,43 @@
       </div>
         <div class="col-sm-12 col-md-12 col-lg-12">   
     <div class="panel panel-info " >  
-      <div class="panel-heading " style="height: 30px">
-        <div class="col-md-7">
-          <h5><b> NOMBRE</b></h5>
-        </div >
-      </div>
-      <div class="panel-body" >
-        <div *ngFor="let item2 of manual.documentos" >
-          <div class="col-md-7" ><a style="color:black ; font-size: 12px; cursor: pointer;" (click)="abrirPdf(item2.url)">    {{item2.ndocumento}}</a></div>
-        </div>
-      </div>
+
+    <table class="table" >
+            <thead class="thead-info">
+                <tr>
+                  <th scope="col" style="color:black; width:80%; white-space: normal;"><font face="verdana" size="2px;"><b>NOMBRE</b></font></th>
+                  <th scope="col" style="color:black; width:40%"><font face="verdana" size="2px;"><b>ACCIONES</b></font></th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor="let item2 of manual.documentos row">
+                <tr>
+                  <td><a style="cursor: pointer;" ><font face="verdana" size="2px">{{item2.ndocumento}}</font></a></td>
+               
+                
+                   <td style="padding-top: 2px;">
+                    <button class="btn btn-default" ><span class="glyphicon glyphicon-eye-open" style="font-size: 14px;" (click)="abrirPdf(item2.url)" ></span></button>
+                  </td>
+
+                </tr>
+            </tbody>
+        </table>
     </div>
   </div>
 </div>
 </div> 
-<div class="col-sm-6 col-md-6 col-lg-6 ">
+<div class="col-sm-6 col-md-6 col-lg-8 ">
+   <h1 ><b>VISTA PREELIMINAR</b></h1>
+      <button class="btn btn-default" ><span class="glyphicon glyphicon-menu-left"  style="font-size: 18px;"(click)="disminuir()" ></span></button>
+   <button class="btn btn-default" ><span class="glyphicon glyphicon-menu-right" style="font-size: 18px;" (click)="aumentar()" ></span></button>
+   <button class="btn btn-default" ><span class="glyphicon glyphicon-zoom-in" style="font-size: 18px;" (click)="zoom2()" ></span></button>
+   <button class="btn btn-default" ><span class="glyphicon glyphicon-zoom-out" style="font-size: 18px;"  (click)="zoom1()" ></span></button>
     <pdf-viewer [src]='pdfSrc'
        [render-text] = 'true'
-       [page] = 'page'
-       [show-all] = 'true'
+       [page]   = pag
+       [stick-to-page]="true"
+       [show-all] = 'false'
+       [zoom]= zom
        style='display:block;'
     >
     </pdf-viewer>

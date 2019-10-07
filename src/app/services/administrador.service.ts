@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AdministradorFaces} from '../interfaces/administradorFaces';
 import { FormControl, FormGroup } from '@angular/forms';
+import {HttpParams} from  "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -35,17 +36,26 @@ export class AdministradorService {
 
  almacenarRegistro(formData : FormData, registro : any){
 
-     return this.httpClient.post<any>(this.API_ENDPOINT+'/upload/',{params :formData, registro},{reportProgress : true,
+     return this.httpClient.post<any>(this.API_ENDPOINT+'/upload/',formData,{reportProgress : true,
                   observe : 'events'});
     }
 
-   listarTipoDoc(id) {
-        return this.httpClient.get(this.API_ENDPOINT + '/listarTipoDoc', this.httpOptions);
+   listarTipoDoc() {
+        return this.httpClient.get(this.API_ENDPOINT + '/listarTipoDoc',this.httpOptions);
     }
 
-    buscar(){
-    console.log("entra service buscar");
-    return this.httpClient.get(this.API_ENDPOINT + '/buscar', this.httpOptions);
+    buscar(search : any){
+    console.log("search***********",search);
+    const  params = new  HttpParams().set('areaid', search.busquedadarea).set('tipoid', search.busquedadtipodi);
+    return this.httpClient.get(this.API_ENDPOINT + '/buscar',{params});
+
+    }
+
+    eliminar(id: any){
+    console.log("ELIMINARRR*********",id);
+    const  params = new  HttpParams().set('id', id)
+    return this.httpClient.get(this.API_ENDPOINT + '/eliminar',{params});
+
     }
 
  uploadFile(formData) {
@@ -54,6 +64,9 @@ export class AdministradorService {
        return this.httpClient.post<any>(urlApi, {params :formData});
     }
 
+mostrarAreas1() {
+        return this.httpClient.get(this.API_ENDPOINT + '/mostrarAreas1', this.httpOptions);
+    }
 
 
 

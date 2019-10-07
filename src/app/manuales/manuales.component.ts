@@ -5,6 +5,7 @@ import {ActivatedRoute, Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import { AlertsService } from 'angular-alert-module';
 
+
 @Component({
   selector: 'app-manuales',
   templateUrl: './manuales.component.html',
@@ -15,15 +16,17 @@ export class ManualesComponent implements OnInit {
  documentosModel: ManualesFaces[];
  area : string;
 page : number = 1;
+  pag = 1;
+  zom = 1.0;
+
   constructor(private manualesService: ManualesService, private httpClient: HttpClient, private _route: ActivatedRoute,private alerts: AlertsService) { 
   }
 
-  pdfSrc = ""; 
+ pdfSrc = ""; 
   
   listaDocumentosServicio(id){
     this.manualesService.listarDocumentos(id).subscribe((data: any) => {
       this.documentosModel = data.obj.areas;
-      console.log("tamaño",this.documentosModel);
       if(this.documentosModel !== undefined){
        this.area = this.documentosModel[0].nombre;
 
@@ -38,18 +41,47 @@ page : number = 1;
     });
   }
 
+goToLink(pdf: string){
+let url = "http://localhost:3001/"+pdf;
+    window.open(url, "_blank");
+}
+ 
+
 
       abrirPdf = (pdf) => {
-     console.log('pdf',pdf);
      this.pdfSrc = "http://localhost:3001/"+pdf;
  
     };
 
+
+   
+    aumentar(){
+       this.pag++;
+    } 
+    disminuir(){
+       this.pag--;
+    } 
+
+    
+    zoom1(){
+        this.zom= this.zom - 0.25;
+
+    }
+
+
+      zoom2(){
+        this.zom= this.zom + 0.25;
+    }
+
+
+
+
   ngOnInit() {
- this._route.paramMap.subscribe(params  => {
+  this._route.paramMap.subscribe(params  => {
       const id  = params.get('id');
      this.listaDocumentosServicio(id);
     });
+
   }
 
 }

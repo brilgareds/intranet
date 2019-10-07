@@ -20,8 +20,8 @@
             </div>
             <div class="form-group">
                 <font face="verdana" size="2px"><b>C&Oacute;DIGO</b></font>
-                <input formControlName="codigo" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.codigo.errors }" [(ngModel)] = "registro.codigo" type="text"  name="codigo" class="form-control" id="codigo"required>
-                <error-message [control]="registerForm.controls.codigo" *ngIf="submitted"></error-message>
+                <input formControlName="codigo" class="form-control" [(ngModel)] = "registro.codigo" type="text"  name="codigo"  id="codigo">
+      
             </div>
             <div class="form-group">
                 <font face="verdana" size="2px"><b>SUBIR ARCHIVO</b></font>
@@ -71,8 +71,8 @@
         <div class="col-md-4">
             <div class="form-group" >
                 <font face="verdana" size="2px"><b>&Aacute;REA</b></font>
-                <select [(ngModel)] = "registro.busquedadarea" class="form-control" id="busquedadarea" name="busquedadarea">
-                <option *ngFor = "let item of inicioAreas" [ngValue]="item.id" (click)="mostrarTipoDoc(item.id)" >
+                <select [(ngModel)] = "search.busquedadarea"  class="form-control" id="busquedadarea" name="busquedadarea" >
+                <option  *ngFor = "let item of inicioAreas" [ngValue]="item.id" >
                 {{item.nombre}}
                 </option>
                 </select>
@@ -82,7 +82,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <font face="verdana" size="2px"><b>TIPO DE DOCUMENTO</b></font>
-                <select [(ngModel)] = "registro.busquedadtipodi" class="form-control" name="busquedadtipodi" id="busquedadtipodi">
+                <select   [(ngModel)] = "search.busquedadtipodi" class="form-control" name="busquedadtipodi" id="busquedadtipodi" > 
                 <option *ngFor = "let item of adminTipo" [ngValue]="item.id" >
                 {{item.titulo}}
                 </option>
@@ -92,7 +92,7 @@
         </div>
         <div class="col-md-4"><br>
                 <div  class="form-group">
-            <button class="btn btn-primary" (ngSubmit)="onBusquedad()">LISTAR</button>
+            <button class="btn btn-warning" (click)='onBusquedad()'>LISTAR</button>
             </div>
         </div>
         </div>
@@ -102,20 +102,17 @@
                 <tr>
                   <th scope="col"><font face="verdana" size="2px;"><b>NOMBRE</b></font></th>
                   <th scope="col"><font face="verdana" size="2px;"><b>C&Oacute;DIGO</b></font></th>
-                  <th scope="col"><font face="verdana" size="2px;"><b>ESTADO</b></font></th>
                   <th scope="col"><font face="verdana" size="2px;"><b>ACCIONES</b></font></th>
 
                 </tr>
             </thead>
-            <tbody *ngFor="let buscar of buscarTipo">
+            <tbody *ngFor="let buscar of buscarModel">
                 <tr>
-                  <td>{{buscar.ndocumento}}</td>
-                </tr>
-                <tr>
-                  <td>{{buscar.codigo}}</td>
-                </tr>
-                <tr>
-                  <td>{{buscar.state}}</td>
+                  <td><font face="verdana" size="2px;">{{buscar.ndocumento}}</font></td>
+               
+                  <td><font face="verdana" size="2px;">{{buscar.codigo}}</font></td>
+                
+                   <td><button class="btn" (click)='onEliminar(buscar.id)'><span style="font-size: 14px;" class="glyphicon glyphicon-trash"></span></button></td>
                 </tr>
             </tbody>
         </table>

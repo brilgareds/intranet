@@ -1,0 +1,21 @@
+{
+    "module": "creador",
+    "dependency": {
+        "controllers": [{
+                "creador_controller": {
+                    "module": "Reportes/creador",
+                    "controller": "creadorcontroller",
+                    "alias": "c_crea"
+                }
+            }],
+        "models": [{
+                "creador_model": {
+                    "module": "Reportes/creador",
+                    "model": "creadormodel",
+                    "alias": "m_crea"
+                }
+            }],
+        "events": [],
+        "cronJobs": []
+    }
+}

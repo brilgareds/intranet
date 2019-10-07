@@ -8,32 +8,73 @@
    <h3 style="text-align: center"> {{cabecera.titulo}}</h3> 
    </div>   
    <div class="col-sm-12 col-md-12 col-lg-12">
-    <div class="panel panel-info " >  
-      <div class="panel-heading " style="height: 30px">
+    <div class="panel panel-default " > 
+
+<!---voyyyyyyyyy--->
+    <table class="table" >
+            <thead class="thead-info">
+                <tr>
+                  <th scope="col" style="color:black; width:50%; white-space: normal;"><font face="verdana" size="2px;"><b>NOMBRE</b></font></th>
+                  <th scope="col" style="color:black; width: 34%;"><font face="verdana" size="2px;"><b>C&Oacute;DIGO</b></font></th>
+                  <th scope="col" style="color:black;"><font face="verdana" size="2px;"><b>ACCIONES</b></font></th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor="let item2 of cabecera.documentos row">
+                <tr>
+                  <td><a style="cursor: pointer;" ><font face="verdana" size="2px">{{item2.ndocumento}}</font></a></td>
+               
+                  <td><font face="verdana" size="2px">{{item2.codigo}}</font></td>
+                
+                   <td style="padding-top: 2px;">
+                    <button class="btn btn-default" ><span class="glyphicon glyphicon-eye-open" style="font-size: 14px;" (click)="abrirPdf(item2.url)" ></span></button>
+                   <button *ngIf="cabecera.id === 5" class="btn btn-default" (click)="goToLink(item2.url)"><span style="font-size: 14px;" class="glyphicon glyphicon-print"></span></button>
+                  </td>
+
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      </div>
+  </div>
+</div> 
+<div class="col-sm-6 col-md-6 col-lg-6 ">
+   <h1 ><b>VISTA PREELIMINAR</b></h1>
+   <button class="btn btn-default" ><span class="glyphicon glyphicon-menu-left"  style="font-size: 18px;"(click)="disminuir()" ></span></button>
+   <button class="btn btn-default" ><span class="glyphicon glyphicon-menu-right" style="font-size: 18px;" (click)="aumentar()" ></span></button>
+   <button class="btn btn-default" ><span class="glyphicon glyphicon-zoom-in" style="font-size: 18px;" (click)="zoom2()" ></span></button>
+   <button class="btn btn-default" ><span class="glyphicon glyphicon-zoom-out" style="font-size: 18px;"  (click)="zoom1()" ></span></button>
+    <pdf-viewer [src]='pdfSrc'
+       [render-text] = 'false'
+       [show-all] = 'false'
+       [stick-to-page]="true"
+       [page]   = pag
+       [zoom]= zom
+       style='display:block;'
+    >
+    </pdf-viewer>
+</div>
+  
+
+
+
+
+<!----
+        <div class="panel-heading " style="height: 30px">
             <div class="col-md-7">
                <h5><b> NOMBRE</b></h5>
             </div >
             <div class="col-md-5">
                 <h5><b> C&Oacute;DIGO</b></h5>
             </div>
+            <div class="col-md-5">
+                <h5><b> ACCIONES</b></h5>
+            </div>
       </div>
       <div class="panel-body" >
                <div *ngFor="let item2 of cabecera.documentos row" >
                   <div class="col-md-7" ><a style="color:black ; font-size: 12px; cursor: pointer;" (click)="abrirPdf(item2.url)">{{item2.ndocumento}}</a></div>
                   <div class="col-md-5"><a style="font-size: 12px;">{{item2.codigo}}</a></div> 
-               </div>
-      </div>
-      </div>
-      </div>
-  </div>
-</div> 
-<div class="col-sm-6 col-md-6 col-lg-6 ">
-    <pdf-viewer [src]='pdfSrc'
-       [render-text] = 'true'
-       [page] = 'page'
-       [show-all] = 'true'
-       style='display:block;'
-    >
-    </pdf-viewer>
-</div>
-  
+                  <div class="col-md-5"><button class="btn btn-default" ><span class="glyphicon glyphicon-eye-open"></span></button></div> 
+              </div>
+      </div>--->

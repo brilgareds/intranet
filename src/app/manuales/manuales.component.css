@@ -3,3 +3,13 @@
     color : white !important; 
     cursor: pointer;
 }
+
+
+.table tbody tr td {
+    font-size: 12px;
+}
+
+.table thead {
+     background: linear-gradient(45deg, #004E91, transparent);
+    color: #FFF;
+}

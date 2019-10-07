@@ -54,6 +54,7 @@
 //app.get('/api/configurarRoutes', function(req, res) {
 //  modulos.configurarRoutes(req, res, app, container);
 //});
+var nodemailer = require('nodemailer');
 const express = require('express');
 const http = require('http');
 const path = require('path');
@@ -95,6 +96,7 @@ G.axios = require('axios');
 G.fs = require('fs-extra');
 G.path = require('path');
 G.ip = require('ip');
+G.jwt = require('jsonwebtoken');
 
 G.multer = require('multer');
 
@@ -103,7 +105,7 @@ let storage = G.multer.diskStorage({
    
      destination : (req,file,cb)=>{
       console.log("file.originalname---");
-      cb(null,'./documentos');
+      cb(null,'./public');
      },
      filename:(req,file,cb)=>{
          console.log("file.originalname",file.originalname);
@@ -150,7 +152,7 @@ var redisOptions = {
 const container = intravenous.create();
 const server = http.createServer(app);
 const io = require('socket.io').listen(server);
-
+container.register("emails", nodemailer);
 
 io.adapter(RedisStore(redisOptions));
 modulos.cargarRoutes(app, container, io);

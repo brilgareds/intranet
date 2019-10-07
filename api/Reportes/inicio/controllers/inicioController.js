@@ -3,20 +3,7 @@ var inicial = function (inicio) {
 };
 
 
-inicial.prototype.listarUsuarios = function (req, res) {
-    var that = this;
 
-    G.Q.ninvoke(that.m_inicio, 'listarUsuarios').then(function (data) {
-
-        res.send(G.utils.r(req.url, 'Listado de Usuarios!!!!', 200, {listarUsuarios: data}));
-
-    }).fail(function (err) {
-
-        res.send(G.utils.r(req.url, 'Error Listado de Usuarios', 500, {listarUsuarios: err}));
-
-    }).done();
-
-};
 inicial.prototype.mostrarPortada = function (req, res) {
     var that = this;
 
@@ -41,6 +28,15 @@ inicial.prototype.listarExtensiones = function (req, res) {
 
 };
 
+inicial.prototype.mostrarEnlaces = function (req, res) {
+    var that = this;
+    G.Q.ninvoke(that.m_inicio, 'mostrarEnlaces').then(function (data) {
+      res.send(G.utils.r(req.url, 'Mostrar Enlaces!!!!', 200, {enlaces: data}));
+    }).fail(function (err) {
+        res.send(G.utils.r(req.url, 'Error Mostrar Enlaces', 500, err));
+    }).done();
+
+};
 
 inicial.prototype.ipLocal = function (req, res) {
 
@@ -73,7 +69,6 @@ inicial.prototype.listarProductos = function (req, res) {
 };
 inicial.prototype.mostrarAreas = function (req, res) {
     var that = this;
-    console.log('hi');
     G.Q.ninvoke(that.m_inicio, 'mostrarAreas').then(function (data) {
 
         res.send(G.utils.r(req.url, 'Listado areas!!!!', 200, data));
@@ -96,6 +91,22 @@ inicial.prototype.mostrarAdmin = function (req, res) {
     }).fail(function (err) {
 
         res.send(G.utils.r(req.url, 'Error listar administrador', 500, err));
+
+    }).done();
+
+};
+
+
+inicial.prototype.mostrarPublica = function (req, res) {
+    var that = this;
+
+    G.Q.ninvoke(that.m_inicio, 'mostrarPublica').then(function (data) {
+
+        res.send(G.utils.r(req.url, 'Listado publicaciones!!!!', 200, data));
+
+    }).fail(function (err) {
+
+        res.send(G.utils.r(req.url, 'Error listar publicaciones', 500, err));
 
     }).done();
 

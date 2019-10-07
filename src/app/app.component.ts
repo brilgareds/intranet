@@ -3,7 +3,8 @@ import { ComponentService } from './services/component.service';
 import {AreasFaces} from './interfaces/areasFaces';
 import {AdministradorFaces} from './interfaces/administradorFaces';
 import { Router } from "@angular/router";
-
+import { LoginComponent } from './login/login.component';
+import { ManualesComponent } from './manuales/manuales.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,23 +15,35 @@ export class AppComponent implements OnInit  {
   ip = "";
   inicioAreas: AreasFaces[];
   inicioAdmin : AdministradorFaces[];
+  rol = localStorage.getItem('userRol');
 
-  constructor(private componentService: ComponentService,private router: Router) {
+  constructor(private componentService: ComponentService,private router: Router, private loginComponent: LoginComponent,private manualesComponent: ManualesComponent) {
 
    }
   
+   onCerrar(){
+ 
+   this.loginComponent.onCerrar();
+   }
+
     ipLocal() {
     this.componentService.ipLocal().subscribe((data : any) => {
    
       this.ip = data.obj.ip;
-      console.log("IP: ",this.ip);
     },
       (error) => {
         alert('Ocurrio un Error');
         console.log("imprimir", error);
       });
   }
-  
+
+
+  isLogin(){
+    var log = this.loginComponent.loginIn();
+    return  log;
+  }
+
+ 
 
       listarAreas() {
         this.componentService.mostrarAreas().subscribe((data: any) => {
@@ -42,6 +55,7 @@ export class AppComponent implements OnInit  {
                 console.log("imprimir", error);
             });
     }
+
 
 
       listarAdmin() {
@@ -83,6 +97,7 @@ export class AppComponent implements OnInit  {
       this.ipLocal();
       this.listarAreas();
       this.listarAdmin();
+      console.log("rol",this.rol);
   }
   
 }

@@ -17,8 +17,9 @@
 }
 .href-panel {
     /*background-color: #337ab7  !important;*/ 
-    color : white !important; 
+    color : black !important; 
     cursor: pointer;
+
 }
 
  /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -34,12 +35,13 @@
  .sidenav {
      padding-top: 15px;
      background-color: #f1f1f1;
-     height: 80%;
+     height: 700px;
      border-radius: 2%;
      overflow-y: scroll;
-     padding-right: 20px;
-     /*overflow:hidden;*/
+     padding-right: 5px;
+    /* overflow:hidden;*/
    }
+
     h1 {
         font-size: 30px;
     }
@@ -48,12 +50,12 @@
     }
 .page-footer{
 width: 100%;
-margin-top: 250px;
+margin-top: 50px;
 }
 
 
 .color{
-  background: #004E91;
+  background: linear-gradient(45deg, #004E91, transparent);
 }
 
 .enlacesLetters{
@@ -86,7 +88,7 @@ color: black;
       border-radius: 0px 0px 10px 10px;   
       /*border-radius: 15px 15px 0px 0px ;*/
     }
-    
+
     strong{
         font-size: 20px;
     }
@@ -99,7 +101,8 @@ color: black;
     }
 
     video{
-      width: 1200px;
+      width: 100%;
+       height: auto;
     }
     .widget{
         font: bold 1.9em undotum, "lucida sans", arial; text-align: center !important;
@@ -116,9 +119,9 @@ color: black;
     
     /* Set black background color, white text and some padding */
     footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
+       background: linear-gradient(45deg, #4a4d50, transparent);
+      padding: 10px;
+      margin-top: 50px;
     }
     
     /* On small screens, set height to 'auto' for sidenav and grid */
@@ -225,3 +228,6 @@ color: black;
 .panel-body{
    text-align: justify;
 }
+
+
+

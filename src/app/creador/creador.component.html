@@ -1,0 +1,194 @@
+	<h2 class="text-center">BIENVENIDO ADMINISTRADOR</h2>
+	<br><br>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading"><font face="verdana" size="4px"><b>CONTROLADOR EXTENSIONES</b></font></div>
+			<div class="panel-body" >
+				<form  [formGroup]="crearFrom" (ngSubmit)="onCrear()">
+					<div class="col-xs-6 col-sm-6 col-md-6 form-group">
+						<div class="form-group">
+							<font face="verdana" size="2px"><b>&Aacute;REA</b></font>
+							<select  [(ngModel)] = "crea.areaid" class="form-control" name="areaid" id="areaid" required formControlName="areaid"  >
+								<option [ngClass]="{ 'is-invalid': submitted &amp;&amp; crearFrom.controls.areaid.errors }" [ngValue]="item.id"  *ngFor = "let item of inicioAreas">
+									{{item.nombre}}
+								</option>
+							</select>
+							<error-message [control]="crearFrom.controls.areaid" *ngIf="submitted"></error-message>
+						</div>
+						<div class="form-group">
+							<font face="verdana" size="2px"><b>NOMBRE TITULAR</b></font>
+							<input formControlName="nombreE" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; crearFrom.controls.nombreE.errors }" [(ngModel)] = "crea.nombreE" type="text"  name="nombreE" class="form-control" id="nombreE" required >
+							<error-message [control]="crearFrom.controls.nombreE" *ngIf="submitted"></error-message>
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 form-group">
+						<font face="verdana" size="2px"><b># EXTENSIÒN</b></font>
+						<input  formControlName="extension" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; crearFrom.controls.extension.errors }" [(ngModel)] = "crea.extension" type="text"  name="extension" class="form-control" id="extension"required >
+						<error-message [control]="crearFrom.controls.extension" *ngIf="submitted"></error-message><br><br>
+						<button class="btn btn-success">GUARDAR</button>
+					</div>
+				</form>
+
+
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<font face="verdana"  size="4px"><b>LISTAR EXTENSIONES</b></font><br>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group" >
+								<font face="verdana" size="2px"><b>&Aacute;REA</b></font>
+								<select [(ngModel)] = "busca.busarea"  class="form-control" id="busarea" name="busarea" >
+									<option  *ngFor = "let item of inicioAreas" [ngValue]="item.id" >
+										{{item.nombre}}
+									</option>
+								</select>
+							</div>
+
+						</div>
+						<div class="col-md-4"><br>
+							<div  class="form-group">
+								<button class="btn btn-warning" (click)='onListarExtension()'>LISTAR</button>
+							</div>
+						</div>
+					</div>
+
+					<table class="table" >
+						<thead>
+							<tr>
+								<th scope="col"><font face="verdana" size="2px;"><b>NOMBRE</b></font></th>
+								<th scope="col"><font face="verdana" size="2px;"><b>EXTENSIÓN</b></font></th>
+								<th scope="col"><font face="verdana" size="2px;"><b>ACCIONES</b></font></th>
+
+							</tr>
+						</thead>
+						<tbody *ngFor="let buscar of buscarModel">
+							<tr>
+								<td><font face="verdana" size="2px">{{buscar.nombre}}</font></td>
+
+								<td><font face="verdana" size="2px">{{buscar.extension}}</font></td>
+
+								<td><button class="btn " (click)='onEliminar(buscar.id)'><span style="font-size: 14px;" class="glyphicon glyphicon-trash"></span></button>
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading"><font face="verdana" size="4px"><b>CONTROLADOR EXTENSIONES</b></font></div>
+			<div class="panel-body">
+				<form [formGroup]="controlFroom" (ngSubmit)="onEnlace()">
+					<div class="col-xs-6 col-sm-6 col-md-6 form-group">
+						<font face="verdana" size="2px"><b>ENLACE</b></font>
+						<select   [(ngModel)] = "enlace.opcion" class="form-control" name="opcion" id="opcion" required formControlName="opcion"  >
+							<option [ngClass]="{ 'is-invalid': submitted &amp;&amp; controlFroom.controls.opcion.errors }" [ngValue]="item.id"  *ngFor = "let item of inicioEnlace">
+								{{item.titulo}}
+							</option>
+						</select>
+						<error-message [control]="controlFroom.controls.opcion" *ngIf="submitted"></error-message>
+
+						<font face="verdana" size="2px"><b>TITULO ENLACE</b></font>
+						<input formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; controlFroom.controls.name.errors }" [(ngModel)] = "enlace.name" type="text"  name="name" class="form-control" id="name" required >
+						<error-message [control]="controlFroom.controls.name" *ngIf="submitted"></error-message>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 form-group">
+						<font face="verdana" size="2px"><b>URL ENLACE</b></font>
+						<input formControlName="url" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; controlFroom.controls.url.errors }" [(ngModel)] = "enlace.url" type="text"  name="url" class="form-control" id="url" required >
+						<error-message [control]="controlFroom.controls.url" *ngIf="submitted"></error-message><br>
+						<button class="btn btn-success">GUARDAR</button>
+					</div>
+
+				</form>
+
+<br>
+
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<font face="verdana"  size="4px"><b>LISTAR ENLACES</b></font><br>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group" >
+								<font face="verdana" size="2px"><b>TIPO DE ENLACES</b></font>
+								<select [(ngModel)] = "ver.busOpc"  class="form-control" id="busOpc" name="busOpc" >
+									<option  *ngFor = "let item of inicioEnlace" [ngValue]="item.id" >
+										{{item.titulo}}
+									</option>
+								</select>
+							</div>
+
+						</div>
+						<div class="col-md-4"><br>
+							<div  class="form-group">
+								<button class="btn btn-warning" (click)='onBuscarEnlace()'>LISTAR</button>
+							</div>
+						</div>
+					</div>
+
+					<table class="table" >
+						<thead>
+							<tr>
+								<th scope="col"><font face="verdana" size="2px;"><b>NOMBRE</b></font></th>
+								<th scope="col"><font face="verdana" size="2px;"><b>URL</b></font></th>
+								<th scope="col"><font face="verdana" size="2px;"><b>ACCIONES</b></font></th>
+
+							</tr>
+						</thead>
+						<tbody *ngFor="let ver of verModel">
+							<tr>
+								<td><font face="verdana" size="2px">{{ver.name}}</font></td>
+
+								<td><font face="verdana" size="2px">{{ver.url}}</font></td>
+
+								<td><button class="btn " (click)='onEliminar(buscar.id)'><span style="font-size: 14px;" class="glyphicon glyphicon-trash"></span></button>
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading"><font face="verdana" size="4px"><b>APROBACIÓN PUBLICACIONES</b></font></div>
+			<div class="panel-body" >
+						<table class="table" >
+						<thead>
+							<tr>
+								<th scope="col"><font face="verdana" size="2px;"><b>ASUNTO</b></font></th>
+								<th scope="col"><font face="verdana" size="2px;"><b>CONTENIDO</b></font></th>
+								<th scope="col"><font face="verdana" size="2px;"><b>SEDE</b></font></th>
+								<th scope="col"><font face="verdana" size="2px;"><b>PROPIETARIO</b></font></th>
+								<th scope="col"><font face="verdana" size="2px;"><b>FECHA INICIO</b></font></th>
+								<th scope="col"><font face="verdana" size="2px;"><b>ACCIONES</b></font></th>
+
+
+							</tr>
+						</thead>
+						<tbody *ngFor="let apro of aprobaModel">
+							<tr>
+								<td style="width:20%;"><font face="verdana" size="2px">{{apro.titulo}}</font></td>
+								<td style="width:30%;"><font face="verdana" size="2px">{{apro.contenido}}</font></td>
+								<td style=""><font face="verdana" size="2px">{{apro.sede}}</font></td>
+								<td style=""><font face="verdana" size="2px">{{apro.propietario}}</font></td>
+								<td style=""><font face="verdana" size="2px">{{apro.fecha_inicio}}</font></td>
+
+								<td><button class="btn " (click)='onDesPro(apro.id)'><span style="font-size: 14px;" class="glyphicon glyphicon-trash"></span></button>
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+			</div>
+		</div>

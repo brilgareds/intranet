@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
+
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InicioComponent } from './inicio/inicio.component';
@@ -18,9 +19,14 @@ import { AdministradorComponent } from './administrador/administrador.component'
 import { AlertsModule } from 'angular-alert-module';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { AdministradorService } from './services/administrador.service';
+import { InicioService } from './services/inicio.service';
+import { LoginService } from './services/login.service';
 import { ManualesUComponent } from './manualesU/manualesU.component';
 import { ProcesosComponent } from './procesos/procesos.component';
 import { LoginComponent } from './login/login.component';
+import { ModalComponent } from './modal/modal.component';
+import { CreadorComponent } from './creador/creador.component';
+
 
 
 const routes: RouterModule[] = [
@@ -31,6 +37,8 @@ const routes: RouterModule[] = [
   {path: 'manualesU',component: ManualesUComponent},
   {path: 'procesos',component: ProcesosComponent},
   {path: 'login',component: LoginComponent},
+  {path: 'creador',component: CreadorComponent},
+
 ];
 @NgModule({
   declarations: [
@@ -42,6 +50,8 @@ const routes: RouterModule[] = [
     ManualesUComponent,
     ProcesosComponent,
     LoginComponent,
+    ModalComponent,
+    CreadorComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +65,7 @@ const routes: RouterModule[] = [
     BrowserAnimationsModule,
     AlertsModule.forRoot()
   ],
-  providers: [ AdministradorService ],
+  providers: [ AdministradorService, InicioService, LoginService, LoginComponent, ManualesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

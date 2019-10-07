@@ -1,0 +1,21 @@
+{
+    "module": "login",
+    "dependency": {
+        "controllers": [{
+                "login_controller": {
+                    "module": "Reportes/login",
+                    "controller": "logincontroller",
+                    "alias": "c_login"
+                }
+            }],
+        "models": [{
+                "login_model": {
+                    "module": "Reportes/login",
+                    "model": "loginModel",
+                    "alias": "m_login"
+                }
+            }],
+        "events": [],
+        "cronJobs": []
+    }
+}
