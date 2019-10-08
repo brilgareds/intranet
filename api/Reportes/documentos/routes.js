@@ -1,6 +1,6 @@
 module.exports = function(app, di_container) {
 
-    var c_Documentos = di_container.get("c_documentos");
+    // var c_Documentos = di_container.get("c_documentos");
 
   
     app.get('/api/listarDocumentos', function(req, res) {
