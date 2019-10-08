@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
                  localStorage.setItem('auth_token', data.obj.token);
                  localStorage.setItem('userId', data.obj.userId);
                  localStorage.setItem('userRol', data.obj.userRol);
-                 this.alerts.setMessage('BIENVENIDO ','success');
+                 this.alerts.setMessage('BIENVENIDO ', 'success');
 
                  this.router.navigate(['/inicio']);
 
