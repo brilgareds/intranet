@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import {AreasFaces} from '../interfaces/areasFaces';
 import {AdministradorFaces} from '../interfaces/administradorFaces';
+import {environment} from "../../environments/environment";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +19,8 @@ export class ComponentService {
 };
 
   // API_ENDPOINT = "/api";
-  API_ENDPOINT = "http://localhost:3001/api";
+  //API_ENDPOINT = "http://localhost:3001/api";
+  API_ENDPOINT = environment.urlService +"/api";
    constructor(private httpClient: HttpClient) { }
 
   //consultar ip Local

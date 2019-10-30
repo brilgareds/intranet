@@ -50,6 +50,27 @@ creador.prototype.listarEnlace = function (req, res) {
 
 };
 
+
+creador.prototype.aprobado = function (req, res) {
+    console.log("controllll",req);
+    var that = this;
+    var datos = {
+        id: req.query.id
+    }
+
+
+    G.Q.ninvoke(that.m_crea, 'aprobado',datos).then(function (data) {
+        console.log("datos hop",datos);
+        res.send(G.utils.r(req.url, 'SI  APROBACION!!!!', 200, data));
+
+    }).fail(function (err) {
+
+        res.send(G.utils.r(req.url, 'Error APROBACION  ', 500, err));
+
+    }).done();
+
+};
+
 creador.prototype.buscarExtension = function (req, res) {
 
     var that = this;

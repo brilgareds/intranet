@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {InicioFaces} from '../interfaces/inicioFaces';
 import {HttpParams} from  "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -17,8 +18,9 @@ export class InicioService {
     };
 
     // API_ENDPOINT = G.settings.API_ENDPOINT;
-    API_ENDPOINT = "http://localhost:3001/api";
-    url_extenciones = this.API_ENDPOINT + '/listarExtensiones';
+    //API_ENDPOINT = "http://localhost:3001/api";
+    //url_extenciones = this.API_ENDPOINT + '/listarExtensiones';
+    API_ENDPOINT = environment.urlService +"/api";
 
 
    
@@ -42,7 +44,7 @@ export class InicioService {
     }
 
     public listarExtenciones() {
-        return this.httpClient.get(this.url_extenciones);
+       return this.httpClient.get(this.API_ENDPOINT + '/listarExtensiones', this.httpOptions);
     }
 
     

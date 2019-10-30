@@ -16,7 +16,7 @@ export class AppComponent implements OnInit  {
   inicioAreas: AreasFaces[];
   inicioAdmin : AdministradorFaces[];
   rol = localStorage.getItem('userRol');
-
+ 
   constructor(private componentService: ComponentService,private router: Router, private loginComponent: LoginComponent,private manualesComponent: ManualesComponent) {
 
    }
@@ -94,6 +94,8 @@ export class AppComponent implements OnInit  {
       }
 
    ngOnInit() {
+    //  this.isLogin();
+    //  this.rol = true;// "localStorage.getItem('userRol')";
       this.ipLocal();
       this.listarAreas();
       this.listarAdmin();

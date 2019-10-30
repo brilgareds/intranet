@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AdministradorFaces} from '../interfaces/administradorFaces';
 import { FormControl, FormGroup } from '@angular/forms';
 import {HttpParams} from  "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class AdministradorService {
     };
 
 
-    API_ENDPOINT = "http://localhost:3001/api";
-
+   // API_ENDPOINT = "http://10.0.2.119:3001/api";
+API_ENDPOINT = environment.urlService +"/api";
 
 
   constructor(private httpClient: HttpClient) { }

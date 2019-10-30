@@ -28,37 +28,39 @@ verModel: InicioFaces[];
 
 constructor(private creadorService: CreadorService,private httpClient: HttpClient,private formBuilder: FormBuilder, private alerts: AlertsService) { }
 
-     onListarExtension() {
-        this.creadorService.buscarExtension(this.busca).subscribe((data: any) => {
-                this.buscarModel = data.obj;
-                return;
-            },
-            (error) => {
-                alert('Ocurrio un Error onListarExtension');
-                console.log("imprimir", error);
-            });
-    }
-     listarAprobacion() {
-        this.creadorService.mostrarAprobacion().subscribe((data: any) => {
-                this.aprobaModel = data.obj;
-                return;
-            },
-            (error) => {
-                alert('Ocurrio un Error listarAprobacion');
-                console.log("imprimir", error);
-            });
-    }
+onListarExtension() {
+this.creadorService.buscarExtension(this.busca).subscribe((data: any) => {
+this.buscarModel = data.obj;
+return;
+},
+(error) => {
+alert('Ocurrio un Error onListarExtension');
+console.log("imprimir", error);
+});
+}
 
-     onBuscarEnlace() {
-        this.creadorService.buscarEnlace(this.ver).subscribe((data: any) => {
-                this.verModel = data.obj;
-                return;
-            },
-            (error) => {
-                alert('Ocurrio un Error onListarEnlace');
-                console.log("imprimir", error);
-            });
-    }
+listarAprobacion() {
+this.creadorService.mostrarAprobacion().subscribe((data: any) => {
+console.log("maprobacion",data);
+this.aprobaModel = data.obj;
+return;
+},
+(error) => {
+alert('Ocurrio un Error listarAprobacion');
+console.log("imprimir", error);
+});
+}
+
+onBuscarEnlace() {
+this.creadorService.buscarEnlace(this.ver).subscribe((data: any) => {
+this.verModel = data.obj;
+return;
+},
+(error) => {
+alert('Ocurrio un Error onListarEnlace');
+console.log("imprimir", error);
+});
+}
 
 listarAreas() {    
 this.creadorService.mostrarAreas2().subscribe((data: any) => {
@@ -72,19 +74,19 @@ console.log("imprimir", error);
 }
 
 
-    onEliminar(data){
-      if(confirm('¿ESTA SEGURO DE ELIMINAR LA EXTENSION?')){
-        this.creadorService.eliminarPropietarios(data).subscribe((data: any) => {
-              this.alerts.setMessage('ELIMINADO CORRECTAMENTE','warn');
-              this.onListarExtension();
-                return;
-            },
-            (error) => {
-                alert('Ocurrio un Error onBusquedad');
-                console.log("imprimir", error);
-            });    
-      };
-    }
+onEliminar(data){
+if(confirm('¿ESTA SEGURO DE ELIMINAR LA EXTENSION?')){
+this.creadorService.eliminarPropietarios(data).subscribe((data: any) => {
+this.alerts.setMessage('ELIMINADO CORRECTAMENTE','warn');
+this.onListarExtension();
+return;
+},
+(error) => {
+alert('Ocurrio un Error onBusquedad');
+console.log("imprimir", error);
+});    
+};
+}
 
 
 mostrarEnlace() {    
@@ -131,19 +133,32 @@ return;
 
 }
 
-    onDesPro(data){
-      if(confirm('¿ESTA SEGURO DE ELIMINAR LA PUBLICACIÓN?')){
-        this.creadorService.eliminarPropietarios(data).subscribe((data: any) => {
-              this.alerts.setMessage('PUBLICACION ELIMINADA CORRECTAMENTE','warn');
-              this.onListarExtension();
-                return;
-            },
-            (error) => {
-                alert('Ocurrio un Error onBusquedad');
-                console.log("imprimir", error);
-            });    
-      };
-    }
+onDesPro(data){
+if(confirm('¿ESTA SEGURO DE ELIMINAR LA PUBLICACIÓN?')){
+this.creadorService.eliminarPropietarios(data).subscribe((data: any) => {
+this.alerts.setMessage('PUBLICACION ELIMINADA CORRECTAMENTE','warn');
+this.onListarExtension();
+return;
+},
+(error) => {
+alert('Ocurrio un Error onBusquedad');
+console.log("imprimir", error);
+});    
+}
+}
+
+
+
+onApro() {
+this.creadorService.aprobado(this.aprobaModel).subscribe((data) => {
+console.log("onAPRONNNN",this.aprobaModel);
+this.alerts.setMessage('APROBADO','success');
+console.log("imprimir", data);
+});
+
+
+return;
+};
 
 
 

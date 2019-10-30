@@ -1,4 +1,4 @@
-	<h2 class="text-center">BIENVENIDO ADMINISTRADOR</h2>
+ 	<h2 class="text-center">BIENVENIDO ADMINISTRADOR</h2>
 	<br><br>
 	<div class="col-md-6">
 		<div class="panel panel-default">
@@ -181,7 +181,9 @@
 								<td style=""><font face="verdana" size="2px">{{apro.propietario}}</font></td>
 								<td style=""><font face="verdana" size="2px">{{apro.fecha_inicio}}</font></td>
 
-								<td><button class="btn " (click)='onDesPro(apro.id)'><span style="font-size: 14px;" class="glyphicon glyphicon-trash"></span></button>
+								<td><button class="btn " (click)='onDesPro(apro.id)'><span style="font-size: 14px;" class="glyphicon glyphicon-remove"></span></button>
+								<button class="btn " (click)='onApro(apro.id)'><span style="font-size: 14px;" class="glyphicon glyphicon-ok"></span></button>
+
 								</td>
 
 							</tr>

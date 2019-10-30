@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {HttpParams} from  "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,14 @@ export class ManualesService {
         })
     };
 
-API_ENDPOINT = "http://localhost:3001/api";
+API_ENDPOINT = environment.urlService +"/api";
     url_documentos = this.API_ENDPOINT + '/listarDocumentos';
 
   constructor(private httpClient: HttpClient) { }
 
   public listarDocumentos(id) {
         const  params = new  HttpParams().set('id', id);
-        return this.httpClient.get(this.url_documentos,{ params });
+        return this.httpClient.get(this.API_ENDPOINT + '/listarDocumentos',{ params });
     }
 
 

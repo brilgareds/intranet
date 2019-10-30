@@ -21,17 +21,22 @@ submitted = false;
 constructor(private loginService: LoginService , private httpClient: HttpClient, private router: Router , private formBuilder: FormBuilder, private alerts: AlertsService) { }
 
 
-onIngreso() {
-this.submitted = true;
 
-if (this.ingresoForm.valid) {
+onIngreso(){
+    console.log("entra");
+	this.submitted = true;
+
+
+if(this.ingreso.login !== undefined && this.ingreso.password !== undefined){
 	this.loginService.login(this.ingreso).subscribe((data) => {
-	console.log("hpraaaaaaaaa", data.obj);
-			if(data.obj.ingreso){
-			
+	      if(data.obj.ingreso){
+	        localStorage.clear();
+
+			console.log("data.obj",data.obj);
+			localStorage.setItem('login_user', data.obj.login_user);
 			localStorage.setItem('auth_token', data.obj.token);
-			localStorage.setItem('userId', data.obj.userId);
-			localStorage.setItem('userRol', data.obj.userRol);
+			localStorage.setItem('userId', data.obj.login_id);
+			localStorage.setItem('userRol', data.obj.login_rol);
 			this.alerts.setMessage('BIENVENIDO ','success');
 
 			this.router.navigate(['/inicio']);
@@ -39,12 +44,11 @@ if (this.ingresoForm.valid) {
 		}else{
 			this.alerts.setMessage('El login o la contraseña son incorrectas','error');
 		}
+			
 	});
-
-}else{
-return;
-}
-
+  }else{
+     console.log('no datos');  
+  }
 }
 
 
@@ -60,6 +64,7 @@ this.loginService.logout(userId).subscribe((data: any) => {
 localStorage.removeItem('auth_token');
 localStorage.removeItem('userId');
 this.router.navigate(['/login']);
+localStorage.clear();
 return;
 },
 (error) => {

@@ -30,6 +30,8 @@ page : number = 1;
       if(this.documentosModel !== undefined){
        this.area = this.documentosModel[0].nombre;
 
+       // https://github.com/amgonzalez80/frontend_angular.git
+
       }else{
         this.alerts.setMessage('NO SE ENCONTRARON DOCUMENTOS','warn');
       }
@@ -50,7 +52,7 @@ let url = "http://localhost:3001/"+pdf;
 
       abrirPdf = (pdf) => {
      this.pdfSrc = "http://localhost:3001/"+pdf;
- 
+      
     };
 
 
