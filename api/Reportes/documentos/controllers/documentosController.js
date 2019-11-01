@@ -1,5 +1,5 @@
-var documentosiso = function (documentos) {
-    this.m_documentos = documentos;
+var documentosiso = function (m_documentos) {
+    this.m_documentos = m_documentos;
 };
 
 
