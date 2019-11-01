@@ -4,14 +4,14 @@
         "controllers": [{
                 "documentos_controller": {
                     "module": "Reportes/documentos",
-                    "controller": "documentosController",
+                    "controller": "documentoscontroller",
                     "alias": "c_documentos"
                 }
             }],
         "models": [{
                 "documentos_model": {
                     "module": "Reportes/documentos",
-                    "model": "documentosModel",
+                    "model": "documentosmodel",
                     "alias": "m_documentos"
                 }
             }],
