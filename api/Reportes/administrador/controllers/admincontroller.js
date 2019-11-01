@@ -40,12 +40,10 @@ administrador.prototype.buscar = function (req, res) {
 };
 
 administrador.prototype.eliminar = function (req, res) {
-    console.log('eliminar***************');
 
     var that = this;
 
    var data = req.query;
-    console.log('eliminar', data);
 
     G.Q.ninvoke(that.m_admin, 'eliminar',data).then(function (data) {
        
@@ -140,8 +138,6 @@ function __enviar_correo_electronico(that, to,subject, message, callback) {
     
     smtpTransport.sendMail(settings, function (error, response) {
 
-      console.log("entraaa**/**/**/***/*/*/*/**/**",error);
-      console.log("entraaa**/**/**/***/*/*/*/**/**",response);
         if (error !== null) {
             console.log("Error :: ",error);
             callback({estado: 505, mensaje: error});

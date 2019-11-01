@@ -5,7 +5,7 @@ var login = function (login) {
 
 
 login.prototype.logout = function (req, res) {
-    console.log('logout***************');
+    //console.log('logout***************');
 
     var that = this;
 
@@ -29,12 +29,11 @@ login.prototype.login  = function (req, res) {
     var that = this;
     var data = req.query;
     let user = {};
-    console.log("reqqqq",req);
+
     var datos= {
     	login : data.login,
     	password : data.password
     }
-    console.log("passs",datos);
 
     G.Q.ninvoke(that.m_login, 'login',datos).then(function (data) {
     
@@ -51,22 +50,24 @@ login.prototype.login  = function (req, res) {
         user = {
             login_id: data[0].id,
             login_rol: data[0].rol_id,
+            login_user: data[0].user,
             token: token,
+            ingreso: true
         }
         console.log("data[0].id------------*//", user);
 
         return G.Q.ninvoke(that.m_login,'guardarToken', user);
 
-        console.log("data[0].i465654",data[0].id);
+        //console.log("data[0].i465654",data[0].id);
 
     }else{
        
        return false;
    }
 }).then(function (data) {
- console.log("dataaaa",data);
+// console.log("dataaaa",data);
  if(data !== false){
-   res.send(G.utils.r(req.url, 'Listado password!!!!', 200, {token : datos.token, userId : data[0], userRol: user.login_rol, ingreso: true}));
+   res.send(G.utils.r(req.url, 'Listado password!!!!', 200, user));
  }else{
    res.send(G.utils.r(req.url, 'Listado password!!!!', 200, {msj : 'usuario no valido',ingreso:false}));
  }

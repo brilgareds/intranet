@@ -26,8 +26,11 @@ module.exports = function(app, di_container) {
 		app.get('/api/buscarEnlace', function(req, res) {
 		c_crea.buscarEnlace(req, res);
 	});
+	app.get('/api/aprobado', function(req, res) {
+		c_crea.aprobado(req, res);
+	});
 
-		app.get('/api/mostrarAprobacion', function(req, res) {
+	app.get('/api/mostrarAprobacion', function(req, res) {
 		c_crea.mostrarAprobacion(req, res);
 	});
 

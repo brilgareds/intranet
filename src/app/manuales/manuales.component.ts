@@ -4,7 +4,7 @@ import {ManualesFaces} from '../interfaces/manualesFaces';
 import {ActivatedRoute, Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import { AlertsService } from 'angular-alert-module';
-
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-manuales',
@@ -13,9 +13,9 @@ import { AlertsService } from 'angular-alert-module';
 })
 
 export class ManualesComponent implements OnInit {
- documentosModel: ManualesFaces[];
- area : string;
-page : number = 1;
+  documentosModel: ManualesFaces[];
+  area : string;
+  page : number = 1;
   pag = 1;
   zom = 1.0;
 
@@ -30,6 +30,8 @@ page : number = 1;
       if(this.documentosModel !== undefined){
        this.area = this.documentosModel[0].nombre;
 
+       // https://github.com/amgonzalez80/frontend_angular.git
+
       }else{
         this.alerts.setMessage('NO SE ENCONTRARON DOCUMENTOS','warn');
       }
@@ -42,15 +44,18 @@ page : number = 1;
   }
 
 goToLink(pdf: string){
-let url = "http://localhost:3001/"+pdf;
+let url = environment.urlService+"/" +pdf;
+//let url = "http://localhost:3001/"+pdf;
+
     window.open(url, "_blank");
 }
  
 
 
       abrirPdf = (pdf) => {
-     this.pdfSrc = "http://localhost:3001/"+pdf;
- 
+    // this.pdfSrc = "http://localhost:3001/"+pdf;
+     this.pdfSrc = environment.urlService+"/" +pdf;
+      
     };
 
 

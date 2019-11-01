@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     onIngreso() {
         this.submitted = true;
 
+<<<<<<< HEAD
         if (this.ingresoForm.valid) {
             this.loginService.login(this.ingreso).subscribe((data) => {
                 console.log('hpraaaaaaaaa', data.obj);
@@ -34,9 +35,29 @@ export class LoginComponent implements OnInit {
                  localStorage.setItem('userId', data.obj.userId);
                  localStorage.setItem('userRol', data.obj.userRol);
                  this.alerts.setMessage('BIENVENIDO ', 'success');
+=======
+
+onIngreso(){
+    console.log("entra");
+	this.submitted = true;
+
+
+if(this.ingreso.login !== undefined && this.ingreso.password !== undefined){
+	this.loginService.login(this.ingreso).subscribe((data) => {
+	      if(data.obj.ingreso){
+	        localStorage.clear();
+
+			console.log("data.obj",data.obj);
+			localStorage.setItem('login_user', data.obj.login_user);
+			localStorage.setItem('auth_token', data.obj.token);
+			localStorage.setItem('userId', data.obj.login_id);
+			localStorage.setItem('userRol', data.obj.login_rol);
+			this.alerts.setMessage('BIENVENIDO ','success');
+>>>>>>> 38554720da83ce88bbd99786eeaaf3e74eb86a8b
 
                  this.router.navigate(['/inicio']);
 
+<<<<<<< HEAD
                  } else {
                     this.alerts.setMessage('El login o la contraseña son incorrectas', 'error');
                  }
@@ -45,6 +66,17 @@ export class LoginComponent implements OnInit {
         } else {
             return;
         }
+=======
+		}else{
+			this.alerts.setMessage('El login o la contraseña son incorrectas','error');
+		}
+			
+	});
+  }else{
+     console.log('no datos');  
+  }
+}
+>>>>>>> 38554720da83ce88bbd99786eeaaf3e74eb86a8b
 
     }
 
@@ -54,6 +86,7 @@ export class LoginComponent implements OnInit {
     }
 
 
+<<<<<<< HEAD
     onCerrar() {
         const userId = localStorage.getItem('userId');
         this.loginService.logout(userId).subscribe((data: any) => {
@@ -66,6 +99,20 @@ export class LoginComponent implements OnInit {
                 alert('Ocurrio un Error onBusquedad');
                 console.log('imprimir', error);
             });
+=======
+var userId = localStorage.getItem('userId');
+this.loginService.logout(userId).subscribe((data: any) => {
+localStorage.removeItem('auth_token');
+localStorage.removeItem('userId');
+this.router.navigate(['/login']);
+localStorage.clear();
+return;
+},
+(error) => {
+alert('Ocurrio un Error onBusquedad');
+console.log("imprimir", error);
+});    
+>>>>>>> 38554720da83ce88bbd99786eeaaf3e74eb86a8b
 
     }
 

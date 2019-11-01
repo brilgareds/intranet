@@ -62,7 +62,22 @@ creadormodel.prototype.almacenarPropietarios= function (data,callback) {
   });
 };
 
-
+creadormodel.prototype.aprobado = function (data , callback) {
+  console.log("hehehe",data);
+   var query = G.knex('intranet.anuncios')
+           .where("id", data.id)
+           .update({
+                    aprobacion: '1',
+                    fecha_inicio: 'now()'
+                  });
+ 
+   query.then(function (resultado) {
+    console.log("122****aprobadooo",query.toString());
+       callback(false, resultado);
+   }).catch(function (err) {
+       callback({err: err, msj: err});
+   });
+};
 
 
 creadormodel.prototype.eliminarPropietarios= function (data,callback) {
@@ -117,7 +132,7 @@ creadormodel.prototype.mostrarAprobacion= function (callback) {
             .from("intranet.anuncios"); 
 
     query.then(function (resultado) {
-     // console.log("122****mostrarAprobacion",query.toString());
+     //console.log("122****mostrarAprobacion",query.toString());
         callback(false, resultado);
     }).catch(function (err) {
         callback({err: err, msj: "Error al listar  mostrarAprobacion"});

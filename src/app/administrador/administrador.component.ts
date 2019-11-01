@@ -179,6 +179,7 @@ id = this._route.snapshot.paramMap.get('id');
    this.registerForm = this.formBuilder.group({
       nombreDoc: ['', Validators.required],
       tipodoc: ['', Validators.required],
+      codigo: ['', Validators.required],
       area: ['', Validators.required],
       url: ['', Validators.required],
          });

@@ -96,7 +96,7 @@ documentosModel.prototype.listarDocumentos = function (obj,callback) {
 
           //console.log("query",query.toString());
         query.then(function (resultado) {
-         console.log("122****documentos",query.toString());
+         //console.log("122****documentos",query.toString());
         if (resultado.length > 0) {
             var obj = {};
                                           
