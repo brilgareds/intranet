@@ -4,7 +4,7 @@ import {ManualesFaces} from '../interfaces/manualesFaces';
 import {ActivatedRoute, Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import { AlertsService } from 'angular-alert-module';
-
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-manuales',
@@ -44,14 +44,17 @@ page : number = 1;
   }
 
 goToLink(pdf: string){
-let url = "http://localhost:3001/"+pdf;
+let url = environment.urlService+"/" +pdf;
+//let url = "http://localhost:3001/"+pdf;
+
     window.open(url, "_blank");
 }
  
 
 
       abrirPdf = (pdf) => {
-     this.pdfSrc = "http://localhost:3001/"+pdf;
+    // this.pdfSrc = "http://localhost:3001/"+pdf;
+     this.pdfSrc = environment.urlService+"/" +pdf;
       
     };
 

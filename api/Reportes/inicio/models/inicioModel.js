@@ -203,7 +203,7 @@ inicioModel.prototype.mostrarPublica= function (callback) {
  var query = G.knex.column("id","contenido","sede","propietario", "titulo","active")
             .select()
             .from("intranet.anuncios")
-            .where('aprobacion', 1);    
+            .where('aprobacion', 0);    
     query.then(function (resultado) {
         //console.log("122****mostrarPublica",query.toString());
         callback(false, resultado);

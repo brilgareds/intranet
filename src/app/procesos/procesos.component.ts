@@ -3,6 +3,7 @@ import { ManualesService } from '../services/manuales.service';
 import { AlertsService } from 'angular-alert-module';
 import { ManualesFaces } from '../interfaces/manualesFaces';
 import {HttpClient} from '@angular/common/http';
+import {environment} from "../../environments/environment";
 
 
 @Component({
@@ -37,8 +38,8 @@ procesosModel: ManualesFaces[];
 
     abrirPdf = (pdf) => {
      console.log('pdf',pdf);
-     this.pdfSrc = "http://localhost:3001/"+pdf;
- 
+     //this.pdfSrc = "http://localhost:3001/"+pdf;
+      this.pdfSrc = environment.urlService+"/" +pdf;
     }; 
 
 

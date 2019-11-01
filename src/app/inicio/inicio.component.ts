@@ -26,7 +26,9 @@
     publicafrom: FormGroup;
     publicaModel :InicioFaces[];
 
-    crear: any = {};
+    crear: any = {
+    contenido: ""
+    };
 
 
 
@@ -160,7 +162,9 @@
 
     tmrColombia() {
     this.inicioService.tmrColombiaService().subscribe((data: any) => {
-    this.precioDolar = data.obj.dolar.value;
+    let dolar = data.obj.dolar.value;
+    this.precioDolar = parseInt(dolar);
+
     this.temp = data.obj.main.temp;
     this.humidity = data.obj.main.humidity;
     this.pressure = data.obj.main.pressure;
@@ -172,7 +176,12 @@
     });
     }
 
+    validarcaracteres(){
+    if(this.crear.contenido.length >=250){
+        return false;
 
+    }
+    }
 
     openModal(id: string) {
     console.log("legoooooooooo upaa");
