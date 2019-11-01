@@ -13,9 +13,9 @@ import {environment} from "../../environments/environment";
 })
 
 export class ManualesComponent implements OnInit {
- documentosModel: ManualesFaces[];
- area : string;
-page : number = 1;
+  documentosModel: ManualesFaces[];
+  area : string;
+  page : number = 1;
   pag = 1;
   zom = 1.0;
 
