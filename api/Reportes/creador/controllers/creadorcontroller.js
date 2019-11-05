@@ -52,7 +52,6 @@ creador.prototype.listarEnlace = function (req, res) {
 
 
 creador.prototype.aprobado = function (req, res) {
-    console.log("controllll",req);
     var that = this;
     var datos = {
         id: req.query.id

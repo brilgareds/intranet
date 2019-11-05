@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ComponentService } from './services/component.service';
-import {AreasFaces} from './interfaces/areasFaces';
-import {AdministradorFaces} from './interfaces/administradorFaces';
+import { AreasFaces} from './interfaces/areasFaces';
+import { AdministradorFaces} from './interfaces/administradorFaces';
 import { Router } from "@angular/router";
 import { LoginComponent } from './login/login.component';
 import { ManualesComponent } from './manuales/manuales.component';
+import { User } from './model/user';
+import { LoginService } from './services/login.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,13 +19,15 @@ export class AppComponent implements OnInit  {
   inicioAreas: AreasFaces[];
   inicioAdmin : AdministradorFaces[];
   rol = localStorage.getItem('userRol');
+  currentUser: User;
  
-  constructor(private componentService: ComponentService,private router: Router, private loginComponent: LoginComponent,private manualesComponent: ManualesComponent) {
-
+  constructor(private componentService: ComponentService,private router: Router, 
+              private loginComponent: LoginComponent,private manualesComponent: ManualesComponent,
+              private loginService: LoginService) {
+      this.loginService.currentUser.subscribe(x => this.currentUser = x);
    }
   
-   onCerrar(){
- 
+   onCerrar(){ 
    this.loginComponent.onCerrar();
    }
 
@@ -36,8 +41,18 @@ export class AppComponent implements OnInit  {
         console.log("imprimir", error);
       });
   }
+  
+  get isSistemas() {
+//        console.log("this.currentUser::",this.currentUser.login_rol);
+        return this.currentUser && this.currentUser.login_rol === 3;
+  }
+  
+  get isCalidad() {
+//        console.log("this.currentUser::",this.currentUser.login_rol);
+        return this.currentUser && this.currentUser.login_rol === 2;
+  }
 
-
+//ya no iria
   isLogin(){
     var log = this.loginComponent.loginIn();
     return  log;
@@ -45,7 +60,7 @@ export class AppComponent implements OnInit  {
 
  
 
-      listarAreas() {
+   listarAreas() {
         this.componentService.mostrarAreas().subscribe((data: any) => {
                 this.inicioAreas = data.obj;
                 return;

@@ -10,10 +10,10 @@ login.prototype.logout = function (req, res) {
     var that = this;
 
    var data = req.query;
-    console.log('logout', data);
+//    console.log('logout', data);
 
     G.Q.ninvoke(that.m_login, 'logout',data).then(function (data) {
-       
+       console.log("data-----------",data);
         res.send(G.utils.r(req.url, 'logout cerrado ', 200, data));
 
     }).fail(function (err) {
@@ -69,7 +69,7 @@ login.prototype.login  = function (req, res) {
  if(data !== false){
    res.send(G.utils.r(req.url, 'Listado password!!!!', 200, user));
  }else{
-   res.send(G.utils.r(req.url, 'Listado password!!!!', 200, {msj : 'usuario no valido',ingreso:false}));
+   res.send(G.utils.r(req.url, 'Listado password!!!!', 500, {msj : 'usuario no valido',ingreso:false}));
  }
  
 

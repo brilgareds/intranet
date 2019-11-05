@@ -26,19 +26,20 @@ import { ProcesosComponent } from './procesos/procesos.component';
 import { LoginComponent } from './login/login.component';
 import { ModalComponent } from './modal/modal.component';
 import { CreadorComponent } from './creador/creador.component';
+import { GuardiaGuard } from './guard/guardia.guard';
 
 
 
 const routes: RouterModule[] = [
   {path: '',component: LoginComponent},
-  {path: 'manuales/:id',component: ManualesComponent},
-  {path: 'inicio',component: InicioComponent},
-  {path: 'administrador',component: AdministradorComponent},
-  {path: 'manualesU',component: ManualesUComponent},
-  {path: 'procesos',component: ProcesosComponent},
+  {path: 'manuales/:id',component: ManualesComponent,canActivate: [GuardiaGuard],data: { roles: [1,2,3] }},
+  {path: 'inicio',component: InicioComponent,canActivate: [GuardiaGuard],data: { roles: [1,2,3] }},
+  {path: 'administrador',component: AdministradorComponent,canActivate: [GuardiaGuard],data: { roles: [2,3] }},
+  {path: 'manualesU',component: ManualesUComponent,canActivate: [GuardiaGuard],data: { roles: [1,2,3] }},
+  {path: 'procesos',component: ProcesosComponent,canActivate: [GuardiaGuard],data: { roles: [1,2,3] }},
   {path: 'login',component: LoginComponent},
-  {path: 'creador',component: CreadorComponent},
-
+  {path: 'creador',component: CreadorComponent,canActivate: [GuardiaGuard],data: { roles: [3] }},
+ 
 ];
 @NgModule({
   declarations: [

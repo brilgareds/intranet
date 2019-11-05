@@ -63,7 +63,7 @@ creadormodel.prototype.almacenarPropietarios= function (data,callback) {
 };
 
 creadormodel.prototype.aprobado = function (data , callback) {
-  console.log("hehehe",data);
+
    var query = G.knex('intranet.anuncios')
            .where("id", data.id)
            .update({
@@ -72,7 +72,7 @@ creadormodel.prototype.aprobado = function (data , callback) {
                   });
  
    query.then(function (resultado) {
-    console.log("122****aprobadooo",query.toString());
+
        callback(false, resultado);
    }).catch(function (err) {
        callback({err: err, msj: err});
