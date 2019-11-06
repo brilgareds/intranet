@@ -29,7 +29,7 @@ inicial.prototype.listarExtensiones = function (req, res) {
 };
 
 inicial.prototype.mostrarEnlaces = function (req, res) {
-    var that = this;
+    var that = this;//userid 
     G.Q.ninvoke(that.m_inicio, 'mostrarEnlaces').then(function (data) {
       res.send(G.utils.r(req.url, 'Mostrar Enlaces!!!!', 200, {enlaces: data}));
     }).fail(function (err) {

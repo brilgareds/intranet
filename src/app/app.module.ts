@@ -6,10 +6,9 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { ManualesComponent } from './manuales/manuales.component';
 import { HttpClient } from 'selenium-webdriver/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-
 
 
 import { MatSelectModule } from '@angular/material/select';
@@ -27,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { ModalComponent } from './modal/modal.component';
 import { CreadorComponent } from './creador/creador.component';
 import { GuardiaGuard } from './guard/guardia.guard';
+import { InterceptorService } from './services/interceptor.service';
 
 
 
@@ -66,7 +66,13 @@ const routes: RouterModule[] = [
     BrowserAnimationsModule,
     AlertsModule.forRoot()
   ],
-  providers: [ AdministradorService, InicioService, LoginService, LoginComponent, ManualesComponent],
+  providers: [ AdministradorService, InicioService, LoginService, LoginComponent, ManualesComponent,  
+        {
+         provide: HTTP_INTERCEPTORS,
+         useClass: InterceptorService,
+         multi: true
+        }
+        ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

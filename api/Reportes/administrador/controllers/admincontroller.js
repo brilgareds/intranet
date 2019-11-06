@@ -32,7 +32,7 @@ administrador.prototype.buscar = function (req, res) {
         res.send(G.utils.r(req.url, 'BUSQUEDAD REALIZADA!!!!', 200, data));
 
     }).fail(function (err) {
-         console.log('err',err);
+         console.log('err buscar',err);
         res.send(G.utils.r(req.url, 'Error AL REALIZAR BUSQUEDAD', 500, err));
 
     }).done();
@@ -50,7 +50,7 @@ administrador.prototype.eliminar = function (req, res) {
         res.send(G.utils.r(req.url, 'DOCUMENTO ELIMINADO!!!!', 200, data));
 
     }).fail(function (err) {
-         console.log('err',err);
+         console.log('err eliminar',err);
         res.send(G.utils.r(req.url, 'Error AL BLOQUEAR DOCUMENTO', 500, err));
 
     }).done();
@@ -74,14 +74,12 @@ administrador.prototype.almacenarRegistro = function (req, res) {
         res.send(G.utils.r(req.url, 'ALMACENAR REGISTRO!!!!', 200, data));
 
     }).fail(function (err) {
-         console.log('err',err);
+         console.log('err almacenarRegistro',err);
         res.send(G.utils.r(req.url, 'Error ALMACENAR REGISTRO', 500, err));
 
     }).done();
 
 };
-
-
 
 
 administrador.prototype.almacenPublicidad = function (req, res) {
@@ -103,7 +101,7 @@ administrador.prototype.almacenPublicidad = function (req, res) {
         res.send(G.utils.r(req.url, 'ALMACENAR PUBLICIDAD!!!!', 200, data));
 
     }).fail(function (err) {
-         console.log('err',err);
+         console.log('err almacenPublicidad',err);
         res.send(G.utils.r(req.url, 'Error ALMACENAR PUBLICIDAD', 500, err));
 
     }).done();

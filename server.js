@@ -97,6 +97,7 @@ G.fs = require('fs-extra');
 G.path = require('path');
 G.ip = require('ip');
 G.jwt = require('jsonwebtoken');
+G.auth = require('./lib/Authentication');
 
 G.multer = require('multer');
 
@@ -133,7 +134,7 @@ G.knex = require('./lib/Knex').
  ////////////
  
 
-
+app.use(G.auth.validate());
 app.use(express.static(__dirname+'/dist/AngularClienteRout'));
 //app.use(express.static(__dirname+'/src/app/app.component.html'));
 app.use(express.static('./api/'));

@@ -25,13 +25,13 @@ export class GuardiaGuard implements CanActivate {
         console.log('route.data.roles ',route.data.roles) ;   
         console.log('this.loginService.currentUserValue ',this.loginService.currentUserValue.login_rol) ;   
         console.log('this.loginService.currentUserValue ---',route.data.roles.indexOf(this.loginService.currentUserValue.login_rol)) ;   
-//        
-//            if (route.data.roles && route.data.roles.indexOf(this.loginService.currentUserValue) === -1) {
-//                console.log("this.loginService.currentUserValue",this.loginService.currentUserValue);
-//                    // role not authorised so redirect to home page
-//                    this.router.navigate(['/login']);
-//                    return false;
-//            }
+//                
+            if (route.data.roles.indexOf(this.loginService.currentUserValue.login_rol) === -1) {
+//                console.log("salirrrrrrrrrrrrrre");
+////                    // role not authorised so redirect to home page
+                    this.router.navigate(['/login']);
+                    return false;
+            }
         }
  console.log('route:::',route.data.roles);
         return true;

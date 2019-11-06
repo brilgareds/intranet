@@ -11,9 +11,7 @@ import {environment} from "../../environments/environment";
 export class AdministradorService {
     public httpOptions = {
         headers: new HttpHeaders({
-            'Access-Control-Allow-Origin': '*',
-            'Authorization': 'authkey',
-            'userid': '1'
+            'Access-Control-Allow-Origin': '*'
         })                                                                                                                                                                         
     };
 
