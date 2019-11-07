@@ -2,22 +2,6 @@ var inicial = function (inicio) {
     this.m_inicio = inicio;
 };
 
-
-
-inicial.prototype.mostrarPortada = function (req, res) {
-    var that = this;
-
-    G.Q.ninvoke(that.m_inicio, 'mostrarPortada').then(function (data) {
-
-        res.send(G.utils.r(req.url, 'Listado de Usuarios!!!!', 200, {mostrarPortada: data}));
-
-    }).fail(function (err) {
-
-        res.send(G.utils.r(req.url, 'Error Listado de Usuarios', 500, {mostrarPortada: err}));
-
-    }).done();
-
-};
 inicial.prototype.listarExtensiones = function (req, res) {
     var that = this;
     G.Q.ninvoke(that.m_inicio, 'listarExtensiones').then(function (data) {
