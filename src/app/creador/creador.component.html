@@ -87,7 +87,7 @@
 						<font face="verdana" size="2px"><b>ENLACE</b></font>
 						<select   [(ngModel)] = "enlace.opcion" class="form-control" name="opcion" id="opcion" required formControlName="opcion"  >
 							<option [ngClass]="{ 'is-invalid': submitted &amp;&amp; controlFroom.controls.opcion.errors }" [ngValue]="item.id"  *ngFor = "let item of inicioEnlace">
-								{{item.titulo}}
+								{{item.titulo}} {{item.id}}
 							</option>
 						</select>
 						<error-message [control]="controlFroom.controls.opcion" *ngIf="submitted"></error-message>
@@ -143,7 +143,7 @@
 
 								<td><font face="verdana" size="2px">{{ver.url}}</font></td>
 
-								<td><button class="btn " (click)='onEliminar(buscar.id)'><span style="font-size: 14px;" class="glyphicon glyphicon-trash"></span></button>
+								<td><button class="btn " (click)='onEliminarE(ver.idunion)'><span style="font-size: 14px;" class="glyphicon glyphicon-trash"></span></button>
 								</td>
 
 							</tr>
@@ -181,7 +181,7 @@
 								<td style=""><font face="verdana" size="2px">{{apro.propietario}}</font></td>
 								<td style=""><font face="verdana" size="2px">{{apro.fecha_inicio}}</font></td>
 
-								<td><button class="btn " (click)='onDesPro(apro.id)'><span style="font-size: 14px;" class="glyphicon glyphicon-remove"></span></button>
+								<td><button class="btn " (click)='ondesApro(apro.id)'><span style="font-size: 14px;" class="glyphicon glyphicon-remove"></span></button>
 								<button class="btn " (click)='onApro(apro.id)'><span style="font-size: 14px;" class="glyphicon glyphicon-ok"></span></button>
 
 								</td>

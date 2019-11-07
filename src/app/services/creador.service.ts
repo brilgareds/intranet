@@ -54,19 +54,20 @@ return this.httpClient.get(this.API_ENDPOINT + '/almacenarPropietarios',{params}
 
 
 public almacenarEnlace(enlace : any) {
-console.log("enlaceeee",enlace)
 const  params = new  HttpParams().set('opcion', enlace.opcion).set('url', enlace.url).set('name', enlace.name);
 return this.httpClient.get(this.API_ENDPOINT + '/almacenarEnlace',{params});
 } 
 
 
-public aprobado(aprobaModel : any) {
-console.log("aprobaModel",aprobaModel);
-const  params = new  HttpParams().set('id', aprobaModel.id);
-console.log("params",params);
+aprobado(id : any) {
+const  params = new  HttpParams().set('id', id);
 return this.httpClient.get(this.API_ENDPOINT + '/aprobado',{params});
 } 
 
+desAprobado(id : any) {
+const  params = new  HttpParams().set('id', id);
+return this.httpClient.get(this.API_ENDPOINT + '/desAprobado',{params});
+} 
 
 
 buscarExtension(busca : any){
@@ -84,9 +85,16 @@ return this.httpClient.get(this.API_ENDPOINT + '/buscarEnlace',{params});
 
 
 eliminarPropietarios(id: any){
-
 const  params = new  HttpParams().set('id', id)
 return this.httpClient.get(this.API_ENDPOINT + '/eliminarPropietarios',{params});
 
 }
+
+eliminarEnlaces(idunion: any){
+const  params = new  HttpParams().set('idunion', idunion)
+return this.httpClient.get(this.API_ENDPOINT + '/eliminarEnlaces',{params});
+
+}
+
+
 }

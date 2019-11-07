@@ -24,13 +24,28 @@ creador.prototype.eliminarPropietarios = function (req, res) {
 
    var data = req.query;
 
-
     G.Q.ninvoke(that.m_crea, 'eliminarPropietarios',data).then(function (data) {
         res.send(G.utils.r(req.url, 'extension ELIMINADO!!!!', 200, data));
 
     }).fail(function (err) {
          console.log('err eliminarPropietarios',err);
         res.send(G.utils.r(req.url, 'Error AL ELIMINAR extension', 500, err));
+
+    }).done();
+
+};
+
+creador.prototype.eliminarEnlaces = function (req, res) {
+    var that = this;
+
+   var data = req.query;
+
+    G.Q.ninvoke(that.m_crea, 'eliminarEnlaces',data).then(function (data) {
+        res.send(G.utils.r(req.url, 'enlaces ELIMINADO!!!!', 200, data));
+
+    }).fail(function (err) {
+         console.log('err',err);
+        res.send(G.utils.r(req.url, 'Error AL ELIMINAR enlaces', 500, err));
 
     }).done();
 
@@ -59,12 +74,31 @@ creador.prototype.aprobado = function (req, res) {
 
 
     G.Q.ninvoke(that.m_crea, 'aprobado',datos).then(function (data) {
-       
+
         res.send(G.utils.r(req.url, 'SI  APROBACION!!!!', 200, data));
 
     }).fail(function (err) {
 
         res.send(G.utils.r(req.url, 'Error APROBACION  ', 500, err));
+
+    }).done();
+
+};
+
+creador.prototype.desAprobado = function (req, res) {
+    var that = this;
+    var datos = {
+        id: req.query.id
+    }
+
+
+    G.Q.ninvoke(that.m_crea, 'desAprobado',datos).then(function (data) {
+
+        res.send(G.utils.r(req.url, 'CORRECTAMENTE  DESAPROBADO!!!!', 200, data));
+
+    }).fail(function (err) {
+
+        res.send(G.utils.r(req.url, 'Error DESAPROBACION  ', 500, err));
 
     }).done();
 
@@ -127,7 +161,7 @@ creador.prototype.almacenarPropietarios = function (req, res) {
     var datos = {
         nombreE: req.query.nombreE,
         extension: req.query.extension,
-        area: req.query.areaid,
+        area: req.query.areaid
         
     }  
 
@@ -152,16 +186,14 @@ creador.prototype.almacenarPropietarios = function (req, res) {
 
 
 creador.prototype.almacenarEnlace = function (req, res) {
-
     var that = this;
     var datos = {
         name: req.query.name,
         url: req.query.url,
+        opcion:req.query.opcion
         
     }  
-
     G.Q.ninvoke(that.m_crea, 'almacenarEnlace',datos).then(function (data) {
-
         datos.idEnla = data[0];
 
         return G.Q.ninvoke(that.m_crea, 'almacenarUnion',datos);

@@ -31,7 +31,7 @@ registerForm: FormGroup;
 id = this._route.snapshot.paramMap.get('id');
 
   constructor(private administradorService: AdministradorService,private httpClient: HttpClient, private _route: ActivatedRoute, private formBuilder: FormBuilder, private alerts: AlertsService) { 
-   console.log("idADMINISTRADORR::",this._route.snapshot.paramMap.get('id'));}
+   }
 
        listarAreas() {    
         this.administradorService.mostrarAreas1().subscribe((data: any) => {

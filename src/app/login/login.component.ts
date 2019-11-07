@@ -22,65 +22,43 @@ loading = false;
 error = '';
 
 constructor(private loginService: LoginService , private httpClient: HttpClient, 
-           private router: Router , private formBuilder: FormBuilder, 
-           private alerts: AlertsService) { 
+private router: Router , private formBuilder: FormBuilder, 
+private alerts: AlertsService) { 
 
-        if (this.loginService.currentUserValue) { 
-            this.router.navigate(['/inicio']);
-           }
+if (this.loginService.currentUserValue) { 
+this.router.navigate(['/inicio']);
+}
 
 }
 
 
 
 onIngreso(){
-    console.log("entra");
-	this.submitted = true;
-        
+this.submitted = true;
 
 if(this.ingreso.login !== undefined && this.ingreso.password !== undefined){
-    
-    
-    this.loginService.login(this.ingreso).pipe(first())
-            .subscribe(
-                data => {
-                    console.log("------------------------------",data);
-                    if(data !== false){
-                    this.alerts.setMessage('BIENVENIDO ','success');
-                    this.router.navigate(['/inicio']);
-                    }else{
-                       this.alerts.setMessage('El login o la contraseña son incorrectas','error'); 
-                    }
-                },
-                error => {
-                    this.alerts.setMessage('El login o la contraseña son incorrectas','error');
-                    this.error = error;
-                    this.loading = false;
-                });
-    
-//	this.loginService.login(this.ingreso).subscribe((data) => {
-            
-          //  console.log("data",data);
-//	      if(data.obj.ingreso){
-//	        localStorage.clear();
-//
-//			console.log("data.obj",data.obj);
-//			localStorage.setItem('login_user', data.obj.login_user);
-//			localStorage.setItem('auth_token', data.obj.token);
-//			localStorage.setItem('userId', data.obj.login_id);
-//			localStorage.setItem('userRol', data.obj.login_rol);
-//			this.alerts.setMessage('BIENVENIDO ','success');
-//
-//			this.router.navigate(['/inicio']);
-//
-//		}else{
-//			this.alerts.setMessage('El login o la contraseña son incorrectas','error');
-//		}
-			
-//	});
-  }else{
-     console.log('no datos');  
-  }
+
+
+
+this.loginService.login(this.ingreso).pipe(first())
+.subscribe(
+data => {
+if(data !== false){
+this.alerts.setMessage('BIENVENIDO ','success');
+this.router.navigate(['/inicio']);
+}else{
+this.alerts.setMessage('El login o la contraseña son incorrectas','error'); 
+}
+},
+error => {
+this.alerts.setMessage('El login o la contraseña son incorrectas','error');
+this.error = error;
+this.loading = false;
+});
+
+}else{
+console.log('no datos');  
+}
 }
 
 

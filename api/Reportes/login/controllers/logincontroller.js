@@ -5,16 +5,17 @@ var login = function (login) {
 
 
 login.prototype.logout = function (req, res) {
-    //console.log('logout***************');
 
     var that = this;
 
    var data = req.query;
+
    
     if(data.userId === null){
       res.send(G.utils.r(req.url, 'ERROR EN logout', 500, {userId : 'es nulo'}));  
       return;
     }
+
 
     G.Q.ninvoke(that.m_login, 'logout',data).then(function (data) {
 
@@ -58,18 +59,16 @@ login.prototype.login  = function (req, res) {
             token: token,
             ingreso: true
         }
-       // console.log("data[0].id------------*//", user);
+
 
         return G.Q.ninvoke(that.m_login,'guardarToken', user);
 
-        //console.log("data[0].i465654",data[0].id);
 
     }else{
        
        return false;
    }
 }).then(function (data) {
-// console.log("dataaaa",data);
  if(data !== false){
    res.send(G.utils.r(req.url, 'Listado password!!!!', 200, user));
  }else{

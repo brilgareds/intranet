@@ -41,7 +41,6 @@ console.log("imprimir", error);
 
 listarAprobacion() {
 this.creadorService.mostrarAprobacion().subscribe((data: any) => {
-console.log("maprobacion",data);
 this.aprobaModel = data.obj;
 return;
 },
@@ -54,6 +53,7 @@ console.log("imprimir", error);
 onBuscarEnlace() {
 this.creadorService.buscarEnlace(this.ver).subscribe((data: any) => {
 this.verModel = data.obj;
+
 return;
 },
 (error) => {
@@ -87,6 +87,58 @@ console.log("imprimir", error);
 });    
 };
 }
+
+onEliminarE(data){
+if(confirm('¿ESTA SEGURO DE ELIMINAR EL ENLACE?')){
+this.creadorService.eliminarEnlaces(data).subscribe((data: any) => {
+this.alerts.setMessage('ENLACE ELIMINADO CORRECTAMENTE','warn');
+this.onBuscarEnlace();
+return;
+},
+(error) => {
+alert('Ocurrio un Error onBusquedad');
+console.log("imprimir", error);
+});    
+};
+}
+
+
+onApro(data){
+if(confirm('¿ESTA SEGURO DE APROBAR EL ANUNCIO?')){
+this.creadorService.aprobado(data).subscribe((data: any) => {
+this.alerts.setMessage('ANUNCIO APROBADO CORRECTAMENTE','success');
+return;
+},
+(error) => {
+alert('Ocurrio un Error onApro');
+console.log("imprimir", error);
+});    
+};
+}
+
+ondesApro(data){
+if(confirm('¿ESTA SEGURO DE DESAPROBAR EL ANUNCIO?')){
+this.creadorService.desAprobado(data).subscribe((data: any) => {
+this.alerts.setMessage('ANUNCIO DESAPROBADO CORRECTAMENTE','success');
+return;
+},
+(error) => {
+alert('Ocurrio un Error onApro');
+console.log("imprimir", error);
+});    
+};
+}
+
+/*
+onApro2(data) {
+this.creadorService.aprobado(data).subscribe((data : any) => {
+this.alerts.setMessage('APROBADO','success');
+console.log("imprimir", data);
+});
+
+
+return;
+};*/
 
 
 mostrarEnlace() {    
@@ -149,16 +201,7 @@ console.log("imprimir", error);
 
 
 
-onApro() {
-this.creadorService.aprobado(this.aprobaModel).subscribe((data) => {
-console.log("onAPRONNNN",this.aprobaModel);
-this.alerts.setMessage('APROBADO','success');
-console.log("imprimir", data);
-});
 
-
-return;
-};
 
 
 

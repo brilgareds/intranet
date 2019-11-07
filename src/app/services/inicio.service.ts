@@ -60,7 +60,6 @@ export class InicioService {
 
  public almacenPublicidad(crear : any) {
         const  params = new  HttpParams().set('contenido', crear.contenido).set('publicador', crear.publicador).set('sede', crear.sede).set('titulo', crear.titulo);
-       console.log("**************************",crear);
         return this.httpClient.get(this.API_ENDPOINT + '/almacenPublicidad',{params});
     } 
      

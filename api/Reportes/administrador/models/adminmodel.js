@@ -82,7 +82,7 @@ var query = G.knex('intranet.anuncios').insert({
        contenido: data.contenido,
        sede: data.sede,
        propietario: data.publicador,
-       active: 'active',
+       active: '',
        aprobacion: '0'
 
    });
