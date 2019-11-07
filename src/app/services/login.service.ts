@@ -49,11 +49,11 @@ public get currentUserValue(): User {
 
 login(ingreso: any){
    const  params = new  HttpParams().set('login', ingreso.login).set('password', ingreso.password);
-   let data;
-   return this.httpClient.get(this.API_ENDPOINT + '/login', {params}).pipe(map(user => {
-    console.log("123",user);
-        if (user !== undefined && typeof user === 'object' && user.status === 200) {
 
+   let data;//(clients: Client[])
+   return this.httpClient.get(this.API_ENDPOINT + '/login', {params}).pipe(map((user : any) => {
+ 
+        if (user.status === 200) {
             if (user.obj && user.obj.token) {
                 localStorage.setItem('currentUser', JSON.stringify(user.obj));
                 this.currentUserSubject.next(user.obj);
