@@ -1,13 +1,14 @@
 
 
 export interface ManualesFaces {
+id : string;
 titulo : string;
-nombre : string;
+nombre : any;
 documentos: Array<documentos>; 
 }
 
 interface documentos {
 ndocumento : string;
 codigo : string;
-url : string;
+url : any;
 }

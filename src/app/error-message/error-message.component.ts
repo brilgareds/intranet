@@ -10,8 +10,8 @@ import { InicioService } from '../services/inicio.service';
   styleUrls: ['./error-message.component.css']
 })
 export class ErrorMessageComponent {
-  @Input() control: FormControl;
  
+ control: FormControl;
   constructor(private administradorService: AdministradorService, private inicioService: InicioService,private loginService: LoginService) { }
    
   get errorMessage() {

@@ -1,4 +1,7 @@
 export interface AdministradorFaces {
-id: string;
+id: number;
 herramienta: string;	
+codigo: string;	
+titulo: string;	
+ndocumento: string;	
 }
