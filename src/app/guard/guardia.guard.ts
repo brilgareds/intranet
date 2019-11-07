@@ -15,25 +15,15 @@ export class GuardiaGuard implements CanActivate {
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
        
-        // If the user is not logged in we'll send them back to the home page
         if (!this.loginService.currentUserValue) {
-            console.log('No estás logueado');
-            console.log('route:::',route);
             this.router.navigate(['/login']);
             return false;
-        }else{    
-        console.log('route.data.roles ',route.data.roles) ;   
-        console.log('this.loginService.currentUserValue ',this.loginService.currentUserValue.login_rol) ;   
-        console.log('this.loginService.currentUserValue ---',route.data.roles.indexOf(this.loginService.currentUserValue.login_rol)) ;   
-//                
+        }else{              
             if (route.data.roles.indexOf(this.loginService.currentUserValue.login_rol) === -1) {
-//                console.log("salirrrrrrrrrrrrrre");
-////                    // role not authorised so redirect to home page
                     this.router.navigate(['/login']);
                     return false;
             }
         }
- console.log('route:::',route.data.roles);
         return true;
     }
 }

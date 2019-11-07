@@ -74,11 +74,7 @@ creador.prototype.aprobado = function (req, res) {
 
 
     G.Q.ninvoke(that.m_crea, 'aprobado',datos).then(function (data) {
-<<<<<<< HEAD
 
-=======
-       
->>>>>>> 110f77f87b9afef4eabf2a83684821ec2bdac470
         res.send(G.utils.r(req.url, 'SI  APROBACION!!!!', 200, data));
 
     }).fail(function (err) {

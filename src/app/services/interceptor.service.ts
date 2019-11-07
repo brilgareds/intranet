@@ -16,7 +16,6 @@ export class InterceptorService implements HttpInterceptor{
       
                
     const token = JSON.parse(localStorage.getItem('currentUser')); 
-     console.log("token interce",token);
     if (!!token) {
       
         req = req.clone({

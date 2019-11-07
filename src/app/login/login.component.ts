@@ -36,7 +36,6 @@ this.router.navigate(['/inicio']);
 onIngreso(){
 this.submitted = true;
 
-
 if(this.ingreso.login !== undefined && this.ingreso.password !== undefined){
 
 
@@ -44,7 +43,6 @@ if(this.ingreso.login !== undefined && this.ingreso.password !== undefined){
 this.loginService.login(this.ingreso).pipe(first())
 .subscribe(
 data => {
-console.log("------------------------------",data);
 if(data !== false){
 this.alerts.setMessage('BIENVENIDO ','success');
 this.router.navigate(['/inicio']);
