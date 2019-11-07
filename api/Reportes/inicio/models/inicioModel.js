@@ -88,17 +88,7 @@ inicioModel.prototype.listarExtensiones = function (callback) {
     });
 };
 
-/*inicioModel.prototype.mostrarPortada= function (callback) {
- var query = G.knex.column("id", "url", "fecha_inicio", "fecha_final", "active", "descripcion", "interval")
-            .select()
-            .from("intranet.portada")
-            .where("aprobacion",1);
-    query.then(function (resultado) {
-        callback(false, resultado);
-    }).catch(function (err) {
-        callback({err: err, msj: "Error al consultar mostrar Portada"});
-    });
-};*/
+
 
 inicioModel.prototype.mostrarAreas= function (callback) {
     

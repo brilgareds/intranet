@@ -49,6 +49,7 @@ public get currentUserValue(): User {
 
 login(ingreso: any){
    const  params = new  HttpParams().set('login', ingreso.login).set('password', ingreso.password);
+
    let data;//(clients: Client[])
    return this.httpClient.get(this.API_ENDPOINT + '/login', {params}).pipe(map((user : any) => {
  
@@ -66,7 +67,6 @@ login(ingreso: any){
         }
     }));
 }
-
 
 logout(userId: any) {
         // remove user from local storage to log user out

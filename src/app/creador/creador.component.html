@@ -87,7 +87,7 @@
 						<font face="verdana" size="2px"><b>ENLACE</b></font>
 						<select   [(ngModel)] = "enlace.opcion" class="form-control" name="opcion" id="opcion" required formControlName="opcion"  >
 							<option [ngClass]="{ 'is-invalid': submitted &amp;&amp; controlFroom.controls.opcion.errors }" [ngValue]="item.id"  *ngFor = "let item of inicioEnlace">
-								{{item.titulo}} {{item.id}}
+								{{item.titulo}}
 							</option>
 						</select>
 						<error-message [control]="controlFroom.controls.opcion" *ngIf="submitted"></error-message>

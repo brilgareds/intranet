@@ -43,12 +43,10 @@ export class AppComponent implements OnInit  {
   }
   
   get isSistemas() {
-//        console.log("this.currentUser::",this.currentUser.login_rol);
         return this.currentUser && this.currentUser.login_rol === 3;
   }
   
   get isCalidad() {
-//        console.log("this.currentUser::",this.currentUser.login_rol);
         return this.currentUser && this.currentUser.login_rol === 2;
   }
 
@@ -109,8 +107,6 @@ export class AppComponent implements OnInit  {
       }
 
    ngOnInit() {
-    //  this.isLogin();
-    //  this.rol = true;// "localStorage.getItem('userRol')";
       this.ipLocal();
       this.listarAreas();
       this.listarAdmin();
