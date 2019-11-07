@@ -23,7 +23,6 @@ constructor(private loginService: LoginService , private httpClient: HttpClient,
 
 
 onIngreso(){
-    console.log("entra");
 	this.submitted = true;
 
 
@@ -32,7 +31,6 @@ if(this.ingreso.login !== undefined && this.ingreso.password !== undefined){
 	      if(data.obj.ingreso){
 	        localStorage.clear();
 
-			console.log("data.obj",data.obj);
 			localStorage.setItem('login_user', data.obj.login_user);
 			localStorage.setItem('auth_token', data.obj.token);
 			localStorage.setItem('userId', data.obj.login_id);

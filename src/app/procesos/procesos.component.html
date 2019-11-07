@@ -10,8 +10,8 @@
 			    <table class="table" >
             <thead class="thead-info">
                 <tr>
-                  <th scope="col" style="color:black; width:80% ;  white-space: normal;"><font face="verdana" size="2px;"><b>NOMBRE</b></font></th>
-                  <th scope="col" style="color:black; width: 20%"><font face="verdana" size="2px;"><b>ACCIONES</b></font></th>
+                  <th scope="col" style="color:white; width:80% ;  white-space: normal;"><font face="verdana" size="2px;"><b>NOMBRE</b></font></th>
+                  <th scope="col" style="color:white; width: 20%"><font face="verdana" size="2px;"><b>ACCIONES</b></font></th>
 
                 </tr>
             </thead>
@@ -36,7 +36,7 @@
    <button class="btn btn-default" ><span class="glyphicon glyphicon-zoom-out"  style="font-size: 18px;"  (click)="zoom1()" ></span></button>
     <pdf-viewer [src]='pdfSrc'
        [render-text] = 'true'
-       [show-all] = 'true'
+       [show-all] = 'false'
        [page]   = pag
        [zoom]= zom
        style='display:block;'

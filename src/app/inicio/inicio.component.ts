@@ -85,11 +85,8 @@
 
 
     listarPublica() {
-    console.log("lagejapdioe",this.publicaModel);
     this.inicioService.mostrarPublica().subscribe((data: any) => {
-    console.log("incioseriviso",data);
     this.publicaModel = data.obj
-    console.log("veaaaaa", data)
     return;
     },
     (error) => {
@@ -112,9 +109,7 @@
     }
 
     /* onPublicar() {
-    console.log("holaaaaa publicandoooo",this.crear);
     this.inicioService.almacenPublicidad(this.crear).subscribe((data) => {
-    console.log("imprimir", data);
     },
     (error) => {
     alert('Ocurrio un Error');
@@ -141,7 +136,6 @@
     }
 
     clear(){
-    console.log('crear',this.crear);
       this.crear = {};
     }
 
@@ -184,7 +178,6 @@
     }
 
     openModal(id: string) {
-    console.log("legoooooooooo upaa");
     this.modalService.open(id);
     }
 

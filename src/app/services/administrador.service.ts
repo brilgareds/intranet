@@ -46,14 +46,12 @@ API_ENDPOINT = environment.urlService +"/api";
     }
 
     buscar(search : any){
-    console.log("search***********",search);
     const  params = new  HttpParams().set('areaid', search.busquedadarea).set('tipoid', search.busquedadtipodi);
     return this.httpClient.get(this.API_ENDPOINT + '/buscar',{params});
 
     }
 
     eliminar(id: any){
-    console.log("ELIMINARRR*********",id);
     const  params = new  HttpParams().set('id', id)
     return this.httpClient.get(this.API_ENDPOINT + '/eliminar',{params});
 

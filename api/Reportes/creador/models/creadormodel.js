@@ -63,16 +63,32 @@ creadormodel.prototype.almacenarPropietarios= function (data,callback) {
 };
 
 creadormodel.prototype.aprobado = function (data , callback) {
-  console.log("hehehe",data);
    var query = G.knex('intranet.anuncios')
            .where("id", data.id)
            .update({
                     aprobacion: '1',
-                    fecha_inicio: 'now()'
+                    fecha_inicio: 'now()',
+                    active:''
                   });
  
    query.then(function (resultado) {
-    console.log("122****aprobadooo",query.toString());
+       callback(false, resultado);
+   }).catch(function (err) {
+       callback({err: err, msj: err});
+   });
+};
+
+creadormodel.prototype.desAprobado = function (data , callback) {
+  console.log("apruebaaaaa hpo",data)
+   var query = G.knex('intranet.anuncios')
+           .where("id", data.id)
+           .update({
+                    aprobacion: '0',
+                    fecha_fin: 'now()',
+                    active:''
+                  });
+ 
+   query.then(function (resultado) {
        callback(false, resultado);
    }).catch(function (err) {
        callback({err: err, msj: err});
@@ -89,7 +105,21 @@ creadormodel.prototype.eliminarPropietarios= function (data,callback) {
        //console.log("122****eliminar",query.toString());
         callback(false, resultado);
     }).catch(function (err) {
-        callback({err: err, msj: "Error al eliminar union"});
+        callback({err: err, msj: "Error al eliminar EXTENSIONES"});
+    });
+};
+
+
+creadormodel.prototype.eliminarEnlaces= function (data,callback) {
+ var query = G.knex("intranet.union")
+            .where("idunion",data.idunion)
+            .del(); 
+
+    query.then(function (resultado) {
+       //console.log("122****eliminar",query.toString());
+        callback(false, resultado);
+    }).catch(function (err) {
+        callback({err: err, msj: "Error al eliminar enlaces"});
     });
 };
 
@@ -147,7 +177,7 @@ creadormodel.prototype.almacenarUnion= function (data,callback) {
   });
 
   query.then(function (resultado) {
-     // console.log("122****almacenarUnion",query.toString());
+     //console.log("122****almacenarUnion",query.toString());
       callback(false, resultado);
   }).catch(function (err) {
     console.log("err [almacenarUnion]:", err);

@@ -10,6 +10,6 @@
 }
 
 .table thead {
-     background: linear-gradient(45deg, #004E91, transparent);
+    background: linear-gradient(45deg, #004e91, #004e91a3);
     color: #FFF;
 }

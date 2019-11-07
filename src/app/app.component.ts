@@ -99,7 +99,6 @@ export class AppComponent implements OnInit  {
       this.ipLocal();
       this.listarAreas();
       this.listarAdmin();
-      console.log("rol",this.rol);
   }
   
 }

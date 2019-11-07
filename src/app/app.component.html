@@ -38,8 +38,8 @@
         </ul>
     </div>
     <ul class="nav navbar-nav navbar-left">
-        <li><a>TU IP {{ip}}</a></li>
-        <li *ngIf="isLogin()" ><a class="nav-link" (click)="onCerrar()"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+        <li><a style="cursor: pointer;">TU IP {{ip}}</a></li>
+        <li style="cursor: pointer;" *ngIf="isLogin()" ><a class="nav-link" (click)="onCerrar()"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
     </ul>
 </nav>
 

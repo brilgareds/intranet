@@ -21,7 +21,6 @@ loginModel.prototype.login= function (data,callback) {
 
 loginModel.prototype.guardarToken= function (data,callback) {
 
-	//console.log("/*//*/*/*/*entrooo", data);
 	var d = new Date();
 	var fecha = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear()+' '+d.getUTCHours()+':'+d.getMinutes();
 

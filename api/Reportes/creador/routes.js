@@ -29,6 +29,9 @@ module.exports = function(app, di_container) {
 	app.get('/api/aprobado', function(req, res) {
 		c_crea.aprobado(req, res);
 	});
+	app.get('/api/desAprobado', function(req, res) {
+		c_crea.desAprobado(req, res);
+	});
 
 	app.get('/api/mostrarAprobacion', function(req, res) {
 		c_crea.mostrarAprobacion(req, res);
@@ -36,5 +39,9 @@ module.exports = function(app, di_container) {
 
 	app.get('/api/eliminarPropietarios', function(req, res) {
 		c_crea.eliminarPropietarios(req, res);
+	});
+	
+	app.get('/api/eliminarEnlaces', function(req, res) {
+		c_crea.eliminarEnlaces(req, res);
 	});
 };

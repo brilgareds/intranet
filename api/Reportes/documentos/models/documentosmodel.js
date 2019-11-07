@@ -11,7 +11,6 @@ var formatearDocumentos = function (array, index, cabecera, documentos, j, i, nd
         callback(false, cabecera); 
         return; 
     }
-    console.log('fila: ', fila);
 
 
     if(fila.titulo !== ndocumento){

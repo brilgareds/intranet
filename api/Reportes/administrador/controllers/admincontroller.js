@@ -100,7 +100,6 @@ administrador.prototype.almacenPublicidad = function (req, res) {
 
 
       }).then(function (data) {
-       console.log("dataaa",data);
         res.send(G.utils.r(req.url, 'ALMACENAR PUBLICIDAD!!!!', 200, data));
 
     }).fail(function (err) {
@@ -114,7 +113,6 @@ administrador.prototype.almacenPublicidad = function (req, res) {
 function __enviar_correo_electronico(that, to,subject, message, callback) {
     var fecha = new Date();
 
-    console.log("entra o noooo");
    
     var smtpTransport = that.emails.createTransport("SMTP", {
         host: G.settings.email_host, // hostname
