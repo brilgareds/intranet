@@ -188,8 +188,8 @@
       <h5 style="font-family: sans-serif bold; font-size: 20px; color: black; text-align: center;"><b>  EMPRESAS ASOCIADAS</b></h5>
       <div id="carousel-pager" class="carousel slide " data-ride="carousel" data-interval="6000">
         <div class="carousel-inner vertical">
-          <div class=""  *ngFor="let item of empresas">
-           <div class="item {{item.active}} img-responsive" data-target="#carousel-main"  >   <br> <br>  <br>                                                  
+          <div class="item {{item.active}} "  *ngFor="let item of empresas">
+           <div class="img-responsive" data-target="#carousel-main"  >   <br> <br>  <br>                                                  
             <div class=" text-center">
               <br><br><br>
               <img class="" style="width: 250px; height: 100px; " src="assets/images/asociadas/{{item.url}}">

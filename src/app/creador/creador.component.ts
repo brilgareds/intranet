@@ -157,7 +157,7 @@ onCrear() {
 this.submitted = true;
 
 if (this.crearFrom.valid) {
-this.creadorService.almacenarPropietarios(this.crea).subscribe((data) => {
+this.creadorService.almacenarPropietarios(this.crea).subscribe((data: any) => {
 this.alerts.setMessage('EXTENSIÓN CREADA','success');
 console.log("imprimir", data);
 });

@@ -139,21 +139,6 @@
       this.crear = {};
     }
 
-
-
-    listarPortada() {
-    this.inicioService.mostrarPortada().subscribe((data: any) => {
-    this.portadaModal = data.obj.mostrarPortada;
-    return;
-    },
-    (error) => {
-    alert('Ocurrio un Error');
-    console.log("imprimir", error);
-    });
-    }
-
-
-
     tmrColombia() {
     this.inicioService.tmrColombiaService().subscribe((data: any) => {
     let dolar = data.obj.dolar.value;
@@ -186,7 +171,6 @@
     }
 
     ngOnInit() { 
-    this.listarPortada();
     this.listarPublica();
     this.tmrColombia();
     this.listarEnlaces();

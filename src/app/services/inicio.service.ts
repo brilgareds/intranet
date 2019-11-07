@@ -46,9 +46,7 @@ export class InicioService {
     }
 
     
-    public mostrarPortada() {
-        return this.httpClient.get(this.API_ENDPOINT + '/mostrarPortada', this.httpOptions);
-    }
+
 
     public mostrarEnlaces() {
         return this.httpClient.get(this.API_ENDPOINT + '/mostrarEnlaces', this.httpOptions);

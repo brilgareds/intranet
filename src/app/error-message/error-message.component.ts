@@ -16,7 +16,6 @@ export class ErrorMessageComponent {
    
   get errorMessage() {
     for (let propertyName in this.control.errors) {
-    console.log("this.control.errors",this.control);
       if (this.control.errors.hasOwnProperty(propertyName)) {
         return AdministradorService.getValidatorErrorMessage(propertyName, this.control.errors[propertyName]);
       }
@@ -26,7 +25,6 @@ export class ErrorMessageComponent {
 
     get errorMessage1() {
     for (let propertyName in this.control.errors) {
-    console.log("this.control.errors",this.control);
       if (this.control.errors.hasOwnProperty(propertyName)) {
         return InicioService.getValidatorErrorMessage(propertyName, this.control.errors[propertyName]);
       }
@@ -37,7 +35,6 @@ export class ErrorMessageComponent {
 
     get errorMessage2() {
     for (let propertyName in this.control.errors) {
-    console.log("this.control.errors",this.control);
       if (this.control.errors.hasOwnProperty(propertyName)) {
         return LoginService.getValidatorErrorMessage(propertyName, this.control.errors[propertyName]);
       }
