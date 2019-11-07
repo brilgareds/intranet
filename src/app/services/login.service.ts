@@ -49,8 +49,8 @@ public get currentUserValue(): User {
 
 login(ingreso: any){
    const  params = new  HttpParams().set('login', ingreso.login).set('password', ingreso.password);
-   let data;
-   return this.httpClient.get(this.API_ENDPOINT + '/login', {params}).pipe(map(user => {
+   let data;//(clients: Client[])
+   return this.httpClient.get(this.API_ENDPOINT + '/login', {params}).pipe(map((user : any) => {
    console.log("user---",user);
         if (user.status === 200) {
             if (user.obj && user.obj.token) {
