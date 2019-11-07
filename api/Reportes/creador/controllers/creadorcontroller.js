@@ -28,7 +28,7 @@ creador.prototype.eliminarPropietarios = function (req, res) {
         res.send(G.utils.r(req.url, 'extension ELIMINADO!!!!', 200, data));
 
     }).fail(function (err) {
-         console.log('err',err);
+         console.log('err eliminarPropietarios',err);
         res.send(G.utils.r(req.url, 'Error AL ELIMINAR extension', 500, err));
 
     }).done();
@@ -74,7 +74,11 @@ creador.prototype.aprobado = function (req, res) {
 
 
     G.Q.ninvoke(that.m_crea, 'aprobado',datos).then(function (data) {
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> 110f77f87b9afef4eabf2a83684821ec2bdac470
         res.send(G.utils.r(req.url, 'SI  APROBACION!!!!', 200, data));
 
     }).fail(function (err) {
@@ -114,7 +118,7 @@ creador.prototype.buscarExtension = function (req, res) {
         res.send(G.utils.r(req.url, 'BUSQUEDAD EXTENSIONES REALIZADA!!!!', 200, data));
 
     }).fail(function (err) {
-         console.log('err',err);
+         console.log('err buscarExtension',err);
         res.send(G.utils.r(req.url, 'Error AL REALIZAR BUSQUEDAD EXTENSIONES', 500, err));
 
     }).done();
@@ -130,7 +134,7 @@ creador.prototype.mostrarAprobacion = function (req, res) {
         res.send(G.utils.r(req.url, 'BUSQUEDAD APROBACION REALIZADA!!!!', 200, data));
 
     }).fail(function (err) {
-         console.log('err',err);
+         console.log('err mostrarAprobacion',err);
         res.send(G.utils.r(req.url, 'Error AL REALIZAR BUSQUEDAD APROBACION', 500, err));
 
     }).done();
@@ -147,7 +151,7 @@ creador.prototype.buscarEnlace = function (req, res) {
         res.send(G.utils.r(req.url, 'BUSQUEDAD ENLACE REALIZADA!!!!', 200, data));
 
     }).fail(function (err) {
-         console.log('err',err);
+         console.log('err buscarEnlace',err);
         res.send(G.utils.r(req.url, 'Error AL REALIZAR BUSQUEDAD ENLACE', 500, err));
 
     }).done();
@@ -175,7 +179,7 @@ creador.prototype.almacenarPropietarios = function (req, res) {
         res.send(G.utils.r(req.url, 'ALMACENAR PROPIETARIOS!!!!', 200, data));
 
     }).fail(function (err) {
-         console.log('err',err);
+         console.log('err almacenarPropietarios',err);
         res.send(G.utils.r(req.url, 'Error ALMACENAR PROPIETARIOS', 500, err));
 
     }).done();
@@ -202,7 +206,7 @@ creador.prototype.almacenarEnlace = function (req, res) {
         res.send(G.utils.r(req.url, 'ALMACENAR ENLACES!!!!', 200, data));
 
     }).fail(function (err) {
-         console.log('err',err);
+         console.log('err almacenarEnlace',err);
         res.send(G.utils.r(req.url, 'Error ALMACENAR ENLACES', 500, err));
 
     }).done();

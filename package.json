@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "prestart": "ng build --prod && ngc",
-    "host": "10.0.2.119",
+    "host": "10.0.2.158",
     "start": "ts-node src/server.ts",
     "build": "ng build",
     "test": "ng test",

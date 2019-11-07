@@ -89,6 +89,10 @@ creadormodel.prototype.desAprobado = function (data , callback) {
                   });
  
    query.then(function (resultado) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 110f77f87b9afef4eabf2a83684821ec2bdac470
        callback(false, resultado);
    }).catch(function (err) {
        callback({err: err, msj: err});

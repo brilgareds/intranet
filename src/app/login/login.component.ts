@@ -5,6 +5,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertsService } from 'angular-alert-module';
+import { first } from 'rxjs/operators';
 
 
 @Component({
@@ -17,36 +18,49 @@ export class LoginComponent implements OnInit {
 ingreso: any = {};
 ingresoForm: FormGroup;
 submitted = false;
+loading = false;
+error = '';
 
-constructor(private loginService: LoginService , private httpClient: HttpClient, private router: Router , private formBuilder: FormBuilder, private alerts: AlertsService) { }
+constructor(private loginService: LoginService , private httpClient: HttpClient, 
+private router: Router , private formBuilder: FormBuilder, 
+private alerts: AlertsService) { 
+
+if (this.loginService.currentUserValue) { 
+this.router.navigate(['/inicio']);
+}
+
+}
 
 
 
 onIngreso(){
-	this.submitted = true;
+this.submitted = true;
 
 
 if(this.ingreso.login !== undefined && this.ingreso.password !== undefined){
-	this.loginService.login(this.ingreso).subscribe((data) => {
-	      if(data.obj.ingreso){
-	        localStorage.clear();
 
-			localStorage.setItem('login_user', data.obj.login_user);
-			localStorage.setItem('auth_token', data.obj.token);
-			localStorage.setItem('userId', data.obj.login_id);
-			localStorage.setItem('userRol', data.obj.login_rol);
-			this.alerts.setMessage('BIENVENIDO ','success');
 
-			this.router.navigate(['/inicio']);
 
-		}else{
-			this.alerts.setMessage('El login o la contraseña son incorrectas','error');
-		}
-			
-	});
-  }else{
-     console.log('no datos');  
-  }
+this.loginService.login(this.ingreso).pipe(first())
+.subscribe(
+data => {
+console.log("------------------------------",data);
+if(data !== false){
+this.alerts.setMessage('BIENVENIDO ','success');
+this.router.navigate(['/inicio']);
+}else{
+this.alerts.setMessage('El login o la contraseña son incorrectas','error'); 
+}
+},
+error => {
+this.alerts.setMessage('El login o la contraseña son incorrectas','error');
+this.error = error;
+this.loading = false;
+});
+
+}else{
+console.log('no datos');  
+}
 }
 
 

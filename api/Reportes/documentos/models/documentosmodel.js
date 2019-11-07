@@ -13,6 +13,7 @@ var formatearDocumentos = function (array, index, cabecera, documentos, j, i, nd
     }
 
 
+
     if(fila.titulo !== ndocumento){
        
        if(ndocumento !== "")    
@@ -101,7 +102,7 @@ documentosModel.prototype.listarDocumentos = function (obj,callback) {
                                           
             G.Q.nfcall(formatearDocumentos, resultado, 0, [], [], 0,0, "")
                 .then(response => {
-                    console.log('Salidaaaa: ', response);
+                 
                     resultado = response;
                     callback(false, resultado);
                 }).catch(err => {

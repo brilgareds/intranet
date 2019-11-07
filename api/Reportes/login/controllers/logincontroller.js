@@ -10,12 +10,19 @@ login.prototype.logout = function (req, res) {
 
    var data = req.query;
 
+   
+    if(data.userId === null){
+      res.send(G.utils.r(req.url, 'ERROR EN logout', 500, {userId : 'es nulo'}));  
+      return;
+    }
+
+
     G.Q.ninvoke(that.m_login, 'logout',data).then(function (data) {
-       
+
         res.send(G.utils.r(req.url, 'logout cerrado ', 200, data));
 
     }).fail(function (err) {
-         console.log('err',err);
+         console.log('err logout',err);
         res.send(G.utils.r(req.url, 'ERROR EN logout', 500, err));
 
     }).done();
@@ -53,6 +60,7 @@ login.prototype.login  = function (req, res) {
             ingreso: true
         }
 
+
         return G.Q.ninvoke(that.m_login,'guardarToken', user);
 
 
@@ -64,12 +72,12 @@ login.prototype.login  = function (req, res) {
  if(data !== false){
    res.send(G.utils.r(req.url, 'Listado password!!!!', 200, user));
  }else{
-   res.send(G.utils.r(req.url, 'Listado password!!!!', 200, {msj : 'usuario no valido',ingreso:false}));
+   res.send(G.utils.r(req.url, 'Listado password!!!!', 500, {msj : 'usuario no valido',ingreso:false}));
  }
  
 
 }).fail(function (err) {
- console.log("Error",err);
+// console.log("Error",err);
  res.send(G.utils.r(req.url, 'Error al realizar login', 500, err));
 
 }).done();
